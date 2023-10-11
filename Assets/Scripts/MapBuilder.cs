@@ -46,24 +46,41 @@ public class MapBuilder : MonoBehaviour
         // Grab walls tilemap from scene
         m_WallsObject = GameObject.FindGameObjectWithTag("Walls");
         m_WallsMap = m_WallsObject.GetComponent<Tilemap>();
-        
+
         // Grab floor tilemap from scene
         m_FloorObject = GameObject.FindGameObjectWithTag("Floor");
         m_FloorMap = m_FloorObject.GetComponent<Tilemap>();
 
-        m_OddX = (m_height % 2) != 0;
-        m_OddY = (m_width % 2) != 0;
+        m_OddX = (m_width % 2) != 0;
+        m_OddY = (m_height % 2) != 0;
 
         DrawRoom();
-
     }
 
-    void DrawRoom()
+    // Erase all old tiles, prep for new room.
+    void ClearRoom()
     {
         // erase old room
         m_WallsMap.ClearAllTiles();
         m_FloorMap.ClearAllTiles();
+    }
 
+    void RefreshTiles()
+    {
+        m_WallsMap.RefreshAllTiles();
+        m_FloorMap.RefreshAllTiles();
+    }
+
+    /**
+     * Re-draw current room based on member variables.
+     * 
+     * 1. Draw floor
+     * 2. Draw walls
+     * 3. Draw corners
+     */
+    public void DrawRoom()
+    {
+        ClearRoom();
 
         // construct a room
         int floorWidth = m_width - 2;
@@ -74,7 +91,7 @@ public class MapBuilder : MonoBehaviour
         int cursorX = originX;
 
         int boundX = -originX;
-        boundX -= m_OddY ? 1 : 0; // shift if odd
+        boundX -= m_OddX ? 1 : 0; // shift if odd
 
         int cursorY = originY;
 
@@ -96,7 +113,7 @@ public class MapBuilder : MonoBehaviour
         cursorX = (floorWidth / 2);
 
         boundX = -(floorWidth / 2);
-        boundX -= m_OddY ? 1 : 0; // shift if odd
+        boundX -= m_OddX ? 1 : 0; // shift if odd
 
         cursorY = m_height / 2;
         // draw the north wall
@@ -143,13 +160,14 @@ public class MapBuilder : MonoBehaviour
             m_WallsMap.SetTile(pos, m_TileWall);
             m_WallsMap.SetTransformMatrix(pos, ROTATE270);
         }
+
         // draw corners
         int cornerX = m_width / 2;
         int cornerBoundX = -(m_width / 2) + 1;
         cornerBoundX -= m_OddX ? 1 : 0; // shift if od
         int cornerY = m_height / 2;
         int cornerBoundY = -(m_height / 2) + 1;
-        cornerBoundY -= m_OddX ? 1 : 0; // shift if odd
+        cornerBoundY -= m_OddY ? 1 : 0; // shift if odd
         // SW
         Vector3Int cornerPos = new Vector3Int(cornerBoundX, cornerBoundY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
@@ -165,6 +183,28 @@ public class MapBuilder : MonoBehaviour
         cornerPos = new Vector3Int(cornerBoundX, cornerY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
         m_WallsMap.SetTransformMatrix(cornerPos, ROTATE270);
+
+        RefreshTiles();
+    }
+
+    /*
+     * Re-draw current room based on dimmensions passed in
+     * 
+     * @param width: width to set room to
+     * @param height: height to set room to
+     */
+    public void DrawRoom(int width, int height)
+    {
+        // update member variables
+        m_width = width;
+        m_height = height;
+
+        // re-track odd/even
+        m_OddX = (m_width % 2) != 0;
+        m_OddY = (m_height % 2) != 0;
+
+        // draw room
+        DrawRoom();
     }
 }
     

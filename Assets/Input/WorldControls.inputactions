@@ -1,0 +1,45 @@
+{
+    "name": "WorldControls",
+    "maps": [
+        {
+            "name": "Regen",
+            "id": "1c793d7a-0de7-417a-83ac-974c8cc5e530",
+            "actions": [
+                {
+                    "name": "GenRandom",
+                    "type": "Button",
+                    "id": "d27151a8-7089-4fe1-b3da-d95ed322c6df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a198e7a1-eaec-4bbd-bfe3-221d706345ab",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenRandom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d99602cb-2cf6-4294-834c-c9c542e0526e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenRandom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
