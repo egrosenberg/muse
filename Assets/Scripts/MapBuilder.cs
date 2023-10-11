@@ -36,6 +36,7 @@ public class MapBuilder : MonoBehaviour
 
     // some dummy variables for testing tilemap gen
     public int m_height = 8;
+    public int m_width = 8;
 
 
 
@@ -51,7 +52,7 @@ public class MapBuilder : MonoBehaviour
         m_FloorMap = m_FloorObject.GetComponent<Tilemap>();
 
         m_OddX = (m_height % 2) != 0;
-        m_OddY = (m_height % 2) != 0;
+        m_OddY = (m_width % 2) != 0;
 
         DrawRoom();
 
@@ -65,17 +66,19 @@ public class MapBuilder : MonoBehaviour
 
 
         // construct a room
-        int floorsize = m_height - 2;
-        int origin = (floorsize / 2);
+        int floorWidth = m_width - 2;
+        int floorHeight = m_height - 2;
+        int originX = (floorWidth / 2);
+        int originY = (floorHeight / 2);
 
-        int cursorX = origin;
+        int cursorX = originX;
 
-        int boundX = -origin;
+        int boundX = -originX;
         boundX -= m_OddY ? 1 : 0; // shift if odd
 
-        int cursorY = origin;
+        int cursorY = originY;
 
-        int boundY = -origin;
+        int boundY = -originY;
         boundY -= m_OddY ? 1 : 0; // shift if odd
 
         // draw the floor
@@ -90,9 +93,9 @@ public class MapBuilder : MonoBehaviour
 
         // DRAW WALLS
         // set the cursor and bound for N/S walls 
-        cursorX = (floorsize / 2);
+        cursorX = (floorWidth / 2);
 
-        boundX = -(floorsize / 2);
+        boundX = -(floorWidth / 2);
         boundX -= m_OddY ? 1 : 0; // shift if odd
 
         cursorY = m_height / 2;
@@ -114,12 +117,12 @@ public class MapBuilder : MonoBehaviour
         }
 
         // set the cursor and bounds for E/W walls
-        cursorY = (floorsize / 2);
+        cursorY = (floorHeight / 2);
 
-        boundY = -(floorsize / 2);
+        boundY = -(floorHeight / 2);
         boundY -= m_OddY ? 1 : 0; // shift if odd
 
-        cursorX = m_height / 2;
+        cursorX = m_width / 2;
 
         // draw the east wall
         for (int y = cursorY; y > boundY; --y)
@@ -131,7 +134,7 @@ public class MapBuilder : MonoBehaviour
 
         // draw the west wall
         // re-set cursor (offset by 1 because bounded side)
-        cursorX = -(m_height / 2) + 1;
+        cursorX = -(m_width / 2) + 1;
         cursorX -= m_OddX ? 1 : 0; // shift if odd
 
         for (int y = cursorY; y > boundY; --y)
@@ -141,22 +144,25 @@ public class MapBuilder : MonoBehaviour
             m_WallsMap.SetTransformMatrix(pos, ROTATE270);
         }
         // draw corners
-        int corner = m_height / 2;
-        int cornerBound = -(m_height / 2) + 1;
-        cornerBound -= m_OddX ? 1 : 0; // shift if odd
+        int cornerX = m_width / 2;
+        int cornerBoundX = -(m_width / 2) + 1;
+        cornerBoundX -= m_OddX ? 1 : 0; // shift if od
+        int cornerY = m_height / 2;
+        int cornerBoundY = -(m_height / 2) + 1;
+        cornerBoundY -= m_OddX ? 1 : 0; // shift if odd
         // SW
-        Vector3Int cornerPos = new Vector3Int(cornerBound, cornerBound, 0);
+        Vector3Int cornerPos = new Vector3Int(cornerBoundX, cornerBoundY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
         // SE
-        cornerPos = new Vector3Int(corner, cornerBound, 0);
+        cornerPos = new Vector3Int(cornerX, cornerBoundY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
         m_WallsMap.SetTransformMatrix(cornerPos, ROTATE90);
         // NE
-        cornerPos = new Vector3Int(corner, corner, 0);
+        cornerPos = new Vector3Int(cornerX, cornerY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
         m_WallsMap.SetTransformMatrix(cornerPos, ROTATE180);
         // NW
-        cornerPos = new Vector3Int(cornerBound, corner, 0);
+        cornerPos = new Vector3Int(cornerBoundX, cornerY, 0);
         m_WallsMap.SetTile(cornerPos, m_TileCorner);
         m_WallsMap.SetTransformMatrix(cornerPos, ROTATE270);
     }
