@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     // Forced delay between moves
-    private float moveDelay = 0.1f;
+    private float m_moveDelay = 0.1f;
     // The next schedulable move time
-    private float nextMove = 0.0f;
+    private float m_nextMove = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate()
+    {
+    }
+    void OnCollisionEnter2D(Collision2D collision)
     {
     }
 
@@ -34,22 +37,35 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         // Dont move if we are on cooldown
-        if (Time.time < nextMove)
+        if (Time.time < m_nextMove)
         {
             return;
         }
         Vector2 moveAxis = value.Get<Vector2>();
 
         // Set the next schedulable movement time to current time + delay
-        nextMove = Time.time + moveDelay;
+        m_nextMove = Time.time + m_moveDelay;
 
         // Grab current position
-        Vector3 curPos = this.transform.position;
+        Vector3 newPos = this.transform.position;
 
         // find new position from input axis
-        curPos.x += moveAxis.x;
-        curPos.y += moveAxis.y;
-        // move player
-        this.transform.position = curPos;
+        newPos.x += moveAxis.x;
+        newPos.y += moveAxis.y;
+
+        // Check to see if new position will cause collision
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(newPos, 0.3f);
+
+        // Log each position (for debuging purposes)
+        foreach (Collider2D collision in collisions)
+        {
+            Debug.Log(collision.gameObject.name);
+        }
+
+        if (collisions.Length < 1)
+        {
+            // move player if we are not going to collide
+            this.transform.position = newPos;
+        }
     }
 }
