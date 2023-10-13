@@ -1,0 +1,869 @@
+{
+    "rooms": [ {
+            "area": 1500,
+            "col": 1,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 17 cp"]
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "south": [{
+                        "col": 5,
+                        "desc": "Archway",
+                        "out_id": 5,
+                        "row": 4,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 30,
+            "id": 1,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 3,
+            "west": 1,
+            "width": 50
+        }, {
+            "area": 2500,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 16 cp"]
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "east": [{
+                        "col": 16,
+                        "desc": "Archway",
+                        "out_id": 3,
+                        "row": 1,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "row": 1,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 15,
+            "height": 50,
+            "id": 2,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 11,
+            "width": 50
+        }, {
+            "area": 2500,
+            "col": 17,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 20 cp"],
+                    "room_features": "A stair ascends to a balcony hanging from the north wall, and a splashing noise can be faintly heard near the south wall"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "south": [{
+                        "col": 21,
+                        "desc": "Archway",
+                        "row": 6,
+                        "type": "arch"
+                    }, {
+                        "col": 19,
+                        "desc": "Archway",
+                        "out_id": 7,
+                        "row": 6,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 16,
+                        "desc": "Archway",
+                        "out_id": 2,
+                        "row": 1,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 50,
+            "id": 3,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 17,
+            "width": 50
+        }, {
+            "area": 900,
+            "col": 1,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 18 sp"],
+                    "room_features": "A stone sarcophagus sits in the north-east corner of the room, and someone has scrawled \"The Emerald Company killed six ogres here\" on the west wall"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "south": [{
+                        "col": 3,
+                        "desc": "Archway",
+                        "out_id": 8,
+                        "row": 8,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 3,
+            "height": 30,
+            "id": 4,
+            "north": 5,
+            "row": 5,
+            "shape": "square",
+            "size": "small",
+            "south": 7,
+            "west": 1,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 5,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 6,
+                        "row": 7,
+                        "type": "arch"
+                    }
+                ],
+                "north": [{
+                        "col": 5,
+                        "desc": "Archway",
+                        "out_id": 1,
+                        "row": 4,
+                        "type": "arch"
+                    }, {
+                        "col": 9,
+                        "desc": "Archway",
+                        "row": 4,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 30,
+            "id": 5,
+            "north": 5,
+            "row": 5,
+            "shape": "square",
+            "size": "small",
+            "south": 7,
+            "west": 5,
+            "width": 50
+        }, {
+            "area": 900,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "room_features": "The ceiling is covered with bloodstains, and a dulled dagger lies in the center of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [{
+                        "col": 14,
+                        "desc": "Archway",
+                        "out_id": 7,
+                        "row": 7,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 11,
+                        "desc": "Archway",
+                        "out_id": 10,
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 5,
+                        "row": 7,
+                        "type": "arch"
+                    }, {
+                        "col": 10,
+                        "desc": "Archway",
+                        "row": 9,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 13,
+            "height": 30,
+            "id": 6,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 9,
+            "west": 11,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 15,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 14 cp"],
+                    "room_features": "Various torture devices are scattered throughout the room, and a pile of candles lies in the center of the room"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "north": [{
+                        "col": 19,
+                        "desc": "Archway",
+                        "out_id": 3,
+                        "row": 6,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 15,
+                        "desc": "Archway",
+                        "out_id": 10,
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 14,
+                        "desc": "Archway",
+                        "out_id": 6,
+                        "row": 7,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 19,
+            "height": 30,
+            "id": 7,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 9,
+            "west": 15,
+            "width": 50
+        }, {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 16 gp"],
+                    "room_features": "Someone has scrawled \"Stay left\" on the north wall, and the ceiling is covered with bloodstains"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "north": [{
+                        "col": 3,
+                        "desc": "Archway",
+                        "out_id": 4,
+                        "row": 8,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 2,
+                        "desc": "Archway",
+                        "row": 11,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 50,
+            "id": 8,
+            "north": 9,
+            "row": 9,
+            "shape": "square",
+            "size": "small",
+            "south": 13,
+            "west": 3,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "room_features": "The floor is covered in perfect hexagonal tiles, and a pile of barrel staves lies in the south-east corner of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [{
+                        "col": 7,
+                        "desc": "Archway",
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 15,
+                        "row": 16,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 50,
+            "id": 9,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 15,
+            "west": 7,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "room_features": "Burning torches in iron sconces line the south and east walls, and someone has scrawled a crude drawing of a nymph on the west wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [{
+                        "col": 11,
+                        "desc": "Archway",
+                        "out_id": 6,
+                        "row": 10,
+                        "type": "arch"
+                    }, {
+                        "col": 15,
+                        "desc": "Archway",
+                        "out_id": 7,
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 11,
+                        "desc": "Archway",
+                        "out_id": 12,
+                        "row": 14,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 15,
+            "height": 30,
+            "id": 10,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 13,
+            "west": 11,
+            "width": 50
+        }, {
+            "area": 1500,
+            "col": 17,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [{
+                        "col": 21,
+                        "desc": "Archway",
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 13,
+                        "row": 14,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 11,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 13,
+            "west": 17,
+            "width": 50
+        }, {
+            "area": 2500,
+            "col": 11,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [{
+                        "col": 11,
+                        "desc": "Archway",
+                        "out_id": 10,
+                        "row": 14,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 15,
+                        "desc": "Archway",
+                        "row": 20,
+                        "type": "arch"
+                    }, {
+                        "col": 13,
+                        "desc": "Archway",
+                        "out_id": 17,
+                        "row": 20,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 15,
+            "height": 50,
+            "id": 12,
+            "north": 15,
+            "row": 15,
+            "shape": "square",
+            "size": "small",
+            "south": 19,
+            "west": 11,
+            "width": 50
+        }, {
+            "area": 1500,
+            "col": 17,
+            "contents": {
+                "detail": {
+                    "room_features": "A set of demonic war masks hangs on the north wall, and a broken wooden chest lies in the south-west corner of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [{
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 11,
+                        "row": 14,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 21,
+                        "desc": "Archway",
+                        "row": 18,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 13,
+            "north": 15,
+            "row": 15,
+            "shape": "square",
+            "size": "small",
+            "south": 17,
+            "west": 17,
+            "width": 50
+        }, {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 22 cp"],
+                    "room_features": "Spirals of black stones cover the floor, and someone has scrawled \"Upon the Night of Stone, in the Valley of Thunder, the Staff of Prisms shall be lost\" on the south wall"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "north": [{
+                        "col": 5,
+                        "desc": "Archway",
+                        "row": 16,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 3,
+                        "desc": "Archway",
+                        "out_id": 18,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 50,
+            "id": 14,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 21,
+            "west": 3,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 9 sp"],
+                    "room_features": "A tile labyrinth covers the floor, and a rusted breastplate lies in the north-west corner of the room"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "east": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 17,
+                        "row": 21,
+                        "type": "arch"
+                    }
+                ],
+                "north": [{
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 9,
+                        "row": 16,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 19,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 50,
+            "id": 15,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 21,
+            "west": 7,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 17,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 1800 cp, 800 sp, 90 gp, 2 x diamond (50 gp), chalcedony (50 gp), quartz (50 gp), Spell Scroll (Poison Spray) (common, dmg 200), Spell Scroll (Divine Favor) (common, dmg 200), Spell Scroll (Goodberry) (common, dmg 200), Spell Scroll (Find Steed) (uncommon, dmg 200), Potion of Healing (common, dmg 187)"],
+                    "room_features": "A sour odor fills the east side of the room, and several pieces of rotten bread are scattered throughout the room"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "east": [{
+                        "col": 20,
+                        "desc": "Archway",
+                        "row": 21,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 21,
+                        "row": 24,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 16,
+                        "desc": "Archway",
+                        "row": 21,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 19,
+            "height": 50,
+            "id": 16,
+            "north": 19,
+            "row": 19,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 17,
+            "width": 30
+        }, {
+            "area": 900,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": ["Hidden (DC 15 to find) Unlocked Strong Wooden Chest (20 hp)", "--", "2100 cp, 1000 sp, 70 gp, a brocade merchant's cap adorned with a feather (25 gp), a copper shield brooch inlaid with ornate gold scrollwork (25 gp), a leather vest trimmed with lynx fur (25 gp), a wooden plate engraved with arcane runes (25 gp), an earthenware vase embossed with arcane runes (25 gp), +2 Ammunition (50 blowgun needles) (rare, dmg 150)"],
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 13 gp"],
+                    "room_features": "A rattling noise fills the room, and a rusted chain shirt lies in the north-west corner of the room"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn, Hidden Treasure"
+            },
+            "doors": {
+                "east": [{
+                        "col": 14,
+                        "desc": "Archway",
+                        "row": 23,
+                        "type": "arch"
+                    }
+                ],
+                "north": [{
+                        "col": 13,
+                        "desc": "Archway",
+                        "out_id": 12,
+                        "row": 20,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 15,
+                        "row": 21,
+                        "type": "arch"
+                    }, {
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 19,
+                        "row": 23,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 13,
+            "height": 30,
+            "id": 17,
+            "north": 21,
+            "row": 21,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 11,
+            "width": 30
+        }, {
+            "area": 900,
+            "col": 1,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [{
+                        "col": 4,
+                        "desc": "Archway",
+                        "out_id": 19,
+                        "row": 25,
+                        "type": "arch"
+                    }
+                ],
+                "north": [{
+                        "col": 3,
+                        "desc": "Archway",
+                        "out_id": 14,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ],
+                "south": [{
+                        "col": 1,
+                        "desc": "Archway",
+                        "row": 26,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 3,
+            "height": 30,
+            "id": 18,
+            "north": 23,
+            "row": 23,
+            "shape": "square",
+            "size": "small",
+            "south": 25,
+            "west": 1,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 5,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 14 gp"]
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "east": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 17,
+                        "row": 23,
+                        "type": "arch"
+                    }, {
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 20,
+                        "row": 25,
+                        "type": "arch"
+                    }
+                ],
+                "north": [{
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 15,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 4,
+                        "desc": "Archway",
+                        "out_id": 18,
+                        "row": 25,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 30,
+            "id": 19,
+            "north": 23,
+            "row": 23,
+            "shape": "square",
+            "size": "small",
+            "south": 25,
+            "west": 5,
+            "width": 50
+        }, {
+            "area": 900,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": ["Hidden (DC 15 to find) Trapped and Locked Good Wooden Chest (DC 25 to unlock, DC 20 to break; 15 hp)", "Arrow Trap: DC 10 to find, DC 10 to disable;\n    +5 to hit against one target, 1d10 piercing damage", "--", "1300 cp, 1000 sp, 70 gp, azurite (10 gp), hematite (10 gp), lapis lazuli (10 gp), 2 x rhodochrosite (10 gp), tiger eye (10 gp), 2 x turquoise (10 gp), Spell Scroll (Remove Curse) (uncommon, dmg 200), Potion of Poison (uncommon, dmg 188)"]
+                },
+                "summary": "Hidden Treasure"
+            },
+            "doors": {
+                "east": [{
+                        "col": 14,
+                        "desc": "Archway",
+                        "out_id": 21,
+                        "row": 27,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 10,
+                        "desc": "Archway",
+                        "out_id": 19,
+                        "row": 25,
+                        "type": "arch"
+                    }, {
+                        "col": 10,
+                        "desc": "Archway",
+                        "row": 27,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 13,
+            "height": 30,
+            "id": 20,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 11,
+            "width": 30
+        }, {
+            "area": 1500,
+            "col": 15,
+            "contents": {
+                "detail": {
+                    "monster": ["Oblex Spawn (cr 1/4, motm 197, mtf 217); hard, 50 xp", "--", "Treasure: 1800 cp, 900 sp, 60 gp, diamond (50 gp), chalcedony (50 gp), citrine (50 gp), moonstone (50 gp), onyx (50 gp), Boots of Striding and Springing (uncommon, dmg 156), Sentinel Shield (uncommon, dmg 199), Staff of the Adder (uncommon, dmg 203), Weapon of Warning (maul) (uncommon, dmg 213)"],
+                    "room_features": "A rope ascends to a catwalk hanging between the north and south walls, and a dagger hilt lies in the east side of the room"
+                },
+                "inhabited": "Oblex Spawn",
+                "summary": "Oblex Spawn"
+            },
+            "doors": {
+                "north": [{
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 16,
+                        "row": 24,
+                        "type": "arch"
+                    }, {
+                        "col": 15,
+                        "desc": "Archway",
+                        "row": 24,
+                        "type": "arch"
+                    }
+                ],
+                "west": [{
+                        "col": 14,
+                        "desc": "Archway",
+                        "out_id": 20,
+                        "row": 27,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 19,
+            "height": 30,
+            "id": 21,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 15,
+            "width": 50
+        }
+    ]
+}

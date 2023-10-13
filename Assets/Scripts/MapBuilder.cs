@@ -6,17 +6,18 @@ using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
 {
-    private const int N_ANGLES = 4;
-
-    private Matrix4x4 ROTATE90 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 90f), Vector3.one);
-    private Matrix4x4 ROTATE180 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 180f), Vector3.one);
-    private Matrix4x4 ROTATE270 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 270f), Vector3.one);
+    public static Matrix4x4 ROTATE0 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 0f), Vector3.one);
+    public static Matrix4x4 ROTATE90 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 90f), Vector3.one);
+    public static Matrix4x4 ROTATE180 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 180f), Vector3.one);
+    public static Matrix4x4 ROTATE270 = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 270f), Vector3.one);
 
     // tiles for drawing map
     public TileBase m_TileCorner; // Base bottom-right
     public TileBase m_TileWall; // Base bottom
     public TileBase m_TileDoor; // Base bottom
     public TileBase m_TileFloor;
+
+    public GameObject m_DoorPrefab; // Placeable doors
 
     // Wall / Doors are S, E, N, W
     private Tile[] m_WallTilesArray;
@@ -30,6 +31,9 @@ public class MapBuilder : MonoBehaviour
     private GameObject m_FloorObject;
     private Tilemap m_FloorMap;
 
+    private GameObject m_Player;
+    private GameObject m_Grid;
+
     private bool m_OddX;
     private bool m_OddY;
 
@@ -41,7 +45,7 @@ public class MapBuilder : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Grab walls tilemap from scene
         m_WallsObject = GameObject.FindGameObjectWithTag("Walls");
@@ -50,6 +54,7 @@ public class MapBuilder : MonoBehaviour
         // Grab floor tilemap from scene
         m_FloorObject = GameObject.FindGameObjectWithTag("Floor");
         m_FloorMap = m_FloorObject.GetComponent<Tilemap>();
+        m_Grid = GameObject.FindGameObjectWithTag("OverworldGrid");
 
         m_OddX = (m_width % 2) != 0;
         m_OddY = (m_height % 2) != 0;
@@ -60,9 +65,21 @@ public class MapBuilder : MonoBehaviour
     // Erase all old tiles, prep for new room.
     void ClearRoom()
     {
+        if (m_WallsMap == null || m_FloorMap == null)
+        {
+            return;
+        }
         // erase old room
         m_WallsMap.ClearAllTiles();
         m_FloorMap.ClearAllTiles();
+
+        // destroy all doors
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+
+        foreach (GameObject door in doors)
+        {
+            Destroy(door);
+        }
     }
 
     void RefreshTiles()
@@ -205,6 +222,33 @@ public class MapBuilder : MonoBehaviour
 
         // draw room
         DrawRoom();
+    }
+
+    /**
+     * Place a door on wall layer at specified position / rotation
+     * 
+     * @param x: int x coordinate respective to room NW
+     * @param y: int y coordinate respective to room NW
+     * @param rotation: Matrix4x4 instructing how to rotate door
+     */
+    public void DrawDoor(int x, int y, Matrix4x4 rotation, int out_id)
+    {
+        // calculate NW corner
+        int west = -(m_width / 2) + 1;
+        west -= m_OddX ? 1 : 0; // shift if odd
+        int north = m_height / 2;
+
+        // calculate door position
+        Vector3Int position = new Vector3Int(west + x, north - y, 0);
+
+        // place door
+        GameObject door = Instantiate(m_DoorPrefab, position, rotation.rotation, m_Grid.transform);
+        MapDoor doorScript = door.GetComponent<MapDoor>();
+        doorScript.out_id = out_id;
+        //m_WallsMap.SetTransformMatrix(position, rotation);
+        m_WallsMap.SetTile(position, null);
+
+        RefreshTiles();
     }
 }
     

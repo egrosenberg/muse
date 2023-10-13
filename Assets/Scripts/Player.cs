@@ -11,9 +11,14 @@ public class Player : MonoBehaviour
     // The next schedulable move time
     private float m_nextMove = 0.0f;
 
+    private GameObject m_OverworldControllerObject;
+    private OverworldController m_OverworldController;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_OverworldControllerObject = GameObject.FindGameObjectWithTag("WorldBuilder");
+        m_OverworldController = m_OverworldControllerObject.GetComponent<OverworldController>();
     }
 
     // Update is called once per frame
@@ -66,6 +71,15 @@ public class Player : MonoBehaviour
         {
             // move player if we are not going to collide
             this.transform.position = newPos;
+        }
+
+        foreach (Collider2D collision in collisions)
+        {
+            if (collision.gameObject.tag == "Door")
+            {
+                int out_id = collision.gameObject.GetComponent<MapDoor>().out_id;
+                m_OverworldController.GenRoom(out_id-1);
+            }
         }
     }
 }
