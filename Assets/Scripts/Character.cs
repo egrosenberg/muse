@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-
-    public const int N_STATS = 6;
-    public const int BASE_STAT = 8;
-    public const int MAX_STAT = 20;
-    public const int MED_STAT = 10;
-    public const int HP_PER_LVL = 5;
-    public const int MP_PER_LVL = 4;
-    public const int MAX_LEVEL = 10;
-    public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
-    public static readonly int[] XP_AT_LVL = {300, 900, 2700, 6500, 1400, 2300, 34000, 48000, 64000, 85000};
-
     public enum Stats : int
     {
         STR,
@@ -25,17 +14,37 @@ public class Character : MonoBehaviour
         CHA
     }
 
-    private int[] m_StatArray;
-    private bool[] m_SaveProfs;
-    private bool[] m_CheckProfs;
-    private int m_Level;
-    private int m_XP;
-    private int m_PB;
-    private int m_MaxHP;
-    private int m_MaxMP;
-    private int m_HP;
-    private int m_MP;
+    public const int N_STATS = 6;
+    public const int BASE_STAT = 8;
+    public const int MAX_STAT = 20;
+    public const int MED_STAT = 10;
+    public const int HP_PER_LVL = 5;
+    public const int MP_PER_LVL = 4;
+    public const int MAX_LEVEL = 10;
+    public const int BASE_ARMOR = 11;
+    public const int DC_BASE = 8;
+    public const Stats DEFAULT_SPELL_ABILITY = Stats.CHA;
+    public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
+    public static readonly int[] XP_AT_LVL = {300, 900, 2700, 6500, 1400, 2300, 34000, 48000, 64000, 85000};
 
+
+    protected int[] m_StatArray;    // array containing ability scores
+    protected bool[] m_SaveProfs;   // array of saving throw proficiencies
+    protected bool[] m_CheckProfs;  // array of ability check proficiencies
+    protected int m_ArmorBase;      // AC bonus from armor
+    protected Stats m_SpellAbility; // ability used for spellcasting
+    protected int m_Level;          // current level
+    protected int m_XP;             // current xp progress in level
+    protected int m_PB;             // current proficiency bonus
+    protected int m_MaxHP;          // max hit points
+    protected int m_MaxMP;          // max magic points
+    protected int m_HP;             // current hit points
+    protected int m_MP;             // current magic points
+    protected int m_AC;             // total armor class
+    protected int m_SpellDC;        // difficulty class for spell saving throws
+    protected int m_WeaponAttack;   // weapon attack bonus
+    protected int m_SpellAttack;    // spell attack bonus
+    
     void Awake()
     {
         // initialize stats, checks, and saves
@@ -46,10 +55,17 @@ public class Character : MonoBehaviour
             m_SaveProfs[i] = false;
             m_CheckProfs[i] = false;
         }
+
+        m_SpellAbility = DEFAULT_SPELL_ABILITY;
+
         // init level
         m_Level = 1;
         m_XP = 0;
-        m_PB = PB_AT_LVL[m_Level];
+
+        // init armor
+        m_ArmorBase = BASE_ARMOR;
+
+        UpdateResources();
     }
 
     // Start is called before the first frame update
@@ -85,6 +101,14 @@ public class Character : MonoBehaviour
 
         // update PB
         m_PB = PB_AT_LVL[m_Level];
+
+        // update armor class
+        m_AC = m_ArmorBase + GetMod(Stats.DEX);
+
+        // update spell save dc + attacks
+        m_SpellDC = DC_BASE + m_PB + GetMod(m_SpellAbility);
+        m_WeaponAttack = m_PB + GetMod(Stats.DEX);
+        m_SpellAttack = m_PB + GetMod(m_SpellAbility);
     }
 
     /**
@@ -161,6 +185,7 @@ public class Character : MonoBehaviour
      */
     public bool AddXP(int ammount)
     {
+        bool levelUp = false;
         // increment xp
         m_XP += ammount;
         // check for level up
@@ -169,8 +194,31 @@ public class Character : MonoBehaviour
             int remainderXP = m_XP - XP_AT_LVL[m_Level];
             LevelUp();
             m_XP = remainderXP;
+            levelUp = true;
         }
 
-        return false;
+        return levelUp;
+    }
+    
+    /**
+     * checks if an attack roll hits
+     * 
+     * @param attack: value of attack roll
+     * @return true if attack hits, false if it misses
+     */
+    bool DoesHit(int attack)
+    {
+        return attack >= m_AC;
+    }
+
+    // Getter for spell attack bonus
+    int GetSpellAttack()
+    {
+        return m_SpellAttack;
+    }
+    // Getter for weapon attack bonus
+    int GetWeaponAttack()
+    {
+        return m_WeaponAttack;
     }
 }
