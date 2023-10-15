@@ -7,7 +7,7 @@ public class DieRoller : MonoBehaviour
 {
     private const int N_SIDES = 20;
     private const int MIN_SPINS = 10;
-    private const int MAX_SPINS = 15;
+    private const int MAX_SPINS = 11;
     private const float SPIN_DELAY = 0.1f;
     private const int TOTAL_DEGREES = 360;
     private const int MIN_ROTATION_ANGLE = 120;
@@ -30,6 +30,7 @@ public class DieRoller : MonoBehaviour
     private int m_DieAngle = 0;
     private int m_SpinN = 0;
     private int m_Bonus = 0;
+    private bool m_IsVisible;
 
 
     void Start()
@@ -40,10 +41,12 @@ public class DieRoller : MonoBehaviour
 
         m_DieTransform = m_DieImageObj.GetComponent<RectTransform>();
 
+        m_IsVisible = true;
+
         Roll(4);
     }
 
-    void Roll(int bonus)
+    public int Roll(int bonus)
     {
         m_Bonus = bonus;
         m_SpinsRemaining = Random.Range(MIN_SPINS, MAX_SPINS);
@@ -51,10 +54,35 @@ public class DieRoller : MonoBehaviour
         m_Result = Random.Range(1, N_SIDES + 1);
 
         m_IsRolling = true;
+
+        return m_Result;
     }
 
+
+    // TODO: maybe make this a coroutine so it runs async
+
+    /**
+     * Check if we are rolling, if we are currently rolling:
+     *   Check if we are scheduled to change sides:
+     *      Rotate die sprite and set to a random face on the die
+     *      Schedule the next time to change sides
+     *      Gradually slow down rolling speed
+     *      
+     * On the last three rotations we will stay on the result
+     * On the second to last, we display the bonus
+     * On the final, we display the result
+     * 
+     * If we are not planning on displaying the die, we skip the update function altogether
+     */
     void Update()
     {
+        // This is kind of sloppy, but it means i get to use the current die roller
+        // without making a new base class and having this extend it
+        if (!m_IsVisible)
+        {
+            return;
+        }
+
         // if it is time to display next number AND we are spinning
         if (m_IsRolling && Time.time >= m_NextSpinT)
         {
