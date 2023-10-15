@@ -1,17 +1,155 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 
 public class Character : MonoBehaviour
 {
     public enum Stats : int
     {
-        STR,
-        DEX,
-        CON,
-        INT,
-        WIS,
-        CHA
+        STR = 0,
+        DEX = 1,
+        CON = 2,
+        INT = 3,
+        WIS = 4,
+        CHA = 5
+    }
+
+    public enum Dice : int
+    {
+        D4 = 4,
+        D6 = 6,
+        D8 = 8,
+        D10 = 10,
+        D12 = 12
+    }
+
+    public enum SpellEffects : int
+    {
+        NONE = 0,
+        CHARM = 1
+    }
+
+    public class DamageFormula
+    {
+        public Dice[] dice;       // array of dice to roll
+        public bool addModifier;  // true if we add  ability modifier to damage
+        public Stats ability;     // The ability used for the attack 
+        public bool isHealing;    // inverts damage to negative if healing
+
+        public DamageFormula(Dice[] dice, bool addMod, Stats stat, bool doesHeal)
+        {
+            this.dice = new Dice[dice.Length];
+            dice.CopyTo(this.dice, 0);
+
+            this.addModifier = addMod;
+
+            this.ability = stat;
+
+            this.isHealing = doesHeal;
+        }
+
+        /**
+         * gets a random result of the damage formula
+         * 
+         * @param character: character to get ability mod from
+         * @return total damage/healing
+         */
+        public int Roll(Character character)
+        {
+            int result = 0;
+
+            // roll each die in the array
+            foreach (Dice d in dice)
+            {
+                result += UnityEngine.Random.Range(1, (int)d + 1);
+            }
+            // conditionally add modifier
+            if (addModifier)
+            {
+                result += character.GetMod(ability);
+            }
+            // invert if healing
+            if (isHealing)
+            {
+                result *= -1;
+            }
+
+            return result;
+        }
+    }
+
+    public class Spell
+    {
+        public enum SpellAttackTypes : int
+        {
+            ATTACK = 0,
+            SAVE = 1
+        }
+
+        public enum SpellEffectTypes : int
+        {
+            DAMAGE = 0,
+            UTILITY = 1
+        }
+
+        public int mpCost;                  // magic points cost of spell
+        public DamageFormula damageFormula; // damage formula for spell
+        public SpellAttackTypes attackType; // spell attack type (attack / save)
+        public SpellEffectTypes effectType; // effect type (damage / utility)
+        public SpellEffects spellEffect;    // effect applies by the spell
+        public int effectDuration;          // duration of the effect applied by the spell
+        public Stats castStat;              // what stat does the caster use?
+        public Stats saveStat;              // what stat does the target use to save
+
+        /**
+         * Attempts to apply the effects of the spell,
+         *   automatically rolls attacks and saves
+         *   on success, rolls damage and applies effects
+         *   
+         * @param caster: character who is casting the spell
+         * @param target: character to target with the spell
+         * 
+         * @return true on success, false otherwise
+         */
+        public bool Cast(Character caster, Character target)
+        {
+            bool success = false;
+
+            // if this is a spell attack roll to hit
+            if (attackType == SpellAttackTypes.ATTACK)
+            {
+                int bonus = caster.GetWeaponAttack();
+                int dieRoll = caster.GetRoller().Roll(bonus);
+                int toHit = dieRoll + bonus;
+                success = target.DoesHit(toHit);
+            }
+            // if this is is a saving throw spell
+            if (attackType == SpellAttackTypes.SAVE)
+            {
+                int bonus = target.GetSave(saveStat);
+                int dieRoll = target.GetRoller().Roll(bonus);
+                int toSave = dieRoll + bonus;
+
+                success = caster.DoesSave(toSave);
+            }
+
+            // if the spell succeeds, do effects
+            if (success)
+            {
+                // check if we need to apply effects
+                if (spellEffect != SpellEffects.NONE)
+                {
+                    target.ApplyEffect(spellEffect, effectDuration);
+                }
+                int damage = damageFormula.Roll(caster);
+                target.Damage(damage);
+            }
+
+            return success;
+        }
     }
 
     public const int N_STATS = 6;
@@ -26,7 +164,6 @@ public class Character : MonoBehaviour
     public const Stats DEFAULT_SPELL_ABILITY = Stats.CHA;
     public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
     public static readonly int[] XP_AT_LVL = {300, 900, 2700, 6500, 1400, 2300, 34000, 48000, 64000, 85000};
-
 
     protected int[] m_StatArray;    // array containing ability scores
     protected bool[] m_SaveProfs;   // array of saving throw proficiencies
@@ -44,6 +181,10 @@ public class Character : MonoBehaviour
     protected int m_SpellDC;        // difficulty class for spell saving throws
     protected int m_WeaponAttack;   // weapon attack bonus
     protected int m_SpellAttack;    // spell attack bonus
+    protected int[] m_EffectTimers; // stores all current effect timers and how many turns remaining
+
+    public GameObject m_DieRollerObject;
+    protected DieRoller m_DieRoller;
     
     void Awake()
     {
@@ -66,11 +207,14 @@ public class Character : MonoBehaviour
         m_ArmorBase = BASE_ARMOR;
 
         UpdateResources();
+
+        m_EffectTimers = new int[Enum.GetNames(typeof(SpellEffects)).Length];
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        m_DieRoller = m_DieRollerObject.GetComponent<DieRoller>();
     }
 
     /**
@@ -210,15 +354,91 @@ public class Character : MonoBehaviour
     {
         return attack >= m_AC;
     }
+    /**
+     * checks if an saving throw succeeds
+     * 
+     * @param save: value of the saving throw
+     * @return true if the saving throw succeeds, false otherwise
+     */
+    bool DoesSave(int save)
+    {
+        return save >= m_SpellDC;
+    }
 
+    /**
+     * Gets saving throw bonus for given ability
+     * 
+     * @param stat: ability to get saving throw for
+     * 
+     * @return: total bonus to saving throw
+     */
+    public int GetSave(Stats stat)
+    {
+        int total = 0;
+
+        total += GetMod(stat);
+        total += m_SaveProfs[(int)stat] ? m_PB : 0;
+
+        return total;
+    }
     // Getter for spell attack bonus
-    int GetSpellAttack()
+    public int GetSpellAttack()
     {
         return m_SpellAttack;
     }
     // Getter for weapon attack bonus
-    int GetWeaponAttack()
+    public int GetWeaponAttack()
     {
         return m_WeaponAttack;
+    }
+    // Getter for armor class
+    public int GetAC()
+    {
+        return m_AC;
+    }
+    // Getter for spell save DC
+    public int GetDC()
+    {
+        return m_SpellDC;
+    }
+    // Getter for die roller
+    public DieRoller GetRoller()
+    {
+        return m_DieRoller;
+    }
+
+    /**
+     * assigns damage to character (use negative value to heal)
+     * 
+     * @param ammount: ammount of damage to deal
+     * @return remaining hp
+     */
+    public int Damage(int ammount)
+    {
+        m_HP -= ammount;
+
+        if (m_HP < 0)
+        {
+            m_HP = 0;
+        }
+
+        if (m_HP > m_MaxHP)
+        {
+            m_HP = m_MaxHP;
+        }
+
+        return m_HP;
+    }
+    /**
+     * Applies spell effect to character
+     * If the effect is already present only override duration if it is longer
+     * 
+     * @param effect: effect to appply to character
+     * @param duration: duration of effect
+     */
+    public void ApplyEffect(SpellEffects effect, int duration)
+    {
+        int currentTimer = m_EffectTimers[(int)effect];
+        m_EffectTimers[(int)effect] = duration > currentTimer ? duration : currentTimer;
     }
 }
