@@ -6,14 +6,18 @@ using UnityEngine;
 
 public class Monster : Character
 {
-    public const float ACTION_DELAY = 1.5f;
-
+    private const bool ADD_STAT_TO_DAMAGE = true;
+    private const bool NO_HEAL = false;
     public int[] BASE_MONSTER_STATS = { 16, 14, 15, 8, 12, 8 };
-    public Stats m_AttackAttribute;
-    public DamageFormula m_AttackDamage;
-    public Character m_Player;
 
-    private ResourceBar m_HPBar;
+    public Stats m_AttackAttribute;        // stat the monster uses to attack
+    public Character m_Player;             // player the monster targets
+    public Dice[] m_DamageDice;            // dice array to use for damage formula
+
+    private DamageFormula m_AttackDamage;  // damage formula for calculating attack damage
+    private ResourceBar m_HPBar;           // hp bar to display monster's health
+
+    private bool m_IsTakingTurn = false;
 
     void Start()
     {
@@ -35,22 +39,32 @@ public class Monster : Character
         m_HPBar.SetValue(this.m_HP);
         m_HPBar.SetMax(this.m_MaxHP);
 
-        m_AttackDamage = new DamageFormula(new Character.Dice[]{ Dice.D4, Dice.D6 }, true, m_AttackAttribute, false);
+        m_AttackDamage = new DamageFormula(m_DamageDice, ADD_STAT_TO_DAMAGE, m_AttackAttribute, NO_HEAL);
 
-        StartCoroutine(ProgressTurn());
+    }
+
+    // Function to call async coroutine for turn
+    public void StartTurn()
+    {
+        if (!m_IsTakingTurn)
+        {
+            m_IsTakingTurn = true;
+            StartCoroutine(ProgressTurn());
+        }
     }
 
     public IEnumerator ProgressTurn()
     {
         m_DialogueText.text = this.name + " attacks " + m_Player.name + "!";
 
-        yield return new WaitForSeconds(ACTION_DELAY);
+        yield return new WaitForSecondsRealtime(ACTION_DELAY);
+
 
         int roll = m_DieRoller.Roll(m_WeaponAttack) + m_WeaponAttack;
 
         bool hits = m_Player.DoesHit(roll);
 
-        if(hits)
+        if (hits)
         {
             int damage = m_AttackDamage.Roll(this);
             m_Player.Damage(damage);
@@ -62,7 +76,11 @@ public class Monster : Character
             m_DialogueText.text = this.name + " missed!";
         }
 
+
         this.EndTurn();
+
+        yield return m_IsTakingTurn = false;
+
     }
 
     public bool RollAttack()

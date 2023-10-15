@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    protected const float ACTION_DELAY = 1.5f;
+
     public enum Stats : int
     {
         STR = 0,
@@ -439,6 +441,7 @@ public class Character : MonoBehaviour
         {
             m_HP = m_MaxHP;
         }
+        Debug.Log(this.name + " took " + ammount + " damage");
 
         return m_HP;
     }
