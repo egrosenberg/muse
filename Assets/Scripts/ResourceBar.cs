@@ -19,7 +19,7 @@ public class ResourceBar : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Grab rect transform for value bar
         m_ValueBarRect = m_ValueBarObject.GetComponent<RectTransform>();
@@ -30,7 +30,10 @@ public class ResourceBar : MonoBehaviour
 
         // Grab TMP value
         m_ValueText = m_ValueTextObject.GetComponent<TextMeshProUGUI>();
+    }
 
+    void Start()
+    {
         // Draw initial resource bar
         Draw();
     }
@@ -59,10 +62,19 @@ public class ResourceBar : MonoBehaviour
      * 
      * @param value: float containing new value to set to
      */
-    void SetValue(float value)
+    public void SetValue(float value)
     {
         m_Value = value;
         Draw();
     }
-
+    /**
+     * Sets the max resource value and re-draws the resource bar
+     * 
+     * @param value: float containing new value to set to
+     */
+    public void SetMax(float value)
+    {
+        m_Max = value;
+        Draw();
+    }
 }

@@ -30,24 +30,39 @@ public class DieRoller : MonoBehaviour
     private int m_DieAngle = 0;
     private int m_SpinN = 0;
     private int m_Bonus = 0;
-    private bool m_IsVisible;
+    private bool m_IsVisible = true;
 
 
     void Start()
+    {
+        RefreshComponents();
+    }
+    
+    // Refreshes text and transform components from gameobjects
+    public void RefreshComponents()
     {
         m_TextComponent = m_DieTextGameObject.GetComponent<TextMeshProUGUI>();
         m_BonusText = m_BonusObj.GetComponent<TextMeshProUGUI>();
         m_TotalText = m_TotalObj.GetComponent<TextMeshProUGUI>();
 
         m_DieTransform = m_DieImageObj.GetComponent<RectTransform>();
-
-        m_IsVisible = true;
-
-        Roll(4);
     }
 
+
+    /**
+     * Rolls the d20 with the specified bonus
+     * bonus is only used for display purposes
+     * 
+     * @param bonus: d20 roll bonus to display for clarity purposes
+     * 
+     * @return d20 result (does not account for bonus)
+     */
     public int Roll(int bonus)
     {
+        // hide bonus and total
+        m_BonusObj.SetActive(false);
+        m_TotalObj.SetActive(false);
+
         m_Bonus = bonus;
         m_SpinsRemaining = Random.Range(MIN_SPINS, MAX_SPINS);
         m_SpinN = 0;
@@ -123,5 +138,11 @@ public class DieRoller : MonoBehaviour
                 m_IsRolling = false;
             }
         }
+    }
+
+    // Set visibility member variable
+    public void SetVisibility(bool visible)
+    {
+        m_IsVisible = visible;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -163,25 +164,26 @@ public class Character : MonoBehaviour
     public const int DC_BASE = 8;
     public const Stats DEFAULT_SPELL_ABILITY = Stats.CHA;
     public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
-    public static readonly int[] XP_AT_LVL = {300, 900, 2700, 6500, 1400, 2300, 34000, 48000, 64000, 85000};
+    public static readonly int[] XP_AT_LVL = {300, 600, 1800, 3800, 7500, 9000, 11000, 14000, 16000, 21000};
 
-    protected int[] m_StatArray;    // array containing ability scores
-    protected bool[] m_SaveProfs;   // array of saving throw proficiencies
-    protected bool[] m_CheckProfs;  // array of ability check proficiencies
-    protected int m_ArmorBase;      // AC bonus from armor
-    protected Stats m_SpellAbility; // ability used for spellcasting
-    protected int m_Level;          // current level
-    protected int m_XP;             // current xp progress in level
-    protected int m_PB;             // current proficiency bonus
-    protected int m_MaxHP;          // max hit points
-    protected int m_MaxMP;          // max magic points
-    protected int m_HP;             // current hit points
-    protected int m_MP;             // current magic points
-    protected int m_AC;             // total armor class
-    protected int m_SpellDC;        // difficulty class for spell saving throws
-    protected int m_WeaponAttack;   // weapon attack bonus
-    protected int m_SpellAttack;    // spell attack bonus
-    protected int[] m_EffectTimers; // stores all current effect timers and how many turns remaining
+    protected int[] m_StatArray;               // array containing ability scores
+    protected bool[] m_SaveProfs;              // array of saving throw proficiencies
+    protected bool[] m_CheckProfs;             // array of ability check proficiencies
+    protected int m_ArmorBase;                 // AC bonus from armor
+    protected Stats m_SpellAbility;            // ability used for spellcasting
+    protected int m_Level;                     // current level
+    protected int m_XP;                        // current xp progress in level
+    protected int m_PB;                        // current proficiency bonus
+    protected int m_MaxHP;                     // max hit points
+    protected int m_MaxMP;                     // max magic points
+    protected int m_HP;                        // current hit points
+    protected int m_MP;                        // current magic points
+    protected int m_AC;                        // total armor class
+    protected int m_SpellDC;                   // difficulty class for spell saving throws
+    protected int m_WeaponAttack;              // weapon attack bonus
+    protected int m_SpellAttack;               // spell attack bonus
+    protected int[] m_EffectTimers;            // stores all current effect timers and how many turns remaining
+    protected TextMeshProUGUI m_DialogueText;  // where to post status updates ect.
 
     public GameObject m_DieRollerObject;
     protected DieRoller m_DieRoller;
@@ -190,6 +192,8 @@ public class Character : MonoBehaviour
     {
         // initialize stats, checks, and saves
         m_StatArray = new int[N_STATS];
+        m_SaveProfs = new bool[N_STATS];
+        m_CheckProfs = new bool[N_STATS];
         for (int i = 0; i < N_STATS; ++i)
         {
             m_StatArray[i] = BASE_STAT;
@@ -206,6 +210,7 @@ public class Character : MonoBehaviour
         // init armor
         m_ArmorBase = BASE_ARMOR;
 
+
         UpdateResources();
 
         m_EffectTimers = new int[Enum.GetNames(typeof(SpellEffects)).Length];
@@ -215,6 +220,14 @@ public class Character : MonoBehaviour
     void Start()
     {
         m_DieRoller = m_DieRollerObject.GetComponent<DieRoller>();
+        FindObjects();
+    }
+
+    protected void FindObjects()
+    {
+        // grab our text box
+        GameObject textObject = GameObject.FindGameObjectWithTag("DialogueText");
+        m_DialogueText = textObject.GetComponent<TextMeshProUGUI>();
     }
 
     /**
@@ -350,7 +363,7 @@ public class Character : MonoBehaviour
      * @param attack: value of attack roll
      * @return true if attack hits, false if it misses
      */
-    bool DoesHit(int attack)
+    public bool DoesHit(int attack)
     {
         return attack >= m_AC;
     }
@@ -360,7 +373,7 @@ public class Character : MonoBehaviour
      * @param save: value of the saving throw
      * @return true if the saving throw succeeds, false otherwise
      */
-    bool DoesSave(int save)
+    public bool DoesSave(int save)
     {
         return save >= m_SpellDC;
     }
@@ -413,7 +426,7 @@ public class Character : MonoBehaviour
      * @param ammount: ammount of damage to deal
      * @return remaining hp
      */
-    public int Damage(int ammount)
+    virtual public int Damage(int ammount)
     {
         m_HP -= ammount;
 
@@ -440,5 +453,17 @@ public class Character : MonoBehaviour
     {
         int currentTimer = m_EffectTimers[(int)effect];
         m_EffectTimers[(int)effect] = duration > currentTimer ? duration : currentTimer;
+    }
+
+    // Reduces all effect timers
+    public void EndTurn()
+    {
+        for (int i = 0; i < m_EffectTimers.Length; ++i)
+        {
+            if (m_EffectTimers[i] > 0)
+            {
+                m_EffectTimers[i]--;
+            }
+        }
     }
 }
