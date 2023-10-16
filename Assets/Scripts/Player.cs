@@ -77,7 +77,10 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.tag == "Door")
             {
-                int out_id = collision.gameObject.GetComponent<MapDoor>().out_id;
+                MapDoor mapDoor = collision.gameObject.GetComponent<MapDoor>();
+                int out_id = mapDoor.out_id;
+                mapDoor.door.is_open = true;
+                mapDoor.door.linked.is_open = true;
                 m_OverworldController.GenRoom(out_id-1);
             }
         }

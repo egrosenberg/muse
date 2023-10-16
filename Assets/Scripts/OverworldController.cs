@@ -12,6 +12,8 @@ public class Door
     public int col;
     public int out_id;
     public int row;
+    public bool is_open = false;
+    public Door linked;
 }
 // json for each door array
 [System.Serializable]
@@ -39,6 +41,7 @@ public class Room
     public int south;
     public int west;
     public int width;
+    public bool cleared = false;
 }
 // json for room array
 [System.Serializable]
@@ -100,10 +103,15 @@ public class OverworldController : MonoBehaviour
         GameObject textObject = GameObject.FindGameObjectWithTag("DialogueText");
         m_DialogueText = textObject.GetComponent<TextMeshProUGUI>();
 
+        LinkDoors();
+
         m_InCombat = false;
         m_IsFirstCombat = true;
 
-        GenRoom(0);
+        m_roomID = 0;
+        // set first room to cleared and generate it
+        m_rooms.rooms[m_roomID].cleared = true;
+        GenRoom(m_roomID);
     }
 
     private void Update()
@@ -113,6 +121,103 @@ public class OverworldController : MonoBehaviour
         {
             m_InCombat = false;
             StartCoroutine(EndCombat());
+        }
+    }
+
+    // goes through every door in the dungeon and attempts to link them to one another
+    private void LinkDoors()
+    {
+        foreach (Room room in m_rooms.rooms)
+        {
+            // link north doors
+            if (room.doors.north != null)
+            {
+                foreach (Door door in room.doors.north)
+                {
+                    if (door.out_id == 0)
+                    {
+                        continue;
+                    }
+                    LinkDoor(door, 'N', room.id);
+                }
+            }
+            // link east doors
+            if (room.doors.east != null)
+            {
+                foreach (Door door in room.doors.east)
+                {
+                    if (door.out_id == 0)
+                    {
+                        continue;
+                    }
+                    LinkDoor(door, 'E', room.id);
+                }
+            }
+            // link south doors
+            if (room.doors.south != null)
+            {
+                foreach (Door door in room.doors.south)
+                {
+                    if (door.out_id == 0)
+                    {
+                        continue;
+                    }
+                    LinkDoor(door, 'S', room.id);
+                }
+            }
+            // link west doors
+            if (room.doors.west != null)
+            {
+                foreach (Door door in room.doors.west)
+                {
+                    if (door.out_id == 0)
+                    {
+                        continue;
+                    }
+                    LinkDoor(door, 'W', room.id);
+                }
+            }
+        }
+    }
+    // attempts to link an individual door to its corresponding door
+    private void LinkDoor(Door door, char direction, int doorRoom)
+    {
+        int roomId = door.out_id - 1;
+
+        // only check wall that door should be able to link to
+        Door[] wall;
+        switch (direction)
+        {
+            case 'N':
+                wall = m_rooms.rooms[roomId].doors.south;
+                break;
+            case 'E':
+                wall = m_rooms.rooms[roomId].doors.west;
+                break;
+            case 'S':
+                wall = m_rooms.rooms[roomId].doors.north;
+                break;
+            case 'W':
+                wall = m_rooms.rooms[roomId].doors.east;
+                break;
+            default:
+                wall = m_rooms.rooms[roomId].doors.north;
+                break;
+        }
+
+        if (wall == null)
+        {
+            Debug.LogError("ERROR: UNABLE TO LINK ROOM " + doorRoom + " to " + door.out_id);
+            return;
+        }
+
+        // check doors on wall
+        foreach (Door match in wall)
+        {
+            if (match.out_id == doorRoom)
+            {
+                door.linked = match;
+            }
         }
     }
 
@@ -135,7 +240,7 @@ public class OverworldController : MonoBehaviour
                 int row = cdoor.row - baseRow;
 
                 Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
-                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE90, cdoor.out_id);
+                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE90, cdoor.out_id, cdoor);
             }
         }
         if (m_rooms.rooms[m_roomID].doors.north != null)
@@ -151,7 +256,7 @@ public class OverworldController : MonoBehaviour
                 int row = cdoor.row - baseRow;
 
                 Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
-                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE180, cdoor.out_id);
+                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE180, cdoor.out_id, cdoor);
             }
         }
         if (m_rooms.rooms[m_roomID].doors.west != null)
@@ -167,7 +272,7 @@ public class OverworldController : MonoBehaviour
                 int row = cdoor.row - baseRow;
 
                 Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
-                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE270, cdoor.out_id);
+                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE270, cdoor.out_id, cdoor);
             }
         }
         if (m_rooms.rooms[m_roomID].doors.south != null)
@@ -183,7 +288,7 @@ public class OverworldController : MonoBehaviour
                 int row = cdoor.row - baseRow;
 
                 Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
-                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE0, cdoor.out_id);
+                m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE0, cdoor.out_id, cdoor);
             }
         }
     }
@@ -209,7 +314,16 @@ public class OverworldController : MonoBehaviour
         BuildRoomBlank(width, height);
         DrawDoors();
 
-        StartCombat();
+        // dont start combat if the room is already cleared
+        if (m_rooms.rooms[m_roomID].cleared == false)
+        {
+            StartCombat();
+        }
+        else
+        {
+            // disable combat ui
+            m_CombatUI.SetActive(false);
+        }
     }
 
     /**
@@ -237,7 +351,13 @@ public class OverworldController : MonoBehaviour
         // build room
         m_builderScript.DrawRoom(width, height);
     }
-
+    /**
+     * Generate a string for a monster's enterance
+     * 
+     * @param monsterName: name of monster to generate entrance for
+     * 
+     * @return: string containing a complete entrance text
+     */
     private string GenerateRandomEntrance(string monsterName)
     {
         int articleN = UnityEngine.Random.Range(0, VOCAB_ARTICLES.Length);
@@ -298,6 +418,9 @@ public class OverworldController : MonoBehaviour
 
         // disable combat ui
         m_CombatUI.SetActive(false);
+
+        // set room as cleared
+        m_rooms.rooms[m_roomID].cleared = true;
 
         // re enable player controls
         m_PlayerInput.enabled = true;

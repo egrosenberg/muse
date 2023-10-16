@@ -17,6 +17,7 @@ public class MapBuilder : MonoBehaviour
     public TileBase m_TileDoor; // Base bottom
     public TileBase m_TileFloor;
 
+    public Sprite m_DoorOpenSprite; // sprite for open door
     public GameObject m_DoorPrefab; // Placeable doors
 
     // Wall / Doors are S, E, N, W
@@ -231,7 +232,7 @@ public class MapBuilder : MonoBehaviour
      * @param y: int y coordinate respective to room NW
      * @param rotation: Matrix4x4 instructing how to rotate door
      */
-    public void DrawDoor(int x, int y, Matrix4x4 rotation, int out_id)
+    public void DrawDoor(int x, int y, Matrix4x4 rotation, int out_id, Door doorObj)
     {
         // calculate NW corner
         int west = -(m_width / 2) + 1;
@@ -245,6 +246,13 @@ public class MapBuilder : MonoBehaviour
         GameObject door = Instantiate(m_DoorPrefab, position, rotation.rotation, m_Grid.transform);
         MapDoor doorScript = door.GetComponent<MapDoor>();
         doorScript.out_id = out_id;
+        doorScript.door = doorObj;
+
+        if (doorObj.is_open)
+        {
+            door.GetComponentInChildren<SpriteRenderer>().sprite = m_DoorOpenSprite;
+        }
+
         //m_WallsMap.SetTransformMatrix(position, rotation);
         m_WallsMap.SetTile(position, null);
 

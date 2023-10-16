@@ -18,6 +18,7 @@ public class Monster : Character
 
     private DamageFormula m_AttackDamage;  // damage formula for calculating attack damage
     private ResourceBar m_HPBar;           // hp bar to display monster's health
+    private TextMeshProUGUI m_NameTag;     // name tag for above hp
 
     private bool m_IsTakingTurn = false;
 
@@ -26,6 +27,7 @@ public class Monster : Character
         FindObjects();
 
         m_Player = GameObject.FindGameObjectWithTag("PlayerSheet").GetComponent<PlayerCharacter>();
+        m_NameTag = GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>();
 
         if (m_Player != null)
         {
@@ -62,7 +64,7 @@ public class Monster : Character
 
     protected override void DrawResources()
     {
-        GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>().text = this.name;
+        m_NameTag.text = this.name;
         m_HPBar.SetValue(this.m_HP);
         m_HPBar.SetMax(this.m_MaxHP);
     }
