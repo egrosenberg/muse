@@ -54,11 +54,7 @@ public class PlayerCharacter : Character
         // init resource bars
         m_NameTag.text = this.name;
 
-        m_HPBar.SetValue(this.m_HP);
-        m_HPBar.SetMax(this.m_MaxHP);
-
-        m_MPBar.SetValue(this.m_MP);
-        m_MPBar.SetMax(this.m_MaxMP);
+        DrawResources();
 
         // some dummy code to test spellcasting
         Spell EBlast = new Spell();
@@ -119,6 +115,14 @@ public class PlayerCharacter : Character
         m_HPBar.SetValue(m_HP);
 
         return toReturn;
+    }
+    // override draw resources, draw hp and mp
+    protected override void DrawResources()
+    {
+        m_HPBar.SetValue(this.m_HP);
+        m_HPBar.SetMax(this.m_MaxHP);
+        m_MPBar.SetValue(this.m_MP);
+        m_MPBar.SetMax(this.m_MaxMP);
     }
 
     // set whether our spells should target self
@@ -273,7 +277,7 @@ public class PlayerCharacter : Character
     {
         yield return StartRound();
 
-        m_DialogueText.text = this.name + " attacks " + m_Target.name + "!";
+        m_DialogueText.text = this.name + " attacks the " + m_Target.name + "!";
 
         // roll attack
         int dieRoll = m_DieRoller.Roll(m_WeaponAttack);

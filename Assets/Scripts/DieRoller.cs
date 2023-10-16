@@ -8,7 +8,7 @@ public class DieRoller : MonoBehaviour
     private const int N_SIDES = 20;
     private const int MIN_SPINS = 10;
     private const int MAX_SPINS = 11;
-    private const float SPIN_DELAY = 0.1f;
+    private const float SPIN_DELAY = 0.07f;
     private const int TOTAL_DEGREES = 360;
     private const int MIN_ROTATION_ANGLE = 120;
     private const int MAX_ROTATION_ANGLE = 60;
@@ -25,8 +25,6 @@ public class DieRoller : MonoBehaviour
     private TextMeshProUGUI m_TotalText;
     private RectTransform m_DieTransform;
 
-    private float m_NextSpinT = 0f;
-    private bool m_IsRolling = false;
     private int m_SpinsRemaining = 0;
     private int m_Result = 20;
     private int m_DieAngle = 0;
@@ -128,12 +126,11 @@ public class DieRoller : MonoBehaviour
     {
         while (m_SpinsRemaining >= 0)
         {
-            // show a random number
-            int displayN = Random.Range(1, N_SIDES + 1);
-            m_TextComponent.text = displayN.ToString();
-
             if (m_SpinsRemaining >= 3)
             {
+                // show a random number 
+                int displayN = Random.Range(1, N_SIDES + 1);
+                m_TextComponent.text = displayN.ToString();
                 // rotate die sprite
                 int angleToRotate = Random.Range(MIN_ROTATION_ANGLE, MAX_ROTATION_ANGLE);
                 m_DieAngle += angleToRotate;
@@ -147,17 +144,15 @@ public class DieRoller : MonoBehaviour
             {
                 m_TextComponent.text = m_Result.ToString("#,0");
             }
-            if (m_SpinsRemaining == 1)
+            if (m_SpinsRemaining < 2)
             {
                 m_BonusObj.SetActive(true);
                 m_BonusText.text = "+" + m_Bonus.ToString();
             }
-            if (m_SpinsRemaining == 0)
+            if (m_SpinsRemaining < 1)
             {
                 m_TotalObj.SetActive(true);
                 m_TotalText.text = (m_Result + m_Bonus).ToString();
-                // if we are done, set rolling to false and set result to die face
-                m_IsRolling = false;
             }
 
             // update spins remaing and check if we are done rolling

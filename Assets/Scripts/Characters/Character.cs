@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    protected const float ACTION_DELAY = 2f;
+    public const float ACTION_DELAY = 2f;
 
     public enum Stats : int
     {
@@ -344,6 +344,18 @@ public class Character : MonoBehaviour
         m_SpellAttack = m_PB + GetMod(m_SpellAbility);
     }
 
+    // Update resources and fully heal
+    public void RefreshAll()
+    {
+        UpdateResources();
+        m_HP = m_MaxHP;
+        m_MP = m_MaxMP;
+        DrawResources();
+    }
+
+    protected virtual void DrawResources()
+    {    }
+
     /**
      * Set specified stat to given value
      * 
@@ -401,6 +413,22 @@ public class Character : MonoBehaviour
     public void LevelUp()
     {
         m_Level += 1;
+        // limit to MAX_LEVEL
+        if (m_Level > MAX_LEVEL)
+        {
+            m_Level = MAX_LEVEL;
+        }
+        m_XP = 0;
+        UpdateResources();
+    }
+    /**
+     * Set character to any specified level
+     * 
+     * @param level: int containing level to advance to
+     */
+    public void SetLevel(int level)
+    {
+        m_Level = level;
         // limit to MAX_LEVEL
         if (m_Level > MAX_LEVEL)
         {
@@ -513,6 +541,11 @@ public class Character : MonoBehaviour
     public int GetEffectTimer(Effects effect)
     {
         return m_EffectTimers[(int)effect];
+    }
+    // Getter for HP
+    public int GetHP()
+    {
+        return m_HP;
     }
 
     /**

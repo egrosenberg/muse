@@ -9,9 +9,11 @@ public class Monster : Character
     private const bool ADD_STAT_TO_DAMAGE = true;
     private const bool NO_HEAL = false;
     public int[] BASE_MONSTER_STATS = { 16, 14, 15, 8, 12, 8 };
+    public static int MIN_LEVELUP = 1;
+    public static int MAX_LEVELUP = 5;
 
     public Stats m_AttackAttribute;        // stat the monster uses to attack
-    private PlayerCharacter m_Player;             // player the monster targets
+    private PlayerCharacter m_Player;      // player the monster targets
     public Dice[] m_DamageDice;            // dice array to use for damage formula
 
     private DamageFormula m_AttackDamage;  // damage formula for calculating attack damage
@@ -37,14 +39,16 @@ public class Monster : Character
         GameObject hpObject = GameObject.FindGameObjectWithTag("MosterHealth");
         m_HPBar = hpObject.GetComponent<ResourceBar>();
 
-        GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>().text = this.name;
+        // level up a random ammount of times
+        int level = Random.Range(MIN_LEVELUP, MAX_LEVELUP);
+        for (int i = 0; i < level; ++i)
+        {
+            LevelUp();
+        }
 
-        this.AddXP(6500);
         this.SetStatArray(BASE_MONSTER_STATS);
 
-        this.UpdateResources();
-        m_HPBar.SetValue(this.m_HP);
-        m_HPBar.SetMax(this.m_MaxHP);
+        this.RefreshAll();
 
         m_AttackDamage = new DamageFormula(m_DamageDice, ADD_STAT_TO_DAMAGE, m_AttackAttribute, NO_HEAL);
 
@@ -54,6 +58,13 @@ public class Monster : Character
     public void StartTurn()
     {
         StartCoroutine(ProgressTurn());
+    }
+
+    protected override void DrawResources()
+    {
+        GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>().text = this.name;
+        m_HPBar.SetValue(this.m_HP);
+        m_HPBar.SetMax(this.m_MaxHP);
     }
 
     /**
