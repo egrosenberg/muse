@@ -7,25 +7,31 @@ using UnityEngine;
 public class PlayerCharacter : Character
 {
     public int[] BASE_PLAYER_STATS = new int[N_STATS];
+    public Dice[] RAPIER_DICE = new Dice[0];
+    public static Stats RAPIER_STAT = Stats.DEX;
+    public int PARRY_MP_COST = 3;
 
     private Stats m_WeaponAttackStat;
     private Spell[] m_Spells;
-    private Character m_Target;
+    private Monster m_Target;
+    private bool m_TargetSelf;
     private ResourceBar m_HPBar;
     private ResourceBar m_MPBar;
     private TextMeshProUGUI m_NameTag;
+    private DamageFormula m_WeaponDamge;
+    private GameObject m_ActionsMenu;
 
     private bool m_Busy = false;
 
     void Start()
     {
         SetStatArray(BASE_PLAYER_STATS);
+        m_WeaponAttackStat = RAPIER_STAT;
 
         m_DieRoller = m_DieRollerObject.GetComponent<DieRoller>();
         FindObjects();
 
         // give ourselves some levels for testing
-        LevelUp();
         LevelUp();
         LevelUp();
         LevelUp();
@@ -38,9 +44,12 @@ public class PlayerCharacter : Character
         m_MPBar = GameObject.FindGameObjectWithTag("PlayerMP").GetComponent<ResourceBar>();
         m_NameTag = GameObject.FindGameObjectWithTag("PlayerName").GetComponent<TextMeshProUGUI>();
 
+        // get actions ui
+        m_ActionsMenu = GameObject.FindGameObjectWithTag("ActionsMenu");
+
         SetStatArray(BASE_PLAYER_STATS);
 
-        m_Target = GameObject.FindGameObjectWithTag("Targeted").GetComponent<Character>();
+        m_Target = GameObject.FindGameObjectWithTag("Targeted").GetComponent<Monster>();
 
         // init resource bars
         m_NameTag.text = this.name;
@@ -58,26 +67,42 @@ public class PlayerCharacter : Character
         EBlast.damageFormula = new DamageFormula(new Dice[] { Dice.D10 }, true, Stats.CHA, false);
         EBlast.attackType = Spell.SpellAttackTypes.ATTACK;
         EBlast.effectType = Spell.SpellEffectTypes.DAMAGE;
-        EBlast.spellEffect = SpellEffects.NONE;
+        EBlast.spellEffect = Effects.NONE;
         EBlast.effectDuration = 0;
         EBlast.castStat = Stats.CHA;
         EBlast.saveStat = Stats.STR;
 
+        // Charm
         Spell Charm = new Spell();
         Charm.name = "Charm";
-        Charm.mpCost = 2;
+        Charm.mpCost = 3;
         Charm.damageFormula =  null;
         Charm.attackType = Spell.SpellAttackTypes.SAVE;
         Charm.effectType = Spell.SpellEffectTypes.UTILITY;
-        Charm.spellEffect = SpellEffects.CHARM;
+        Charm.spellEffect = Effects.CHARM;
         Charm.effectDuration = 2;
         Charm.castStat = Stats.CHA;
         Charm.saveStat = Stats.WIS;
 
-        m_Spells = new Spell[2];
+        // Heal
+        Spell Heal = new Spell();
+        Heal.name = "Heal";
+        Heal.mpCost = 5;
+        Heal.damageFormula = new DamageFormula(new Dice[] { Dice.D8, Dice.D8 }, true, Stats.CHA, true);
+        Heal.attackType = Spell.SpellAttackTypes.NONE;
+        Heal.effectType = Spell.SpellEffectTypes.DAMAGE;
+        Heal.spellEffect = Effects.NONE;
+        Heal.effectDuration = 0;
+        Heal.castStat = Stats.CHA;
+        Heal.saveStat = Stats.CHA;
+
+        m_Spells = new Spell[3];
         m_Spells[0] = EBlast;
         m_Spells[1] = Charm;
+        m_Spells[2] = Heal;
 
+        // set up rapier for attacks
+        m_WeaponDamge = new DamageFormula(RAPIER_DICE, true, m_WeaponAttackStat, false);
     }
 
     /**
@@ -95,6 +120,13 @@ public class PlayerCharacter : Character
 
         return toReturn;
     }
+
+    // set whether our spells should target self
+    public void SetTargetSelf(bool targetSelf)
+    {
+        m_TargetSelf = targetSelf;
+    }
+
     /**
      * Helper function to reduce mp on both character sheet and resource bar
      * 
@@ -120,7 +152,7 @@ public class PlayerCharacter : Character
     /**
      * Checks if spell is castable and calls coroutine
      * 
-     * @parma name: name of spell to cast
+     * @param name: name of spell to cast
      */
     public void Cast(string name)
     {
@@ -150,17 +182,125 @@ public class PlayerCharacter : Character
                 return;
             }
 
+            // check who to target
+            Character target = m_TargetSelf ? this : m_Target;
+
              m_Busy = true;
-             StartCoroutine(CastSpell(spell));
+             StartCoroutine(CastSpell(spell, target));
         }
     }
-    private IEnumerator CastSpell(Spell spell)
+    // calls private coroutine to execute parry
+    public void Parry()
     {
-        GameObject actionsMenu = GameObject.FindGameObjectWithTag("ActionsMenu");
-        actionsMenu.SetActive(false);
-        SpendMP(spell.mpCost);
-        yield return spell.Cast(this, m_Target, m_DialogueText);
-        actionsMenu.SetActive(true);
+        if (!m_Busy)
+        {
+            // check if we have enough MP to parry
+            if (m_MP < PARRY_MP_COST)
+            {
+                // output cant parry and return
+                m_DialogueText.text = "Not enough MP to parry!";
+                return;
+            }
+            m_Busy = true;
+            StartCoroutine(CallParry());
+        }
+    }
+    // calls private coroutine to execute attack
+    public void Attack()
+    {
+        if (!m_Busy)
+        {
+            m_Busy = true;
+            StartCoroutine(CallAttack());
+        }
+    }
+
+    // starts the round after player input, disables input
+    private IEnumerator StartRound()
+    {
+        // disable actions menu
+        m_ActionsMenu.SetActive(false);
         yield return null;
+    }
+    // ends the round and re-enales input
+    private IEnumerator EndRound()
+    {
+        base.EndTurn();
+        // call monster turn and then re-enable actions menu
+        yield return StartCoroutine(m_Target.ProgressTurn());
+        // disable actions menu
+        m_ActionsMenu.SetActive(true);
+        m_Busy = false;
+        yield return null;
+    }
+
+    /**
+     * Casts a spell at a specified target by calling spell function
+     * 
+     * @param spell: spell to cast
+     * @param target: character to target
+     */
+    private IEnumerator CastSpell(Spell spell, Character target)
+    {
+        yield return StartRound();
+
+        SpendMP(spell.mpCost);
+
+        // cast spell
+        yield return spell.Cast(this, target, m_DialogueText);
+
+        yield return EndRound();
+    }
+    // Applies parry to self and sends dialogue message
+    private IEnumerator CallParry()
+    {
+        yield return StartRound();
+
+        // spend MP
+        SpendMP(PARRY_MP_COST);
+
+        // update dialogue message
+        m_DialogueText.text = this.name + " Parries!";
+        // add parry for 1 round
+        ApplyEffect(Effects.PARRY, 2);
+        // wait
+        yield return new WaitForSeconds(ACTION_DELAY);
+
+        yield return EndRound();
+    }
+    // Attempts to attack targeted creature
+    private IEnumerator CallAttack()
+    {
+        yield return StartRound();
+
+        m_DialogueText.text = this.name + " attacks " + m_Target.name + "!";
+
+        // roll attack
+        int dieRoll = m_DieRoller.Roll(m_WeaponAttack);
+
+        float delay = m_DieRoller.GetFinish() - Time.time;
+
+        yield return new WaitForSecondsRealtime(delay + ACTION_DELAY);
+
+        // check if attack hits
+        int toHit = dieRoll + m_WeaponAttack;
+        bool success = m_Target.DoesHit(toHit);
+
+        m_DialogueText.text = success ? this.name + " hits!" : this.name + " misses!";
+        yield return new WaitForSecondsRealtime(ACTION_DELAY);
+
+        // deal damage
+        if (success && m_WeaponDamge != null)
+        {
+            int damage = m_WeaponDamge.Roll(this);
+            m_Target.Damage(damage);
+
+            m_DialogueText.text = m_Target.name + " takes " + damage + " damage!";
+            yield return new WaitForSecondsRealtime(ACTION_DELAY);
+        }
+
+        m_DieRoller.Deactivate();
+
+        yield return EndRound();
     }
 }

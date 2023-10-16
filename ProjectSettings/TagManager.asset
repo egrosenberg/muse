@@ -19,6 +19,8 @@ TagManager:
   - PlayerMP
   - PlayerName
   - Targeted
+  - PlayerSheet
+  - MenuControls
   layers:
   - Default
   - TransparentFX

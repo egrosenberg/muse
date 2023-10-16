@@ -29,10 +29,12 @@ public class Character : MonoBehaviour
         D12 = 12
     }
 
-    public enum SpellEffects : int
+    public enum Effects : int
     {
-        NONE = 0,
-        CHARM = 1
+        NONE = 0,   // no effect
+        CHARM = 1,  // cannot attack / act (usually inflicted by spells)
+        PARRY = 2,  // +5 to effective AC, if an attacker misses, they gain reeling
+        REELING = 3 // cannot act (usually inflicted by weapons and only for 1 round)
     }
 
     /**
@@ -42,13 +44,13 @@ public class Character : MonoBehaviour
      * 
      * @return string containing descriptor for the spell effect
      */
-    public static string SpellEffectName(SpellEffects effect)
+    public static string EffectName(Effects effect)
     {
         switch (effect)
         {
-            case SpellEffects.CHARM:
+            case Effects.CHARM:
                 return "Charmed";
-            case SpellEffects.NONE:
+            case Effects.NONE:
                 return "NO_EFFECT";
         }
         return "";
@@ -71,6 +73,15 @@ public class Character : MonoBehaviour
             this.ability = stat;
 
             this.isHealing = doesHeal;
+        }
+
+        // Default constructor
+        public DamageFormula()
+        {
+            this.dice = new Dice[0];
+            this.addModifier = true;
+            this.ability = 0;
+            this.isHealing = false;
         }
 
         /**
@@ -109,7 +120,8 @@ public class Character : MonoBehaviour
         public enum SpellAttackTypes : int
         {
             ATTACK = 0,
-            SAVE = 1
+            SAVE = 1,
+            NONE = 2
         }
 
         public enum SpellEffectTypes : int
@@ -123,7 +135,7 @@ public class Character : MonoBehaviour
         public DamageFormula damageFormula; // damage formula for spell
         public SpellAttackTypes attackType; // spell attack type (attack / save)
         public SpellEffectTypes effectType; // effect type (damage / utility)
-        public SpellEffects spellEffect;    // effect applies by the spell
+        public Effects spellEffect;    // effect applies by the spell
         public int effectDuration;          // duration of the effect applied by the spell
         public Stats castStat;              // what stat does the caster use?
         public Stats saveStat;              // what stat does the target use to save
@@ -138,9 +150,16 @@ public class Character : MonoBehaviour
          */
         public IEnumerator Cast(Character caster, Character target, TextMeshProUGUI dialogue)
         {
-            bool success = false;
+            bool success = attackType == SpellAttackTypes.NONE ? true : false;
 
-            dialogue.text = caster.name + " casts " + name + " against " + target.name + "!";
+            if (caster != target)
+            {
+                dialogue.text = caster.name + " casts " + name + " against " + target.name + "!";
+            }
+            else
+            {
+                dialogue.text = caster.name + " casts " + name + "!";
+            }
 
             yield return new WaitForSecondsRealtime(ACTION_DELAY);
 
@@ -152,7 +171,7 @@ public class Character : MonoBehaviour
 
                 float delay = caster.GetRoller().GetFinish() - Time.time;
 
-                yield return new WaitForSecondsRealtime(delay+ACTION_DELAY);
+                yield return new WaitForSecondsRealtime(delay);
 
                 int toHit = dieRoll + bonus;
                 success = target.DoesHit(toHit);
@@ -189,16 +208,18 @@ public class Character : MonoBehaviour
                     int damage = damageFormula.Roll(caster);
                     target.Damage(damage);
 
+                    damage = damage < 0 ? -damage : damage;
+
                     dialogue.text = target.name + " is " + hit + " for " + damage + " " + dmg + "!";
                     yield return new WaitForSecondsRealtime(ACTION_DELAY);
                 }
 
                 // check if we need to apply effects
-                if (spellEffect != SpellEffects.NONE)
+                if (spellEffect != Effects.NONE)
                 {
                     target.ApplyEffect(spellEffect, effectDuration);
 
-                    dialogue.text = target.name + " is " + SpellEffectName(spellEffect) + " for " + effectDuration + " rounds!";
+                    dialogue.text = target.name + " is " + EffectName(spellEffect) + " for " + effectDuration + " rounds!";
                     yield return new WaitForSecondsRealtime(ACTION_DELAY);
                 }
             }
@@ -268,7 +289,7 @@ public class Character : MonoBehaviour
 
         UpdateResources();
 
-        m_EffectTimers = new int[Enum.GetNames(typeof(SpellEffects)).Length];
+        m_EffectTimers = new int[Enum.GetNames(typeof(Effects)).Length];
     }
 
     // Start is called before the first frame update
@@ -418,9 +439,23 @@ public class Character : MonoBehaviour
      * @param attack: value of attack roll
      * @return true if attack hits, false if it misses
      */
-    public bool DoesHit(int attack)
+    public bool DoesHit(int attack, Character attacker = null)
     {
-        return attack >= m_AC;
+        int ac = m_AC;
+        bool hits = attack >= ac;
+
+        // account for parry
+        if (m_EffectTimers[(int)Effects.PARRY] > 0)
+        {
+            ac += 5;
+            hits = attack >= ac;
+            if (!hits && attacker != null)
+            {
+                attacker.ApplyEffect(Effects.REELING, 2);
+            }
+        }
+
+        return hits;
     }
     /**
      * checks if an saving throw succeeds
@@ -474,6 +509,11 @@ public class Character : MonoBehaviour
     {
         return m_DieRoller;
     }
+    // getter for each individual effect timer
+    public int GetEffectTimer(Effects effect)
+    {
+        return m_EffectTimers[(int)effect];
+    }
 
     /**
      * assigns damage to character (use negative value to heal)
@@ -496,6 +536,12 @@ public class Character : MonoBehaviour
         }
         Debug.Log(this.name + " took " + ammount + " damage");
 
+        // if we are charmed, reduce charm duration to 1
+        if (m_EffectTimers[(int)Effects.CHARM] > 1)
+        {
+            m_EffectTimers[(int)Effects.CHARM] = 1;
+        }
+
         return m_HP;
     }
     /**
@@ -505,7 +551,7 @@ public class Character : MonoBehaviour
      * @param effect: effect to appply to character
      * @param duration: duration of effect
      */
-    public void ApplyEffect(SpellEffects effect, int duration)
+    public void ApplyEffect(Effects effect, int duration)
     {
         int currentTimer = m_EffectTimers[(int)effect];
         m_EffectTimers[(int)effect] = duration > currentTimer ? duration : currentTimer;

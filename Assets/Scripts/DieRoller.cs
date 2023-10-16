@@ -13,7 +13,7 @@ public class DieRoller : MonoBehaviour
     private const int MIN_ROTATION_ANGLE = 120;
     private const int MAX_ROTATION_ANGLE = 60;
 
-    public GameObject m_ThisObject;
+    //public GameObject m_ThisObject;
 
     public GameObject m_DieImageObj;
     public GameObject m_BonusObj;
@@ -25,8 +25,8 @@ public class DieRoller : MonoBehaviour
     private TextMeshProUGUI m_TotalText;
     private RectTransform m_DieTransform;
 
-    private bool m_IsRolling = false;
     private float m_NextSpinT = 0f;
+    private bool m_IsRolling = false;
     private int m_SpinsRemaining = 0;
     private int m_Result = 20;
     private int m_DieAngle = 0;
@@ -92,11 +92,15 @@ public class DieRoller : MonoBehaviour
     // Helper functions to activate / deactivate entire die roller rendering
     public void Activate()
     {
-        m_ThisObject.SetActive(true);
+        m_DieImageObj.SetActive(true);
+        m_DieTextGameObject.SetActive(true);
     }
     public void Deactivate()
     {
-        m_ThisObject.SetActive(false);
+        m_DieImageObj.SetActive(false);
+        m_DieTextGameObject.SetActive(false);
+        m_BonusObj.SetActive(false);
+        m_TotalObj.SetActive(false);
     }
     // Get scheduled finish
     public float GetFinish()

@@ -11,7 +11,7 @@ public class Monster : Character
     public int[] BASE_MONSTER_STATS = { 16, 14, 15, 8, 12, 8 };
 
     public Stats m_AttackAttribute;        // stat the monster uses to attack
-    public Character m_Player;             // player the monster targets
+    private PlayerCharacter m_Player;             // player the monster targets
     public Dice[] m_DamageDice;            // dice array to use for damage formula
 
     private DamageFormula m_AttackDamage;  // damage formula for calculating attack damage
@@ -23,6 +23,13 @@ public class Monster : Character
     {
         FindObjects();
 
+        m_Player = GameObject.FindGameObjectWithTag("PlayerSheet").GetComponent<PlayerCharacter>();
+
+        if (m_Player != null)
+        {
+            Debug.Log("Player found");
+        }
+
         GameObject dieObject = GameObject.FindGameObjectWithTag("MonsterDie");
         m_DieRoller = dieObject.GetComponent<DieRoller>();
         m_DieRoller.SetVisibility(false);
@@ -32,7 +39,7 @@ public class Monster : Character
 
         GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>().text = this.name;
 
-        this.AddXP(34000);
+        this.AddXP(6500);
         this.SetStatArray(BASE_MONSTER_STATS);
 
         this.UpdateResources();
@@ -46,11 +53,7 @@ public class Monster : Character
     // Function to call async coroutine for turn
     public void StartTurn()
     {
-        if (!m_IsTakingTurn)
-        {
-            m_IsTakingTurn = true;
-            StartCoroutine(ProgressTurn());
-        }
+        StartCoroutine(ProgressTurn());
     }
 
     /**
@@ -58,29 +61,82 @@ public class Monster : Character
      */
     public IEnumerator ProgressTurn()
     {
-        m_DialogueText.text = this.name + " attacks " + m_Player.name + "!";
-
-        yield return new WaitForSecondsRealtime(ACTION_DELAY);
-
-
-        int roll = m_DieRoller.Roll(m_WeaponAttack) + m_WeaponAttack;
-
-        bool hits = m_Player.DoesHit(roll);
-
-        // check if we hit
-        if (hits)
+        if (m_IsTakingTurn)
         {
-            // apply damage
-            int damage = m_AttackDamage.Roll(this);
-            m_Player.Damage(damage);
-
-            // update dialogue box
-            m_DialogueText.text = this.name + " hit " + m_Player.name + " for " + damage + " damage!";
+            yield return null;
         }
+        m_IsTakingTurn = true;
+
+        // check if monster is dead?
+        if (m_HP <= 0)
+        {
+            m_DialogueText.text = this.name + " is dead and cannot act!";
+            yield return new WaitForSecondsRealtime(ACTION_DELAY);
+        }
+        // monster is not dead, do turn
         else
         {
-            // update dialogue box
-            m_DialogueText.text = this.name + " missed!";
+            // check if monster can attack
+            bool canAttack = true;
+
+            // Handle being charmed
+            if (m_EffectTimers[(int)Effects.CHARM] > 0)
+            {
+                // we cannot attack this turn
+                canAttack = false;
+
+                m_DialogueText.text = this.name + " is Charmed and cannot act!";
+
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+
+            }
+            if (m_EffectTimers[(int)Effects.REELING] > 0)
+            {
+
+                // we cannot attack this turn
+                canAttack = false;
+
+                m_DialogueText.text = this.name + " is Reeling and cannot act!";
+
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+            }
+
+            // if we are attacking
+            if (canAttack)
+            {
+                m_DialogueText.text = this.name + " attacks " + m_Player.name + "!";
+
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+
+
+                int roll = m_DieRoller.Roll(m_WeaponAttack) + m_WeaponAttack;
+
+                bool hits = m_Player.DoesHit(roll, this);
+
+                // check if we hit
+                if (hits)
+                {
+                    // apply damage
+                    int damage = m_AttackDamage.Roll(this);
+                    m_Player.Damage(damage);
+
+                    // update dialogue box
+                    m_DialogueText.text = this.name + " hit " + m_Player.name + " for " + damage + " damage!";
+                }
+                else
+                {
+                    // check if we are reeling and update dialogue box
+                    if (m_EffectTimers[(int)Effects.REELING] > 0)
+                    {
+                        m_DialogueText.text = this.name + " missed and was sent Reeling!";
+                    }
+                    else
+                    {
+                        m_DialogueText.text = this.name + " missed!";
+                    }
+                }
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+            }
         }
 
         // call parent end of turn
