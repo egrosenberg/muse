@@ -21,6 +21,7 @@ TagManager:
   - Targeted
   - PlayerSheet
   - MenuControls
+  - OverworldDialogue
   layers:
   - Default
   - TransparentFX

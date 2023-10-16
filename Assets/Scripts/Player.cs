@@ -13,24 +13,14 @@ public class Player : MonoBehaviour
 
     private GameObject m_OverworldControllerObject;
     private OverworldController m_OverworldController;
+    private GameObject m_ThisObject;
 
     // Start is called before the first frame update
     void Start()
     {
         m_OverworldControllerObject = GameObject.FindGameObjectWithTag("WorldBuilder");
         m_OverworldController = m_OverworldControllerObject.GetComponent<OverworldController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void FixedUpdate()
-    {
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+        m_ThisObject = GameObject.FindGameObjectWithTag("Player");
     }
 
     /**
@@ -47,6 +37,30 @@ public class Player : MonoBehaviour
             return;
         }
         Vector2 moveAxis = value.Get<Vector2>();
+
+        // rotate sprite in chosen direction
+        Quaternion targetAngle = this.transform.rotation;
+        if (moveAxis.x > 0)
+        {
+            // look right
+            targetAngle = Quaternion.Euler(0f, 0f, 90f);
+        }
+        else if (moveAxis.x < 0)
+        {
+            // look left
+            targetAngle = Quaternion.Euler(0f, 0f, -90f);
+        }
+        else if (moveAxis.y > 0)
+        {
+            // look up
+            targetAngle = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else if (moveAxis.y < 0)
+        {
+            // look left
+            targetAngle = Quaternion.Euler(0f, 0f, 0f);
+        }
+        m_ThisObject.transform.rotation = targetAngle;
 
         // Set the next schedulable movement time to current time + delay
         m_nextMove = Time.time + m_moveDelay;
