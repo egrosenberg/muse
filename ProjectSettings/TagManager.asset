@@ -14,6 +14,11 @@ TagManager:
   - MosterHealth
   - MonsterName
   - DialogueText
+  - ActionsMenu
+  - PlayerHP
+  - PlayerMP
+  - PlayerName
+  - Targeted
   layers:
   - Default
   - TransparentFX

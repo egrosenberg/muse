@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    protected const float ACTION_DELAY = 1.5f;
+    protected const float ACTION_DELAY = 2f;
 
     public enum Stats : int
     {
@@ -33,6 +33,25 @@ public class Character : MonoBehaviour
     {
         NONE = 0,
         CHARM = 1
+    }
+
+    /**
+     * helper function to turn spell effect enums into strings
+     * 
+     * @param effect: spellEffect to get name of
+     * 
+     * @return string containing descriptor for the spell effect
+     */
+    public static string SpellEffectName(SpellEffects effect)
+    {
+        switch (effect)
+        {
+            case SpellEffects.CHARM:
+                return "Charmed";
+            case SpellEffects.NONE:
+                return "NO_EFFECT";
+        }
+        return "";
     }
 
     public class DamageFormula
@@ -84,6 +103,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     public class Spell
     {
         public enum SpellAttackTypes : int
@@ -98,6 +118,7 @@ public class Character : MonoBehaviour
             UTILITY = 1
         }
 
+        public string name;
         public int mpCost;                  // magic points cost of spell
         public DamageFormula damageFormula; // damage formula for spell
         public SpellAttackTypes attackType; // spell attack type (attack / save)
@@ -114,20 +135,30 @@ public class Character : MonoBehaviour
          *   
          * @param caster: character who is casting the spell
          * @param target: character to target with the spell
-         * 
-         * @return true on success, false otherwise
          */
-        public bool Cast(Character caster, Character target)
+        public IEnumerator Cast(Character caster, Character target, TextMeshProUGUI dialogue)
         {
             bool success = false;
+
+            dialogue.text = caster.name + " casts " + name + " against " + target.name + "!";
+
+            yield return new WaitForSecondsRealtime(ACTION_DELAY);
 
             // if this is a spell attack roll to hit
             if (attackType == SpellAttackTypes.ATTACK)
             {
                 int bonus = caster.GetWeaponAttack();
                 int dieRoll = caster.GetRoller().Roll(bonus);
+
+                float delay = caster.GetRoller().GetFinish() - Time.time;
+
+                yield return new WaitForSecondsRealtime(delay+ACTION_DELAY);
+
                 int toHit = dieRoll + bonus;
                 success = target.DoesHit(toHit);
+
+                dialogue.text = success ? caster.name + "\'s " + name + " hits!" : caster.name + "\'s " + name + " misses!";
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
             }
             // if this is is a saving throw spell
             if (attackType == SpellAttackTypes.SAVE)
@@ -136,22 +167,44 @@ public class Character : MonoBehaviour
                 int dieRoll = target.GetRoller().Roll(bonus);
                 int toSave = dieRoll + bonus;
 
-                success = caster.DoesSave(toSave);
+                success = !caster.DoesSave(toSave);
+
+                string saved = success ? "failed" : "succeeded";
+
+                dialogue.text = target.name + " " + saved + " their saving throw!";
+
+                yield return new WaitForSecondsRealtime(ACTION_DELAY);
             }
 
             // if the spell succeeds, do effects
             if (success)
             {
+                // check if we need to apply damage
+                if (damageFormula != null)
+                {
+
+                    string hit = damageFormula.isHealing ? "healed" : "hit";
+                    string dmg = damageFormula.isHealing ? "HP" : "damage";
+
+                    int damage = damageFormula.Roll(caster);
+                    target.Damage(damage);
+
+                    dialogue.text = target.name + " is " + hit + " for " + damage + " " + dmg + "!";
+                    yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                }
+
                 // check if we need to apply effects
                 if (spellEffect != SpellEffects.NONE)
                 {
                     target.ApplyEffect(spellEffect, effectDuration);
+
+                    dialogue.text = target.name + " is " + SpellEffectName(spellEffect) + " for " + effectDuration + " rounds!";
+                    yield return new WaitForSecondsRealtime(ACTION_DELAY);
                 }
-                int damage = damageFormula.Roll(caster);
-                target.Damage(damage);
             }
 
-            return success;
+            caster.GetRoller().Deactivate();
+            yield return null;
         }
     }
 

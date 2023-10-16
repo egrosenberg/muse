@@ -53,6 +53,9 @@ public class Monster : Character
         }
     }
 
+    /**
+     * Run AI for one turn
+     */
     public IEnumerator ProgressTurn()
     {
         m_DialogueText.text = this.name + " attacks " + m_Player.name + "!";
@@ -64,22 +67,26 @@ public class Monster : Character
 
         bool hits = m_Player.DoesHit(roll);
 
+        // check if we hit
         if (hits)
         {
+            // apply damage
             int damage = m_AttackDamage.Roll(this);
             m_Player.Damage(damage);
 
+            // update dialogue box
             m_DialogueText.text = this.name + " hit " + m_Player.name + " for " + damage + " damage!";
         }
         else
         {
+            // update dialogue box
             m_DialogueText.text = this.name + " missed!";
         }
 
-
+        // call parent end of turn
         this.EndTurn();
 
-        yield return m_IsTakingTurn = false;
+        yield return m_IsTakingTurn = false; // mark that turn is finished
 
     }
 
@@ -93,6 +100,13 @@ public class Monster : Character
         return success;
     }
 
+    /**
+     * Override base class damage by adding in hp bar support
+     * 
+     * @param ammount: damage to deal
+     * 
+     * @return: remaining hp
+     */
     public override int Damage(int ammount)
     {
         int toReturn = base.Damage(ammount);
