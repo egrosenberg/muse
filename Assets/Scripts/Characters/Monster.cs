@@ -11,6 +11,7 @@ public class Monster : Character
     public int[] BASE_MONSTER_STATS = { 16, 14, 15, 8, 12, 8 };
     public static int MIN_LEVELUP = 1;
     public static int MAX_LEVELUP = 5;
+    public static readonly int[] XP_PER_CR = {200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900};
 
     public Stats m_AttackAttribute;        // stat the monster uses to attack
     private PlayerCharacter m_Player;      // player the monster targets

@@ -56,6 +56,7 @@ public class OverworldController : MonoBehaviour
 {
     private const int MAP_UNIT_S = 10;
     private const int WALL_OFFSET = 2;
+    private const float PERCENT_TO_RESTORE = 0.1f;
 
     public string[] VOCAB_ARTICLES;
     public string[] VOCAB_NAMES;
@@ -449,6 +450,10 @@ public class OverworldController : MonoBehaviour
 
         yield return new WaitForSeconds(Character.ACTION_DELAY);
 
+        // give xp and restore resources
+        yield return GiveXP();
+        RestorePlayer();
+
         // disable combat ui
         m_CombatUI.SetActive(false);
 
@@ -457,5 +462,29 @@ public class OverworldController : MonoBehaviour
 
         // re enable player controls
         m_PlayerInput.enabled = true;
+    }
+    // Awards the player xp based on the challenge of the encounter
+    private IEnumerator GiveXP()
+    {
+        // calculate xp reward and give xp
+        int xpReward = Monster.XP_PER_CR[m_Monster.GetLevel()];
+        m_PlayerCharacter.AddXP(xpReward);
+        // calculate remaining xp required ect.
+        int playerXP = m_PlayerCharacter.GetXP();
+        int nextLevel = PlayerCharacter.XP_AT_LVL[m_PlayerCharacter.GetLevel()];
+
+        // post dialogue message
+        m_DialogueText.text = "You gained " + xpReward + " xp!\n";
+        m_DialogueText.text += "Current XP: " + playerXP + "\nNext level (" + (m_PlayerCharacter.GetLevel() + 1) + "): " + nextLevel + "XP (" + (nextLevel - playerXP) + "XP away)";
+        yield return new WaitForSeconds(Character.ACTION_DELAY*4);
+    }
+    // partially refreshes player hp and mp
+    private void RestorePlayer()
+    {
+        int toHP = (int)(PERCENT_TO_RESTORE * m_PlayerCharacter.GetMaxHP());
+        int toMP = (int)(PERCENT_TO_RESTORE * m_PlayerCharacter.GetMaxMP());
+
+        m_PlayerCharacter.Damage(-toHP);
+        m_PlayerCharacter.Damage(-toMP);
     }
 }

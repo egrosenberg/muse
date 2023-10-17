@@ -480,9 +480,9 @@ public class Character : MonoBehaviour
         // increment xp
         m_XP += ammount;
         // check for level up
-        while (m_XP >= XP_AT_LVL[m_Level])
+        while (m_XP >= XP_AT_LVL[m_Level-1])
         {
-            int remainderXP = m_XP - XP_AT_LVL[m_Level];
+            int remainderXP = m_XP - XP_AT_LVL[m_Level-1];
             LevelUp();
             m_XP = remainderXP;
             levelUp = true;
@@ -576,6 +576,31 @@ public class Character : MonoBehaviour
     public int GetHP()
     {
         return m_HP;
+    }
+    // Getter for MP
+    public int GetMP()
+    {
+        return m_MP;
+    }
+    // Getter for max HP
+    public int GetMaxHP()
+    {
+        return m_MaxHP;
+    }
+    // Getter for max MP
+    public int GetMaxMP()
+    {
+        return m_MaxMP;
+    }
+    // returns current xp progress
+    public int GetXP()
+    {
+        return m_XP;
+    }
+    // returns current level
+    public int GetLevel()
+    {
+        return m_Level;
     }
 
     /**

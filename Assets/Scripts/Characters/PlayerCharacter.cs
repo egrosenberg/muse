@@ -31,10 +31,7 @@ public class PlayerCharacter : Character
         FindObjects();
 
         // give ourselves some levels for testing
-        LevelUp();
-        LevelUp();
-        LevelUp();
-        LevelUp();
+        SetLevel(3);
 
         UpdateResources();
 
