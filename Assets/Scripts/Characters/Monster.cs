@@ -30,10 +30,6 @@ public class Monster : Character
         m_Player = GameObject.FindGameObjectWithTag("PlayerSheet").GetComponent<PlayerCharacter>();
         m_NameTag = GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>();
 
-        if (m_Player != null)
-        {
-            Debug.Log("Player found");
-        }
 
         GameObject dieObject = GameObject.FindGameObjectWithTag("MonsterDie");
         m_DieRoller = dieObject.GetComponent<DieRoller>();

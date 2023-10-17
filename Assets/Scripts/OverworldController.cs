@@ -253,7 +253,6 @@ public class OverworldController : MonoBehaviour
                 int col = cdoor.col - baseCol;
                 int row = cdoor.row - baseRow;
 
-                Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
                 m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE90, cdoor.out_id, cdoor);
             }
         }
@@ -269,7 +268,6 @@ public class OverworldController : MonoBehaviour
                 int col = cdoor.col - baseCol;
                 int row = cdoor.row - baseRow;
 
-                Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
                 m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE180, cdoor.out_id, cdoor);
             }
         }
@@ -285,7 +283,6 @@ public class OverworldController : MonoBehaviour
                 int col = cdoor.col - baseCol;
                 int row = cdoor.row - baseRow;
 
-                Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
                 m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE270, cdoor.out_id, cdoor);
             }
         }
@@ -301,7 +298,6 @@ public class OverworldController : MonoBehaviour
                 int col = cdoor.col - baseCol;
                 int row = cdoor.row - baseRow;
 
-                Debug.Log(col + ", " + row + "; leads to: " + cdoor.out_id);
                 m_builderScript.DrawDoor(col, row, MapBuilder.ROTATE0, cdoor.out_id, cdoor);
             }
         }
@@ -317,7 +313,7 @@ public class OverworldController : MonoBehaviour
         // error checking
         if (id >= m_rooms.rooms.Length)
         {
-            Debug.Log("ERROR: INVALID ROOM ID");
+            Debug.LogError("ERROR: INVALID ROOM ID");
             return;
         }
         // play enter room sound effect
@@ -424,7 +420,6 @@ public class OverworldController : MonoBehaviour
         {
             // set monster to random level and refresh all resources and bars
             m_Monster.SetLevel(UnityEngine.Random.Range(Monster.MIN_LEVELUP+1, Monster.MAX_LEVELUP));
-            m_Monster.RefreshAll();
         }
 
 
@@ -436,6 +431,7 @@ public class OverworldController : MonoBehaviour
         m_CombatUI.SetActive(true);
 
         m_MonsterObject.name = VOCAB_NAMES[UnityEngine.Random.Range(0, VOCAB_NAMES.Length)];
+        m_Monster.RefreshAll();
         m_DialogueText.text = GenerateRandomEntrance(m_MonsterObject.name);
     }
 
@@ -491,6 +487,6 @@ public class OverworldController : MonoBehaviour
         int toMP = (int)(PERCENT_TO_RESTORE * m_PlayerCharacter.GetMaxMP());
 
         m_PlayerCharacter.Damage(-toHP);
-        m_PlayerCharacter.Damage(-toMP);
+        m_PlayerCharacter.SpendMP(-toMP);
     }
 }
