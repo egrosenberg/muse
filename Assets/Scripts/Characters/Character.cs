@@ -254,6 +254,7 @@ public class Character : MonoBehaviour
     public const int BASE_ARMOR = 11;
     public const int DC_BASE = 8;
     public const Stats DEFAULT_SPELL_ABILITY = Stats.CHA;
+    public const Stats DEFAULT_WEAPON_ABILITY = Stats.STR;
     public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
     public static readonly int[] XP_AT_LVL = {300, 600, 1800, 3800, 7500, 9000, 11000, 14000, 16000, 21000};
 
@@ -262,6 +263,7 @@ public class Character : MonoBehaviour
     protected bool[] m_CheckProfs;             // array of ability check proficiencies
     protected int m_ArmorBase;                 // AC bonus from armor
     protected Stats m_SpellAbility;            // ability used for spellcasting
+    protected Stats m_WeaponAbility;           // ability used for weapon attacks
     protected int m_Level;                     // current level
     protected int m_XP;                        // current xp progress in level
     protected int m_PB;                        // current proficiency bonus
@@ -293,6 +295,7 @@ public class Character : MonoBehaviour
         }
 
         m_SpellAbility = DEFAULT_SPELL_ABILITY;
+        SetWeaponStat(DEFAULT_WEAPON_ABILITY);
 
         // init level
         m_Level = 1;
@@ -355,8 +358,10 @@ public class Character : MonoBehaviour
 
         // update spell save dc + attacks
         m_SpellDC = DC_BASE + m_PB + GetMod(m_SpellAbility);
-        m_WeaponAttack = m_PB + GetMod(Stats.DEX);
         m_SpellAttack = m_PB + GetMod(m_SpellAbility);
+
+        // update weapon attack bonus
+        m_WeaponAttack = m_PB + GetMod(m_WeaponAbility);
     }
 
     // Update resources and fully heal
@@ -382,6 +387,16 @@ public class Character : MonoBehaviour
         int statN = (int)stat;
         // set stat
         m_StatArray[statN] = value;
+    }
+    /**
+     * Changes which ability score to use for weapon attacks
+     * 
+     * @param stat: which ability to use
+     */
+    public void SetWeaponStat(Stats stat)
+    {
+        m_WeaponAbility = stat;
+        m_WeaponAttack = m_PB + GetMod(stat);
     }
     /**
      * Get bonus to ability check with specified stat

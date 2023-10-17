@@ -11,7 +11,6 @@ public class PlayerCharacter : Character
     public static Stats RAPIER_STAT = Stats.DEX;
     public int PARRY_MP_COST = 3;
 
-    private Stats m_WeaponAttackStat;
     private Spell[] m_Spells;
     private Monster m_Target;
     private bool m_TargetSelf;
@@ -26,8 +25,8 @@ public class PlayerCharacter : Character
     void Start()
     {
         SetStatArray(BASE_PLAYER_STATS);
-        m_WeaponAttackStat = RAPIER_STAT;
-
+        SetWeaponStat(RAPIER_STAT);
+        
         m_DieRoller = m_DieRollerObject.GetComponent<DieRoller>();
         FindObjects();
 
@@ -98,7 +97,7 @@ public class PlayerCharacter : Character
         m_Spells[2] = Heal;
 
         // set up rapier for attacks
-        m_WeaponDamge = new DamageFormula(RAPIER_DICE, true, m_WeaponAttackStat, false);
+        m_WeaponDamge = new DamageFormula(RAPIER_DICE, true, m_WeaponAbility, false);
     }
 
     /**
