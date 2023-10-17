@@ -10,6 +10,10 @@ public class PlayerCharacter : Character
     public Dice[] RAPIER_DICE = new Dice[0];
     public static Stats RAPIER_STAT = Stats.DEX;
     public int PARRY_MP_COST = 3;
+    public AudioClip SFX_RAPIER;
+    public AudioClip SFX_PARRY;
+    public AudioClip SFX_HEAL;
+    public AudioClip SFX_CHARM;
 
     private Spell[] m_Spells;
     private Monster m_Target;
@@ -33,7 +37,6 @@ public class PlayerCharacter : Character
         // give ourselves some levels for testing
         SetLevel(3);
 
-        UpdateResources();
 
         // Get Resource bars and nametag
         m_HPBar = GameObject.FindGameObjectWithTag("PlayerHP").GetComponent<ResourceBar>();
@@ -75,6 +78,7 @@ public class PlayerCharacter : Character
         Charm.effectDuration = 2;
         Charm.castStat = Stats.CHA;
         Charm.saveStat = Stats.WIS;
+        Charm.sfx = SFX_CHARM;
 
         // Heal
         Spell Heal = new Spell();
@@ -87,6 +91,7 @@ public class PlayerCharacter : Character
         Heal.effectDuration = 0;
         Heal.castStat = Stats.CHA;
         Heal.saveStat = Stats.CHA;
+        Heal.sfx = SFX_HEAL;
 
         m_Spells = new Spell[3];
         m_Spells[0] = EBlast;
@@ -95,6 +100,8 @@ public class PlayerCharacter : Character
 
         // set up rapier for attacks
         m_WeaponDamge = new DamageFormula(RAPIER_DICE, true, m_WeaponAbility, false);
+
+        UpdateResources();
     }
 
     /**

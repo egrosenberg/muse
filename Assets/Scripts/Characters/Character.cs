@@ -137,10 +137,11 @@ public class Character : MonoBehaviour
         public DamageFormula damageFormula; // damage formula for spell
         public SpellAttackTypes attackType; // spell attack type (attack / save)
         public SpellEffectTypes effectType; // effect type (damage / utility)
-        public Effects spellEffect;    // effect applies by the spell
+        public Effects spellEffect;         // effect applies by the spell
         public int effectDuration;          // duration of the effect applied by the spell
         public Stats castStat;              // what stat does the caster use?
         public Stats saveStat;              // what stat does the target use to save
+        public AudioClip sfx = null;        // sound effect to play when used
 
         /**
          * Attempts to apply the effects of the spell,
@@ -154,6 +155,13 @@ public class Character : MonoBehaviour
         {
             bool success = attackType == SpellAttackTypes.NONE ? true : false;
             bool crit = false;
+
+            // play audio clip in sfx channel
+            if (sfx != null)
+            {
+                SoundController sfxSource = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+                sfxSource.PlaySFX(sfx);
+            }
 
             if (caster != target)
             {
