@@ -9,6 +9,8 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public const float ACTION_DELAY = 2f;
+    public const int CRITICAL_HIT = 20;
+    public const int CRITICAL_MISS = 1;
 
     public enum Stats : int
     {
@@ -151,6 +153,7 @@ public class Character : MonoBehaviour
         public IEnumerator Cast(Character caster, Character target, TextMeshProUGUI dialogue)
         {
             bool success = attackType == SpellAttackTypes.NONE ? true : false;
+            bool crit = false;
 
             if (caster != target)
             {
@@ -169,6 +172,8 @@ public class Character : MonoBehaviour
                 int bonus = caster.GetWeaponAttack();
                 int dieRoll = caster.GetRoller().Roll(bonus);
 
+                crit = dieRoll == CRITICAL_HIT || dieRoll == CRITICAL_MISS;
+
                 float delay = caster.GetRoller().GetFinish() - Time.time;
 
                 yield return new WaitForSecondsRealtime(delay);
@@ -176,7 +181,13 @@ public class Character : MonoBehaviour
                 int toHit = dieRoll + bonus;
                 success = target.DoesHit(toHit);
 
-                dialogue.text = success ? caster.name + "\'s " + name + " hits!" : caster.name + "\'s " + name + " misses!";
+                success = dieRoll == CRITICAL_HIT ? true : success;
+                success = dieRoll == CRITICAL_MISS ? false : success;
+
+                string critical = crit ? " critically" : "";
+                string hit = success ? " hits" : " misses";
+
+                dialogue.text = caster.name + "\'s " + name + critical + hit +  "!" ;
                 yield return new WaitForSecondsRealtime(ACTION_DELAY);
             }
             // if this is is a saving throw spell
@@ -206,6 +217,10 @@ public class Character : MonoBehaviour
                     string dmg = damageFormula.isHealing ? "HP" : "damage";
 
                     int damage = damageFormula.Roll(caster);
+
+                    // account for critical hit. roll damage dice again but dont add modifier
+                    damage += crit ? damageFormula.Roll(caster) - caster.GetMod(damageFormula.ability) : 0;
+
                     target.Damage(damage);
 
                     damage = damage < 0 ? -damage : damage;

@@ -290,13 +290,25 @@ public class PlayerCharacter : Character
         int toHit = dieRoll + m_WeaponAttack;
         bool success = m_Target.DoesHit(toHit);
 
-        m_DialogueText.text = success ? this.name + " hits!" : this.name + " misses!";
+        // check for critical success or failure
+        bool crit = dieRoll == CRITICAL_HIT || dieRoll == CRITICAL_MISS;
+        success = dieRoll == CRITICAL_HIT ? true : success;
+        success = dieRoll == CRITICAL_MISS ? false : success;
+
+        // oputput text
+        string critical = crit ? " critically" : "";
+        string hit = success ? " hits" : " misses";
+        m_DialogueText.text = this.name + critical + hit + "!";
         yield return new WaitForSecondsRealtime(ACTION_DELAY);
 
         // deal damage
         if (success && m_WeaponDamge != null)
         {
             int damage = m_WeaponDamge.Roll(this);
+
+            // account for critical hit. roll damage dice again but dont add modifier
+            damage += crit ? m_WeaponDamge.Roll(this) - GetMod(m_WeaponDamge.ability) : 0;
+
             m_Target.Damage(damage);
 
             m_DialogueText.text = m_Target.name + " takes " + damage + " damage!";

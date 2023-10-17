@@ -83,7 +83,7 @@ public class DieRoller : MonoBehaviour
             Activate();
             StartCoroutine(RollVisible());
         }
-
+        
         return m_Result;
     }
 
