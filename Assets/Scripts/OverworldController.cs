@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 // json for single door
@@ -64,6 +65,7 @@ public class OverworldController : MonoBehaviour
 
     public GameObject m_CombatUI;
     public GameObject m_ActionsMenu;
+    public GameObject m_GameOverMenu;
 
     public GameObject m_builderObj;
     private MapBuilder m_builderScript;
@@ -72,14 +74,16 @@ public class OverworldController : MonoBehaviour
     private GameObject m_Player;
     private GameObject m_Grid;
 
-    public TextAsset m_jsonFile;            // json file to generate from
-    private Rooms m_rooms;                  // rooms object to store the current dungeon in
-    private int m_roomID;                   // current room ID
-    private TextMeshProUGUI m_DialogueText; // Dialogue box to put announcements in
-    private PlayerInput m_PlayerInput;      // player's input component
-    private bool m_InCombat;                // track whether in combat or not
-    private GameObject m_MonsterObject;     // current monster's game object
-    private Monster m_Monster;              // current monster's script
+    public TextAsset m_jsonFile;                // json file to generate from
+    private Rooms m_rooms;                      // rooms object to store the current dungeon in
+    private int m_roomID;                       // current room ID
+    private TextMeshProUGUI m_DialogueText;     // Dialogue box to put announcements in
+    private PlayerInput m_PlayerInput;          // player's input component
+    private bool m_InCombat;                    // track whether in combat or not
+    private GameObject m_MonsterObject;         // current monster's game object
+    private Monster m_Monster;                  // current monster's script
+    private GameObject m_PlayerCharacterObject; // player character sheet's game object
+    private PlayerCharacter m_PlayerCharacter;  // player character for game
 
     private bool m_IsFirstCombat;
 
@@ -92,10 +96,12 @@ public class OverworldController : MonoBehaviour
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_Grid = GameObject.FindGameObjectWithTag("OverworldGrid");
         m_MonsterObject = GameObject.FindGameObjectWithTag("Targeted");
+        m_PlayerCharacterObject = GameObject.FindGameObjectWithTag("PlayerSheet");
 
         // find components
         m_PlayerInput = m_Player.GetComponent<PlayerInput>();
         m_Monster = m_MonsterObject.GetComponent<Monster>();
+        m_PlayerCharacter = m_PlayerCharacterObject.GetComponent<PlayerCharacter>();
 
         m_rooms = JsonUtility.FromJson<Rooms>(m_jsonFile.text);
 
@@ -121,6 +127,11 @@ public class OverworldController : MonoBehaviour
         {
             m_InCombat = false;
             StartCoroutine(EndCombat());
+        }
+        // check if player is dead
+        if (m_PlayerCharacter.GetHP() <= 0)
+        {
+            StartCoroutine(GameOver());
         }
     }
 
@@ -351,6 +362,28 @@ public class OverworldController : MonoBehaviour
         // build room
         m_builderScript.DrawRoom(width, height);
     }
+
+
+    // Tells player they have died and loads game over screen
+    public IEnumerator GameOver()
+    {
+        m_ActionsMenu.SetActive(false);
+
+        yield return new WaitForSeconds(Character.ACTION_DELAY);
+
+        m_DialogueText.text = "You have died :(";
+
+        yield return new WaitForSeconds(Character.ACTION_DELAY);
+
+        m_GameOverMenu.SetActive(true);
+    }
+
+    // Reloads scene
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     /**
      * Generate a string for a monster's enterance
      * 
