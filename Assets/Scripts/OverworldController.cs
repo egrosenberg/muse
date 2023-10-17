@@ -64,6 +64,8 @@ public class OverworldController : MonoBehaviour
     public string[] VOCAB_ENTRANCES;
     public string[] VOCAB_PUNCTUATION;
 
+    public AudioClip ENTER_ROOM;
+
     public GameObject m_CombatUI;
     public GameObject m_ActionsMenu;
     public GameObject m_GameOverMenu;
@@ -318,6 +320,10 @@ public class OverworldController : MonoBehaviour
             Debug.Log("ERROR: INVALID ROOM ID");
             return;
         }
+        // play enter room sound effect
+        SoundController sfxSource = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+        sfxSource.PlaySFX(ENTER_ROOM);
+
         m_roomID = id;
         Debug.Log("Drawing room ID: " + m_roomID);
 

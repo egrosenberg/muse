@@ -23,6 +23,11 @@ TagManager:
   - MenuControls
   - OverworldDialogue
   - GameOver
+  - MusicPlayer
+  - SfxPlayer
+  - MusicButton
+  - SoundController
+  - SfxButton
   layers:
   - Default
   - TransparentFX
