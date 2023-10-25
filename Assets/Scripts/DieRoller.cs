@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class DieRoller : MonoBehaviour
 {
+    public AudioClip DIE_ROLL_SFX;
+    public AudioClip DIE_STOP_SFX;
+
     private const int N_SIDES = 20;
     private const int MIN_SPINS = 10;
-    private const int MAX_SPINS = 11;
+    private const int MAX_SPINS = 16;
     private const float SPIN_DELAY = 0.07f;
     private const int TOTAL_DEGREES = 360;
     private const int MIN_ROTATION_ANGLE = 120;
     private const int MAX_ROTATION_ANGLE = 60;
-
-    //public GameObject m_ThisObject;
 
     public GameObject m_DieImageObj;
     public GameObject m_BonusObj;
@@ -24,6 +25,7 @@ public class DieRoller : MonoBehaviour
     private TextMeshProUGUI m_BonusText;
     private TextMeshProUGUI m_TotalText;
     private RectTransform m_DieTransform;
+    private SoundController m_SoundController;
 
     private int m_SpinsRemaining = 0;
     private int m_Result = 20;
@@ -36,6 +38,9 @@ public class DieRoller : MonoBehaviour
 
     void Start()
     {
+        // Get sound controller
+        m_SoundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+
         RefreshComponents();
     }
     
@@ -124,6 +129,8 @@ public class DieRoller : MonoBehaviour
      */
     private IEnumerator RollVisible()
     {
+        // Start rolling SFX
+        m_SoundController.PlaySFX(DIE_ROLL_SFX);
         while (m_SpinsRemaining >= 0)
         {
             if (m_SpinsRemaining >= 3)
@@ -140,16 +147,18 @@ public class DieRoller : MonoBehaviour
 
                 m_DieTransform.rotation = targetAngle;
             }
-            if (m_SpinsRemaining < 3)
+            if (m_SpinsRemaining == 2)
             {
                 m_TextComponent.text = m_Result.ToString("#,0");
+                // Play ending roll sfx
+                m_SoundController.PlaySFX(DIE_STOP_SFX);
             }
-            if (m_SpinsRemaining < 2)
+            if (m_SpinsRemaining == 1)
             {
                 m_BonusObj.SetActive(true);
                 m_BonusText.text = "+" + m_Bonus.ToString();
             }
-            if (m_SpinsRemaining < 1)
+            if (m_SpinsRemaining == 0)
             {
                 m_TotalObj.SetActive(true);
                 m_TotalText.text = (m_Result + m_Bonus).ToString();

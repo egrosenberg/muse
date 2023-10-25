@@ -70,6 +70,8 @@ public class OverworldController : MonoBehaviour
     public string[] VOCAB_ENTRANCES;
     public string[] VOCAB_PUNCTUATION;
 
+    public TextAsset m_jsonFile; // json file to generate from
+
     public AudioClip ENTER_ROOM;
 
     public GameObject m_CombatUI;
@@ -83,17 +85,18 @@ public class OverworldController : MonoBehaviour
     private GameObject m_Player;
     private GameObject m_Grid;
 
-    public TextAsset m_jsonFile;                // json file to generate from
-    private Rooms m_rooms;                      // rooms object to store the current dungeon in
     private int m_roomID;                       // current room ID
+    private int m_EncounterCounter;             // counts down until wqt combat encounter
+    private bool m_InCombat;                    // track whether in combat or not
+    private Rooms m_rooms;                      // rooms object to store the current dungeon in
     private TextMeshProUGUI m_DialogueText;     // Dialogue box to put announcements in
     private PlayerInput m_PlayerInput;          // player's input component
-    private bool m_InCombat;                    // track whether in combat or not
     private GameObject m_MonsterObject;         // current monster's game object
     private Monster m_Monster;                  // current monster's script
     private GameObject m_PlayerCharacterObject; // player character sheet's game object
     private PlayerCharacter m_PlayerCharacter;  // player character for game
-    private int m_EncounterCounter;             // counts down until wqt combat encounter
+    private GameObject m_SoundControllerObject; // sound controller game object
+    private SoundController m_SoundController;  // use to change background audio tracks
 
     private bool m_IsFirstCombat;
 
@@ -114,11 +117,13 @@ public class OverworldController : MonoBehaviour
         m_Grid = GameObject.FindGameObjectWithTag("OverworldGrid");
         m_MonsterObject = GameObject.FindGameObjectWithTag("Targeted");
         m_PlayerCharacterObject = GameObject.FindGameObjectWithTag("PlayerSheet");
+        m_SoundControllerObject = GameObject.FindGameObjectWithTag("SoundController");
 
         // find components
         m_PlayerInput = m_Player.GetComponent<PlayerInput>();
         m_Monster = m_MonsterObject.GetComponent<Monster>();
         m_PlayerCharacter = m_PlayerCharacterObject.GetComponent<PlayerCharacter>();
+        m_SoundController = m_SoundControllerObject.GetComponent<SoundController>();
 
         m_rooms = JsonUtility.FromJson<Rooms>(m_jsonFile.text);
 
@@ -350,8 +355,7 @@ public class OverworldController : MonoBehaviour
             return;
         }
         // play enter room sound effect
-        SoundController sfxSource = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
-        sfxSource.PlaySFX(ENTER_ROOM);
+        m_SoundController.PlaySFX(ENTER_ROOM);
 
         m_roomID = id;
         Debug.Log("Drawing room ID: " + m_roomID);
@@ -467,6 +471,8 @@ public class OverworldController : MonoBehaviour
 
         // enable combat ui
         m_CombatUI.SetActive(true);
+        // begin combat music
+        m_SoundController.StartCombat();
 
         m_MonsterObject.name = VOCAB_NAMES[UnityEngine.Random.Range(0, VOCAB_NAMES.Length)];
         m_Monster.RefreshAll();
@@ -497,6 +503,9 @@ public class OverworldController : MonoBehaviour
         // disable combat ui but re-enable actions menu
         m_ActionsMenu.SetActive(true);
         m_CombatUI.SetActive(false);
+
+        // end combat music
+        m_SoundController.EndCombat();
 
         // set room as cleared
         m_rooms.rooms[m_roomID].cleared = true;

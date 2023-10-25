@@ -1294,12 +1294,12 @@ MonoBehaviour:
   - .
   - '?'
   - '!?'
+  m_jsonFile: {fileID: 4900000, guid: b61d390265e2773498a5980ffc65921c, type: 3}
   ENTER_ROOM: {fileID: 8300000, guid: 82a3430570b9ffd498749d04d0a619fc, type: 3}
   m_CombatUI: {fileID: 1396297675}
   m_ActionsMenu: {fileID: 1848887255}
   m_GameOverMenu: {fileID: 1070209796}
   m_builderObj: {fileID: 659649078}
-  m_jsonFile: {fileID: 4900000, guid: b61d390265e2773498a5980ffc65921c, type: 3}
 --- !u!4 &385273079
 Transform:
   m_ObjectHideFlags: 0
@@ -1841,8 +1841,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546.9, y: -392.6}
-  m_SizeDelta: {x: 235.5162, y: 26.3225}
+  m_AnchoredPosition: {x: 511.3553, y: -396.24564}
+  m_SizeDelta: {x: 306.6058, y: 33.6137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668516751
 MonoBehaviour:
@@ -1891,8 +1891,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2895,6 +2895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM: {fileID: 8300000, guid: f750747359cfbeb4485e2bc5eb287aa8, type: 3}
+  BGM_COMBAT: {fileID: 8300000, guid: 8fead59feeea71d4d80485c802d9649a, type: 3}
   MUSIC_ON: {fileID: 21300000, guid: f9359adf06ba38344bff3f31bd7239dc, type: 3}
   MUSIC_OFF: {fileID: 21300000, guid: 778234e9f5c1c9a48b639d0b14c8d8db, type: 3}
   SFX_ON: {fileID: 21300000, guid: 92e465bd434786e4c91201f7499ba776, type: 3}
@@ -3244,8 +3245,8 @@ MonoBehaviour:
   BASE_PLAYER_STATS: 08000000100000000c0000000c0000000a00000012000000
   RAPIER_DICE: 08000000
   PARRY_MP_COST: 3
-  SFX_RAPIER: {fileID: 0}
-  SFX_PARRY: {fileID: 0}
+  SFX_RAPIER: {fileID: 8300000, guid: 6d8f9246f1f7a4c46b16af3276136cc2, type: 3}
+  SFX_PARRY: {fileID: 8300000, guid: b2eb155c27182054e9bf461f90b9d94e, type: 3}
   SFX_HEAL: {fileID: 8300000, guid: 4aabf4f220884bd4cbbe36323764f4cd, type: 3}
   SFX_CHARM: {fileID: 8300000, guid: 5bcdf97beb875e24db32cc6bff125376, type: 3}
 --- !u!1 &1147251090
@@ -3772,7 +3773,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5533,6 +5534,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9046911556425951839, guid: 3e074e38f0aa85d45ab3cc8ef5b93ffa, type: 3}
+      propertyPath: DIE_ROLL_SFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a48e4050a43a2642919d8e5b01468de, type: 3}
+    - target: {fileID: 9046911556425951839, guid: 3e074e38f0aa85d45ab3cc8ef5b93ffa, type: 3}
+      propertyPath: DIE_STOP_SFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 39fc993b839d2844788ca8eaae05a9d6, type: 3}
     - target: {fileID: 9046911556425951839, guid: 3e074e38f0aa85d45ab3cc8ef5b93ffa, type: 3}
       propertyPath: m_ThisObject
       value: 

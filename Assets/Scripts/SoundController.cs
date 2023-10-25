@@ -7,6 +7,7 @@ public class SoundController : MonoBehaviour
 {
     private const float MUSIC_VOLUME_SCALAR = 0.7f;
     public AudioClip BGM;
+    public AudioClip BGM_COMBAT;
     public Sprite MUSIC_ON;
     public Sprite MUSIC_OFF;
     public Sprite SFX_ON;
@@ -16,17 +17,21 @@ public class SoundController : MonoBehaviour
     private AudioSource m_SfxSource;
     private bool m_MusicOn;
     private bool m_SfxOn;
+    private float m_Volume;
 
     // Start is called before the first frame update
     void Start()
     {
         m_SfxOn = true;
+        m_Volume = 1f;
 
         m_MusicSource = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
         m_SfxSource = GameObject.FindGameObjectWithTag("SfxPlayer").GetComponent<AudioSource>();
 
         m_MusicSource.loop = true;
         m_MusicSource.clip = BGM;
+        m_MusicOn = true;
+        m_MusicSource.Play();
         // disable music by default
         DisableMusic();
         SetVolume(0.5f);
@@ -38,9 +43,13 @@ public class SoundController : MonoBehaviour
      * @param volume: float conatining sound to change to
      */
     public void SetVolume(float volume)
-    {   
-        m_MusicSource.volume = volume * MUSIC_VOLUME_SCALAR;
-        m_SfxSource.volume = volume;
+    {
+        m_Volume = volume;
+        if(m_MusicOn)
+        {
+            m_MusicSource.volume = m_Volume * MUSIC_VOLUME_SCALAR;
+        }
+        m_SfxSource.volume = m_Volume;
     }
     /**
      * Setst the volume of the sound controller based on slider
@@ -64,12 +73,10 @@ public class SoundController : MonoBehaviour
         }
     }
     // turn on music
-
     void EnableMusic()
     {
         m_MusicOn = true;
-        m_MusicSource.Play();
-
+        m_MusicSource.volume = m_Volume * MUSIC_VOLUME_SCALAR;
         Image playIcon = GameObject.FindGameObjectWithTag("MusicButton").GetComponent<Image>();
         playIcon.sprite = MUSIC_ON;
     }
@@ -77,8 +84,7 @@ public class SoundController : MonoBehaviour
     void DisableMusic()
     {
         m_MusicOn = false;
-        m_MusicSource.Stop();
-
+        m_MusicSource.volume = 0f;
         Image playIcon = GameObject.FindGameObjectWithTag("MusicButton").GetComponent<Image>();
         playIcon.sprite = MUSIC_OFF;
     }
@@ -89,6 +95,18 @@ public class SoundController : MonoBehaviour
 
         Image sfxIcon = GameObject.FindGameObjectWithTag("SfxButton").GetComponent<Image>();
         sfxIcon.sprite = m_SfxOn ? SFX_ON : SFX_OFF;
+    }
+    // Plays combat music
+    public void StartCombat()
+    {
+        m_MusicSource.clip = BGM_COMBAT;
+        m_MusicSource.Play();
+    }
+    // Turns off combat music
+    public void EndCombat()
+    {
+        m_MusicSource.clip = BGM;
+        m_MusicSource.Play();
     }
     /**
      * Plays a specified audio clip in the sfx channel (only if its unmuted)

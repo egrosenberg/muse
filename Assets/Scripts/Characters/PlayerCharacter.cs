@@ -37,7 +37,6 @@ public class PlayerCharacter : Character
         // give ourselves some levels for testing
         SetLevel(3);
 
-
         // Get Resource bars and nametag
         m_HPBar = GameObject.FindGameObjectWithTag("PlayerHP").GetComponent<ResourceBar>();
         m_MPBar = GameObject.FindGameObjectWithTag("PlayerMP").GetComponent<ResourceBar>();
@@ -267,6 +266,9 @@ public class PlayerCharacter : Character
     {
         yield return StartRound();
 
+        // play sfx
+        m_SoundController.PlaySFX(SFX_PARRY);
+
         // spend MP
         SpendMP(PARRY_MP_COST);
 
@@ -292,6 +294,10 @@ public class PlayerCharacter : Character
         float delay = m_DieRoller.GetFinish() - Time.time + ACTION_DELAY;
 
         yield return new WaitForSecondsRealtime(delay);
+        yield return OverworldController.WaitForPlayer();
+
+        // play sfx
+        m_SoundController.PlaySFX(SFX_RAPIER);
 
         // check if attack hits
         int toHit = dieRoll + m_WeaponAttack;

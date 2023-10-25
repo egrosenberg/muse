@@ -266,25 +266,29 @@ public class Character : MonoBehaviour
     public static readonly int[] PB_AT_LVL = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4};
     public static readonly int[] XP_AT_LVL = {300, 600, 1800, 3800, 7500, 9000, 11000, 14000, 16000, 21000};
 
-    protected int[] m_StatArray;               // array containing ability scores
-    protected bool[] m_SaveProfs;              // array of saving throw proficiencies
-    protected bool[] m_CheckProfs;             // array of ability check proficiencies
-    protected int m_ArmorBase;                 // AC bonus from armor
-    protected Stats m_SpellAbility;            // ability used for spellcasting
-    protected Stats m_WeaponAbility;           // ability used for weapon attacks
-    protected int m_Level;                     // current level
-    protected int m_XP;                        // current xp progress in level
-    protected int m_PB;                        // current proficiency bonus
-    protected int m_MaxHP;                     // max hit points
-    protected int m_MaxMP;                     // max magic points
-    protected int m_HP;                        // current hit points
-    protected int m_MP;                        // current magic points
-    protected int m_AC;                        // total armor class
-    protected int m_SpellDC;                   // difficulty class for spell saving throws
-    protected int m_WeaponAttack;              // weapon attack bonus
-    protected int m_SpellAttack;               // spell attack bonus
-    protected int[] m_EffectTimers;            // stores all current effect timers and how many turns remaining
-    protected TextMeshProUGUI m_DialogueText;  // where to post status updates ect.
+    protected const string DAMAGE_SFX_PATH = "Audio/SFX/damage";
+
+    protected int[] m_StatArray;                 // array containing ability scores
+    protected bool[] m_SaveProfs;                // array of saving throw proficiencies
+    protected bool[] m_CheckProfs;               // array of ability check proficiencies
+    protected int m_ArmorBase;                   // AC bonus from armor
+    protected Stats m_SpellAbility;              // ability used for spellcasting
+    protected Stats m_WeaponAbility;             // ability used for weapon attacks
+    protected int m_Level;                       // current level
+    protected int m_XP;                          // current xp progress in level
+    protected int m_PB;                          // current proficiency bonus
+    protected int m_MaxHP;                       // max hit points
+    protected int m_MaxMP;                       // max magic points
+    protected int m_HP;                          // current hit points
+    protected int m_MP;                          // current magic points
+    protected int m_AC;                          // total armor class
+    protected int m_SpellDC;                     // difficulty class for spell saving throws
+    protected int m_WeaponAttack;                // weapon attack bonus
+    protected int m_SpellAttack;                 // spell attack bonus
+    protected int[] m_EffectTimers;              // stores all current effect timers and how many turns remaining
+    protected TextMeshProUGUI m_DialogueText;    // where to post status updates ect.
+    protected SoundController m_SoundController; // use to change background audio tracks
+    protected AudioClip m_DamageSFX;             // play this when damaged
 
     public GameObject m_DieRollerObject;
     protected DieRoller m_DieRoller;
@@ -312,6 +316,8 @@ public class Character : MonoBehaviour
         // init armor
         m_ArmorBase = BASE_ARMOR;
 
+        // load damage sound effect
+        m_DamageSFX = Resources.Load<AudioClip>(DAMAGE_SFX_PATH);
 
         UpdateResources();
 
@@ -330,6 +336,8 @@ public class Character : MonoBehaviour
         // grab our text box
         GameObject textObject = GameObject.FindGameObjectWithTag("DialogueText");
         m_DialogueText = textObject.GetComponent<TextMeshProUGUI>();
+        // Get sound controller
+        m_SoundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
     }
 
     /**
@@ -619,6 +627,12 @@ public class Character : MonoBehaviour
      */
     virtual public int Damage(int ammount)
     {
+        // play damage sfx if took damage
+        if (ammount > 0)
+        {
+            m_SoundController.PlaySFX(m_DamageSFX);
+        }
+
         m_HP -= ammount;
 
         if (m_HP < 0)
