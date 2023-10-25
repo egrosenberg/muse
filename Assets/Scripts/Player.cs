@@ -96,7 +96,11 @@ public class Player : MonoBehaviour
                 mapDoor.door.is_open = true;
                 mapDoor.door.linked.is_open = true;
                 m_OverworldController.GenRoom(out_id-1);
+                return;
             }
         }
+
+        // If not leaving the room, increment encounter counter
+        m_OverworldController.CheckForCombat();
     }
 }

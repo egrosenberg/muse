@@ -56,10 +56,12 @@ public class OverworldController : MonoBehaviour
 {
     public static bool CONTINUE = false;
     public static GameObject CONTINUE_OBJ = null;
+    public static bool ROUND_IN_PROGRESS = false;
 
     private const int MAP_UNIT_S = 10;
     private const int WALL_OFFSET = 2;
     private const float PERCENT_TO_RESTORE = 0.3f;
+    private const int ENCOUNTER_TIMER_BASE = 5;
     public float XP_MULTIPLIER = 1;
 
     public string[] VOCAB_ARTICLES;
@@ -91,6 +93,7 @@ public class OverworldController : MonoBehaviour
     private Monster m_Monster;                  // current monster's script
     private GameObject m_PlayerCharacterObject; // player character sheet's game object
     private PlayerCharacter m_PlayerCharacter;  // player character for game
+    private int m_EncounterCounter;             // counts down until wqt combat encounter
 
     private bool m_IsFirstCombat;
 
@@ -128,10 +131,15 @@ public class OverworldController : MonoBehaviour
         m_InCombat = false;
         m_IsFirstCombat = true;
 
+        m_EncounterCounter = 0;
+
         m_roomID = 0;
         // set first room to cleared and generate it
         m_rooms.rooms[m_roomID].cleared = true;
         GenRoom(m_roomID);
+
+        // disable combat ui
+        m_CombatUI.SetActive(false);
     }
 
     private void Update()
@@ -151,6 +159,7 @@ public class OverworldController : MonoBehaviour
     // Wait until continue command has been pressed
     public static IEnumerator WaitForPlayer()
     {
+        CONTINUE = false;
         CONTINUE_OBJ.SetActive(true);
         yield return new WaitUntil(() => CONTINUE);
         CONTINUE = false;
@@ -352,15 +361,10 @@ public class OverworldController : MonoBehaviour
         BuildRoomBlank(width, height);
         DrawDoors();
 
-        // dont start combat if the room is already cleared
+        // dont reset combat counter if this room is already cleared
         if (m_rooms.rooms[m_roomID].cleared == false)
         {
-            StartCombat();
-        }
-        else
-        {
-            // disable combat ui
-            m_CombatUI.SetActive(false);
+            m_EncounterCounter = ENCOUNTER_TIMER_BASE;
         }
     }
 
@@ -394,13 +398,11 @@ public class OverworldController : MonoBehaviour
     // Tells player they have died and loads game over screen
     public IEnumerator GameOver()
     {
+        yield return new WaitUntil(() => !ROUND_IN_PROGRESS); // wait until round is complete
+
         m_ActionsMenu.SetActive(false);
 
-        yield return OverworldController.WaitForPlayer();
-
         m_DialogueText.text = "You have died :(";
-
-        yield return OverworldController.WaitForPlayer();
 
         m_GameOverMenu.SetActive(true);
     }
@@ -408,7 +410,7 @@ public class OverworldController : MonoBehaviour
     // Reloads scene
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     /**
@@ -426,6 +428,18 @@ public class OverworldController : MonoBehaviour
         int punctuationN = UnityEngine.Random.Range(0, VOCAB_PUNCTUATION.Length);
 
         return VOCAB_ARTICLES[articleN] + " " + VOCAB_ADJECTIVES[adjectiveN] + " " + monsterName + " " + VOCAB_ENTRANCES[entranceN] + VOCAB_PUNCTUATION[punctuationN];
+    }
+
+    /**
+     * Progresses countdown to next combat encounter
+     * If countdown hits zero, start combat
+     */
+    public void CheckForCombat()
+    {
+        if (--m_EncounterCounter == 0)
+        {
+            StartCombat();
+        }
     }
 
     /**
@@ -467,7 +481,7 @@ public class OverworldController : MonoBehaviour
      */
     private IEnumerator EndCombat()
     {
-        yield return OverworldController.WaitForPlayer();
+        yield return new WaitUntil(() => !ROUND_IN_PROGRESS); // wait until round is complete
 
         m_ActionsMenu.SetActive(false);
         
@@ -480,7 +494,8 @@ public class OverworldController : MonoBehaviour
         yield return GiveXP();
         RestorePlayer();
 
-        // disable combat ui
+        // disable combat ui but re-enable actions menu
+        m_ActionsMenu.SetActive(true);
         m_CombatUI.SetActive(false);
 
         // set room as cleared

@@ -225,6 +225,8 @@ public class PlayerCharacter : Character
     // starts the round after player input, disables input
     private IEnumerator StartRound()
     {
+        // Mark round as started
+        OverworldController.ROUND_IN_PROGRESS = true;
         // disable actions menu
         m_ActionsMenu.SetActive(false);
         yield return null;
@@ -235,9 +237,11 @@ public class PlayerCharacter : Character
         base.EndTurn();
         // call monster turn and then re-enable actions menu
         yield return StartCoroutine(m_Target.ProgressTurn());
-        // disable actions menu
+        // enable actions menu
         m_ActionsMenu.SetActive(true);
         m_Busy = false;
+        // Mark round as complete
+        OverworldController.ROUND_IN_PROGRESS = false;
         yield return null;
     }
 
