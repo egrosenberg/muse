@@ -1,0 +1,3405 @@
+{
+    "rooms": [
+        {
+            "area": 2500,
+            "col": 5,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 10,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 6,
+                        "row": 3,
+                        "type": "door"
+                    },
+                    {
+                        "col": 10,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "row": 1,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 50,
+            "id": 1,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 5,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 15,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Archway",
+                        "out_id": 3,
+                        "row": 3,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 14,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "row": 1,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 50,
+            "id": 2,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 15,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 2300 cp, 1100 sp, 70 gp, a pewter torc inlaid with a meandros of copper (25 gp), a set of ivory dice with copper pips (25 gp), a silver dagger set with a rosette of pearl (25 gp)"
+                    ]
+                },
+                "inhabited": "Orog",
+                "summary": "Orog"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 22,
+                        "desc": "Archway",
+                        "out_id": 4,
+                        "row": 3,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 18,
+                        "desc": "Archway",
+                        "out_id": 2,
+                        "row": 3,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 3,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 3,
+            "west": 19,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 23,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "3 x Goblin (cr 1/4, mm 166); hard, 150 xp",
+                        "--",
+                        "Treasure: 16 cp; 15 sp; 8 sp"
+                    ]
+                },
+                "inhabited": "3 x Goblin",
+                "summary": "3 x Goblin"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 26,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "row": 1,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 25,
+                        "desc": "Archway",
+                        "out_id": 13,
+                        "row": 6,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 22,
+                        "desc": "Archway",
+                        "out_id": 3,
+                        "row": 3,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 25,
+            "height": 50,
+            "id": 4,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 23,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 33,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 17 gp"
+                    ],
+                    "room_features": "A magical mirror on the south wall answers questions with lies and falsehoods, and a group of monstrous faces have been carved into the west wall"
+                },
+                "inhabited": "Orog",
+                "summary": "Orog"
+            },
+            "doors": {
+                "west": [
+                    {
+                        "col": 32,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "row": 1,
+                        "type": "door"
+                    },
+                    {
+                        "col": 32,
+                        "desc": "Trapped and Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 7,
+                        "row": 3,
+                        "trap": "Teleporter Crystal: DC 15 to find, DC 20 to disable;\n    affects each creature which touches the crystal, DC 14 save or be teleported to another location",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 5,
+            "north": 1,
+            "row": 1,
+            "shape": "square",
+            "size": "small",
+            "south": 3,
+            "west": 33,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 2000 cp, 1200 sp, 50 gp, blue quartz (10 gp), 2 x eye agate (10 gp), hematite (10 gp), lapis lazuli (10 gp), obsidian (10 gp), 3 x Potion of Healing (common, dmg 187)"
+                    ],
+                    "trap": [
+                        "Scythe Blade: DC 10 to find, DC 15 to disable;\n    +7 to hit against all targets within a 5 ft. arc, 2d10 slashing damage"
+                    ]
+                },
+                "inhabited": "Orog",
+                "summary": "Orog, Scythe Blade"
+            },
+            "doors": {
+                "west": [
+                    {
+                        "col": 10,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 1,
+                        "row": 3,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 13,
+            "height": 30,
+            "id": 6,
+            "north": 3,
+            "row": 3,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 11,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 27,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Gelatinous Cube (cr 2, mm 242); deadly, 450 xp",
+                        "--",
+                        "Treasure: 7 gp"
+                    ],
+                    "room_features": "A simple fireplace sits against the east wall, and an iron chain hangs from the ceiling in the north side of the room"
+                },
+                "inhabited": "Gelatinous Cube",
+                "summary": "Gelatinous Cube"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 32,
+                        "desc": "Trapped and Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 5,
+                        "row": 3,
+                        "trap": "Teleporter Crystal: DC 15 to find, DC 20 to disable;\n    affects each creature which touches the crystal, DC 14 save or be teleported to another location",
+                        "type": "trapped"
+                    },
+                    {
+                        "col": 32,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 8,
+                        "row": 5,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 27,
+                        "desc": "Trapped and Locked Strong Wooden Door (DC 25 to open, DC 20 to break; 20 hp)",
+                        "out_id": 13,
+                        "row": 6,
+                        "trap": "One-way Door: DC 10 to find, DC 10 to disable",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 31,
+            "height": 30,
+            "id": 7,
+            "north": 3,
+            "row": 3,
+            "shape": "square",
+            "size": "small",
+            "south": 5,
+            "west": 27,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 33,
+            "contents": {
+                "detail": {
+                    "room_features": "A shallow pit lies in the north-east corner of the room, and someone has scrawled \"Marger was here\" on the south wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "west": [
+                    {
+                        "col": 32,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 7,
+                        "row": 5,
+                        "type": "door"
+                    },
+                    {
+                        "col": 32,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 14,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 8,
+            "north": 5,
+            "row": 5,
+            "shape": "square",
+            "size": "small",
+            "south": 7,
+            "west": 33,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "room_features": "Someone has scrawled a drawing of a door on the south wall, and a putrid odor fills the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 8,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 10,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 3,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 16,
+                        "row": 10,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 7,
+            "height": 30,
+            "id": 9,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 9,
+            "west": 3,
+            "width": 50
+        },
+        {
+            "area": 2500,
+            "col": 9,
+            "contents": {
+                "detail": {
+                    "room_features": "Several alcoves are cut into the east and west walls, and several barrel staves are scattered throughout the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 14,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 11,
+                        "row": 7,
+                        "type": "door"
+                    },
+                    {
+                        "col": 14,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 17,
+                        "row": 11,
+                        "type": "portcullis"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 8,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 9,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 13,
+            "height": 50,
+            "id": 10,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 11,
+            "west": 9,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 15,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "2 x Goblin (cr 1/4, mm 166) and 2 x Wolf (cr 1/4, mm 341); deadly, 200 xp",
+                        "--",
+                        "Treasure: 2300 cp, 700 sp, 70 gp, 2 x diamond (50 gp), jasper (50 gp), onyx (50 gp), quartz (50 gp), zircon (50 gp), +1 Shield (uncommon, dmg 200), Boots of Striding and Springing (uncommon, dmg 156), Pipes of the Sewers (uncommon, dmg 185), Wand of Magic Missiles (uncommon, dmg 211)"
+                    ],
+                    "room_features": "Someone has scrawled \"The thief will betray you\" on the south wall, and the walls are covered with claw marks"
+                },
+                "inhabited": "2 x Goblin and 2 x Wolf",
+                "summary": "2 x Goblin and 2 x Wolf"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 12,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 17,
+                        "row": 10,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 14,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 10,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 30,
+            "id": 11,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 9,
+            "west": 15,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "2 x Hobgoblin (cr 1/2, mm 186); hard, 200 xp",
+                        "--",
+                        "Treasure: 17 cp; 22 cp"
+                    ],
+                    "room_features": "A stone dais sits in the north-west corner of the room, and a clicking noise can be faintly heard near the north wall"
+                },
+                "inhabited": "2 x Hobgoblin",
+                "summary": "2 x Hobgoblin"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 19,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 17,
+                        "row": 10,
+                        "type": "portcullis"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 18,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 11,
+                        "row": 7,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 23,
+            "height": 30,
+            "id": 12,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 9,
+            "west": 19,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 1900 cp, 900 sp, 80 gp, 3 x diamond (50 gp), citrine (50 gp), 3 x jasper (50 gp), moonstone (50 gp), zircon (50 gp), Spell Scroll (Jump) (common, dmg 200)"
+                    ]
+                },
+                "inhabited": "Orog",
+                "summary": "Orog"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 28,
+                        "desc": "Locked Good Wooden Door (DC 20 to open, DC 15 to break; 15 hp)",
+                        "out_id": 14,
+                        "row": 9,
+                        "type": "locked"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 25,
+                        "desc": "Archway",
+                        "out_id": 4,
+                        "row": 6,
+                        "type": "arch"
+                    },
+                    {
+                        "col": 27,
+                        "desc": "Trapped and Locked Strong Wooden Door (DC 25 to open, DC 20 to break; 20 hp)",
+                        "out_id": 7,
+                        "row": 6,
+                        "trap": "One-way Door: DC 10 to find, DC 10 to disable",
+                        "type": "trapped"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 25,
+                        "desc": "Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 20,
+                        "row": 12,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 27,
+            "height": 50,
+            "id": 13,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 11,
+            "west": 25,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 29,
+            "contents": {
+                "detail": {
+                    "room_features": "The floor is covered in perfect hexagonal tiles, and someone has scrawled \"Death is the only exit\" on the west wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 32,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 8,
+                        "row": 7,
+                        "type": "door"
+                    },
+                    {
+                        "col": 32,
+                        "desc": "Archway",
+                        "out_id": 15,
+                        "row": 9,
+                        "type": "arch"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 29,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 20,
+                        "row": 12,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 28,
+                        "desc": "Locked Good Wooden Door (DC 20 to open, DC 15 to break; 15 hp)",
+                        "out_id": 13,
+                        "row": 9,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 31,
+            "height": 50,
+            "id": 14,
+            "north": 7,
+            "row": 7,
+            "shape": "square",
+            "size": "small",
+            "south": 11,
+            "west": 29,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 33,
+            "contents": {
+                "detail": {
+                    "room_features": "A chute descends from the room into a plundered tomb below, and a metallic odor fills the north-west corner of the room",
+                    "trap": [
+                        "Rune of Paralyzation: DC 15 to find, DC 15 to disable;\n    affects all targets within 10 ft., DC 11 save or become paralyzed for 1d4 rounds"
+                    ]
+                },
+                "summary": "Rune of Paralyzation"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 35,
+                        "desc": "Trapped and Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 23,
+                        "row": 14,
+                        "trap": "Acid Spray: DC 15 to find, DC 15 to disable;\n    affects all targets within a 20 ft. cone, DC 12 save or take 1d10 acid damage\n    for 1d4 rounds",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 32,
+                        "desc": "Archway",
+                        "out_id": 14,
+                        "row": 9,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 35,
+            "height": 50,
+            "id": 15,
+            "north": 9,
+            "row": 9,
+            "shape": "square",
+            "size": "small",
+            "south": 13,
+            "west": 33,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "room_features": "The walls have been engraved with strange symbols, and numerous monstrous skulls lie within niches in the walls"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)",
+                        "out_id": 19,
+                        "row": 13,
+                        "trap": "Falling Block: DC 10 to find, DC 10 to disable;\n    affects all targets within a 10 ft. square area, DC 13 save or take 2d10 damage",
+                        "type": "trapped"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 3,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 9,
+                        "row": 10,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 3,
+                        "desc": "Trapped and Locked Iron Door (DC 25 to open, DC 30 to break; 60 hp)",
+                        "out_id": 21,
+                        "row": 14,
+                        "trap": "Electrified Lock: DC 15 to find, DC 15 to disable;\n    affects each creature which touches the lock, DC 15 save or take 2d10 lightning damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 30,
+            "id": 16,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 13,
+            "west": 3,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 15,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 1400 cp, 600 sp, 110 gp, a fine leather merchant's cap trimmed with fox fur (25 gp), a rosewood comb inlaid with a meandros of gold (25 gp), a scroll of calligraphy (25 gp), an earthenware tureen painted with pastoral imagery (25 gp)"
+                    ],
+                    "room_features": "Jagged steel blades project from cracks in the south and east walls, and a dulled dagger lies in the south side of the room",
+                    "trap": [
+                        "Poison Gas Trap: DC 10 to find, DC 15 to disable;\n    affects all targets within a 10 ft. square area, DC 17 save or take 4d10 poison damage"
+                    ]
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre, Poison Gas Trap"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 17,
+                        "desc": "Archway",
+                        "out_id": 11,
+                        "row": 10,
+                        "type": "arch"
+                    },
+                    {
+                        "col": 19,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 12,
+                        "row": 10,
+                        "type": "portcullis"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 14,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "row": 13,
+                        "type": "door"
+                    },
+                    {
+                        "col": 14,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 10,
+                        "row": 11,
+                        "type": "portcullis"
+                    },
+                    {
+                        "col": 14,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp) (slides up)",
+                        "row": 15,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 19,
+            "height": 50,
+            "id": 17,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 15,
+            "west": 15,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 21,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Locked Simple Wooden Chest (DC 25 to unlock, DC 15 to break; 10 hp)",
+                        "--",
+                        "2400 cp, 1300 sp, 40 gp, a bone coffer set with turquoise (25 gp), a bone rod engraved with draconic scales (25 gp), a bone scepter engraved with draconic scales (25 gp), a brass torc inlaid with a filigree of silver (25 gp), an earthenware plate painted with woodland imagery (25 gp), Spell Scroll (Minor Illusion) (common, dmg 200), Spell Scroll (Burning Hands) (common, dmg 200), Potion of Climbing (common, dmg 187), 2 x Potion of Healing (common, dmg 187)"
+                    ],
+                    "trap": [
+                        "Scythe Blade: DC 15 to find, DC 10 to disable;\n    +8 to hit against all targets within a 5 ft. arc, 2d10 slashing damage"
+                    ]
+                },
+                "summary": "Scythe Blade, Hidden Treasure"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 21,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp) (slides down)",
+                        "out_id": 26,
+                        "row": 16,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 23,
+            "height": 50,
+            "id": 18,
+            "north": 11,
+            "row": 11,
+            "shape": "square",
+            "size": "small",
+            "south": 15,
+            "west": 21,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "room_features": "A simple cabinet and several crates sit in the east side of the room, and someone has scrawled \"The Shields of Sabrycg looted this place\" on the west wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Secret (DC 25 to find) Trapped and Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)",
+                        "row": 15,
+                        "secret": "The door is located several feet above the floor and concealed behind a pile of skulls",
+                        "trap": "Guillotine Blade: DC 10 to find, DC 10 to disable;\n    +12 to hit against one target, 4d10 slashing damage",
+                        "type": "secret"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)",
+                        "out_id": 16,
+                        "row": 13,
+                        "trap": "Falling Block: DC 10 to find, DC 10 to disable;\n    affects all targets within a 10 ft. square area, DC 13 save or take 2d10 damage",
+                        "type": "trapped"
+                    },
+                    {
+                        "col": 6,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 21,
+                        "row": 15,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 19,
+            "north": 13,
+            "row": 13,
+            "shape": "square",
+            "size": "small",
+            "south": 15,
+            "west": 7,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "room_features": "A faded and torn tapestry hangs from the north wall, and the ceiling is covered with cobwebs"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 25,
+                        "desc": "Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 13,
+                        "row": 12,
+                        "type": "door"
+                    },
+                    {
+                        "col": 29,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 14,
+                        "row": 12,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 29,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 27,
+                        "row": 16,
+                        "type": "portcullis"
+                    }
+                ]
+            },
+            "east": 29,
+            "height": 30,
+            "id": 20,
+            "north": 13,
+            "row": 13,
+            "shape": "square",
+            "size": "small",
+            "south": 15,
+            "west": 25,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 6,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 19,
+                        "row": 15,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 3,
+                        "desc": "Trapped and Locked Iron Door (DC 25 to open, DC 30 to break; 60 hp)",
+                        "out_id": 16,
+                        "row": 14,
+                        "trap": "Electrified Lock: DC 15 to find, DC 15 to disable;\n    affects each creature which touches the lock, DC 15 save or take 2d10 lightning damage",
+                        "type": "trapped"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 3,
+                        "desc": "Secret (DC 15 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 29,
+                        "row": 20,
+                        "secret": "The door is concealed behind a statue of a dread vampire, and opened by filling his chalice with blood",
+                        "type": "secret"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 2,
+                        "desc": "Trapped and Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "row": 15,
+                        "trap": "Teleporter Crystal: DC 20 to find, DC 15 to disable;\n    affects each creature which touches the crystal, DC 13 save or be teleported to another location",
+                        "type": "trapped"
+                    },
+                    {
+                        "col": 2,
+                        "desc": "Secret (DC 15 to find) Trapped and Locked Iron Door (DC 15 to open, DC 30 to break; 60 hp)",
+                        "row": 17,
+                        "secret": "The door is concealed within an upright sarcophagus",
+                        "trap": "Electrified Lock: DC 15 to find, DC 10 to disable;\n    affects each creature which touches the lock, DC 12 save or take 2d10 lightning damage",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 50,
+            "id": 21,
+            "north": 15,
+            "row": 15,
+            "shape": "square",
+            "size": "small",
+            "south": 19,
+            "west": 3,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 31,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 25 to find) Trapped and Locked Iron Chest (DC 20 to unlock, DC 30 to break; 60 hp)",
+                        "Poisoned Arrow Trap: DC 15 to find, DC 10 to disable;\n    +11 to hit against one target, 4d10 piercing/poison damage",
+                        "--",
+                        "2300 cp, 1500 sp, 100 gp, a cloth robe trimmed with rabbit fur (25 gp), a copper bracelet etched with thorned vines (25 gp), a fine leather merchant's cap adorned with a plume (25 gp), a fine steel cup engraved with elven script (25 gp), an obsidian chalice engraved with dwarven axeheads (25 gp), Potion of Resistance (psychic) (uncommon, dmg 188), Cap of Water Breathing (uncommon, dmg 157)"
+                    ],
+                    "room_features": "A fountain decorated with tormented faces sits in the east side of the room, and a buzzing noise can be faintly heard near the west wall",
+                    "trap": [
+                        "Scythe Blade: DC 10 to find, DC 10 to disable;\n    +7 to hit against all targets within a 5 ft. arc, 2d10 slashing damage"
+                    ]
+                },
+                "summary": "Scythe Blade, Hidden Treasure"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 31,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 28,
+                        "row": 18,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 30,
+            "id": 22,
+            "north": 15,
+            "row": 15,
+            "shape": "square",
+            "size": "small",
+            "south": 17,
+            "west": 31,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Locked Simple Wooden Chest (DC 20 to unlock, DC 15 to break; 10 hp)",
+                        "--",
+                        "2900 cp, 1200 sp, 40 gp, a bone coffer engraved with a labyrinth (25 gp), a fine leather coinpurse sewn with electrum (25 gp), 2 x a small woolen carpet (25 gp), a wooden scepter engraved with a labyrinth (25 gp), an earthenware tureen painted with floral imagery (25 gp)"
+                    ],
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 2100 cp, 1600 sp, 90 gp, 5 x diamond (50 gp), bloodstone (50 gp), chrysoprase (50 gp), Dust of Dryness (uncommon, dmg 166), Potion of Growth (uncommon, dmg 187)"
+                    ],
+                    "room_features": "A ruined siege weapon sits in the north side of the room, and groaning can be heard in the south-east corner of the room",
+                    "trap": [
+                        "Falling Block: DC 10 to find, DC 10 to disable;\n    affects all targets within a 10 ft. square area, DC 13 save or take 2d10 damage"
+                    ]
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre, Falling Block, Hidden Treasure"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 35,
+                        "desc": "Trapped and Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 15,
+                        "row": 14,
+                        "trap": "Acid Spray: DC 15 to find, DC 15 to disable;\n    affects all targets within a 20 ft. cone, DC 12 save or take 1d10 acid damage\n    for 1d4 rounds",
+                        "type": "trapped"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 35,
+                        "desc": "Locked Good Wooden Door (DC 10 to open, DC 15 to break; 15 hp) (slides to one side)",
+                        "out_id": 32,
+                        "row": 20,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 50,
+            "id": 23,
+            "north": 15,
+            "row": 15,
+            "shape": "square",
+            "size": "small",
+            "south": 19,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Goblin Boss (cr 1, mm 166) and 1 x Goblin (cr 1/4, mm 166); medium, 250 xp",
+                        "--",
+                        "Treasure: 20 sp; 15 gp"
+                    ],
+                    "room_features": "A set of demonic war masks hangs on the south wall, and a large demonic idol with ruby eyes sits in the west side of the room"
+                },
+                "inhabited": "Goblin Boss and 1 x Goblin",
+                "summary": "Goblin Boss and 1 x Goblin"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 25,
+                        "row": 19,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 11,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 30,
+                        "row": 20,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 24,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 19,
+            "west": 7,
+            "width": 50
+        },
+        {
+            "area": 2500,
+            "col": 13,
+            "contents": {
+                "detail": {
+                    "room_features": "A stone dais sits in the north-east corner of the room, and several pieces of trash are scattered throughout the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)",
+                        "out_id": 26,
+                        "row": 17,
+                        "type": "locked"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 17,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 33,
+                        "row": 22,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 24,
+                        "row": 19,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 50,
+            "id": 25,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 21,
+            "west": 13,
+            "width": 50
+        },
+        {
+            "area": 2500,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "room_features": "A wooden platform hangs over a deep pit in the north-west corner of the room, and a thumping sound can be faintly heard near the south wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 21,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp) (slides down)",
+                        "out_id": 18,
+                        "row": 16,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 19,
+                        "desc": "Archway",
+                        "out_id": 34,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 18,
+                        "desc": "Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)",
+                        "out_id": 25,
+                        "row": 17,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 23,
+            "height": 50,
+            "id": 26,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 21,
+            "west": 19,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "room_features": "A ladder ascends to a catwalk hanging between the north and south walls, and a tile labyrinth covers the floor"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 30,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 28,
+                        "row": 19,
+                        "trap": "Falling Block: DC 10 to find, DC 10 to disable;\n    affects all targets within a 10 ft. square area, DC 10 save or take 1d10 damage",
+                        "type": "portcullis"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 29,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 20,
+                        "row": 16,
+                        "type": "portcullis"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 27,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 31,
+                        "row": 20,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 29,
+            "height": 30,
+            "id": 27,
+            "north": 17,
+            "row": 17,
+            "shape": "square",
+            "size": "small",
+            "south": 19,
+            "west": 25,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 31,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Goblin (cr 1/4, mm 166) and 3 x Giant Rat (cr 1/8, mm 327); medium, 125 xp",
+                        "--",
+                        "Treasure: 17 cp; 7 ep; 12 gp; 7 gp"
+                    ],
+                    "room_features": "Someone has scrawled \"Don't lose your head\" on the east wall, and a pile of torches lies in the south side of the room"
+                },
+                "inhabited": "Goblin and 3 x Giant Rat",
+                "summary": "Goblin and 3 x Giant Rat"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 34,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 32,
+                        "row": 23,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 31,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 22,
+                        "row": 18,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 30,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 27,
+                        "row": 19,
+                        "trap": "Falling Block: DC 10 to find, DC 10 to disable;\n    affects all targets within a 10 ft. square area, DC 10 save or take 1d10 damage",
+                        "type": "portcullis"
+                    },
+                    {
+                        "col": 30,
+                        "desc": "Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "row": 23,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 50,
+            "id": 28,
+            "north": 19,
+            "row": 19,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 31,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "room_features": "A tile mosaic of ancient mythology covers the floor, and a pile of empty bottles lies in the east side of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 8,
+                        "desc": "Secret (DC 25 to find) Trapped and Stuck Strong Wooden Door (DC 15 to break; 20 hp) (slides up)",
+                        "out_id": 30,
+                        "row": 21,
+                        "secret": "The door is concealed within the mouth of a gargantuan skull carved from stone",
+                        "trap": "Rune of Hypnosis: DC 15 to find, DC 15 to disable;\n    affects all targets within 10 ft., DC 14 save or become incapacitated for 1d4 rounds",
+                        "type": "secret"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 3,
+                        "desc": "Secret (DC 15 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 21,
+                        "row": 20,
+                        "secret": "The door is concealed behind a statue of a dread vampire, and opened by filling his chalice with blood",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 7,
+            "height": 30,
+            "id": 29,
+            "north": 21,
+            "row": 21,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 3,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 9,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Silver Dragon Wyrmling (cr 2, mm 118); deadly, 450 xp",
+                        "--",
+                        "Treasure: 20 cp"
+                    ]
+                },
+                "inhabited": "Silver Dragon Wyrmling",
+                "summary": "Silver Dragon Wyrmling"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 33,
+                        "row": 23,
+                        "type": "portcullis"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 11,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 24,
+                        "row": 20,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 9,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 36,
+                        "row": 24,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 8,
+                        "desc": "Secret (DC 25 to find) Trapped and Stuck Strong Wooden Door (DC 15 to break; 20 hp) (slides up)",
+                        "out_id": 29,
+                        "row": 21,
+                        "secret": "The door is concealed within the mouth of a gargantuan skull carved from stone",
+                        "trap": "Rune of Hypnosis: DC 15 to find, DC 15 to disable;\n    affects all targets within 10 ft., DC 14 save or become incapacitated for 1d4 rounds",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 30,
+            "north": 21,
+            "row": 21,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 9,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "room_features": "Someone has scrawled \"Abandon all hope\" in draconic script on the north wall, and groaning fills the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 27,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 27,
+                        "row": 20,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 24,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 34,
+                        "row": 23,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 27,
+            "height": 30,
+            "id": 31,
+            "north": 21,
+            "row": 21,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 25,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "room_features": "Screaming can be faintly heard near the north wall, and a pile of rotten bread lies in the west side of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 35,
+                        "desc": "Locked Good Wooden Door (DC 10 to open, DC 15 to break; 15 hp) (slides to one side)",
+                        "out_id": 23,
+                        "row": 20,
+                        "type": "locked"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 28,
+                        "row": 23,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 32,
+            "north": 21,
+            "row": 21,
+            "shape": "square",
+            "size": "small",
+            "south": 23,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 13,
+            "contents": {
+                "detail": {
+                    "room_features": "The room has a high domed ceiling, and the floor is covered in perfect hexagonal tiles"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 40,
+                        "row": 27,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 17,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 25,
+                        "row": 22,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 12,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 30,
+                        "row": 23,
+                        "type": "portcullis"
+                    },
+                    {
+                        "col": 12,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 36,
+                        "row": 25,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 50,
+            "id": 33,
+            "north": 23,
+            "row": 23,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 13,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Silver Dragon Wyrmling (cr 2, mm 118); deadly, 450 xp",
+                        "--",
+                        "Treasure: 17 cp"
+                    ]
+                },
+                "inhabited": "Silver Dragon Wyrmling",
+                "summary": "Silver Dragon Wyrmling"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 24,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 31,
+                        "row": 23,
+                        "type": "door"
+                    },
+                    {
+                        "col": 24,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 37,
+                        "row": 25,
+                        "trap": "Acid Spray: DC 15 to find, DC 15 to disable;\n    affects all targets within a 20 ft. cone, DC 20 save or take 2d10 acid damage\n    for 1d4 rounds",
+                        "type": "portcullis"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 19,
+                        "desc": "Archway",
+                        "out_id": 26,
+                        "row": 22,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 23,
+            "height": 30,
+            "id": 34,
+            "north": 23,
+            "row": 23,
+            "shape": "square",
+            "size": "small",
+            "south": 25,
+            "west": 19,
+            "width": 50
+        },
+        {
+            "area": 2500,
+            "col": 1,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 11 sp; 14 cp"
+                    ]
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Unlocked Iron Door (60 hp)",
+                        "out_id": 36,
+                        "row": 25,
+                        "trap": "Arrow Trap: DC 10 to find, DC 10 to disable;\n    +7 to hit against one target, 2d10 piercing damage",
+                        "type": "trapped"
+                    },
+                    {
+                        "col": 6,
+                        "desc": "Archway",
+                        "out_id": 41,
+                        "row": 29,
+                        "type": "arch"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 1,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "row": 30,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 50,
+            "id": 35,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 29,
+            "west": 1,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "room_features": "A stone dais sits in the north-west corner of the room, and a forge and anvil sit in the center of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 33,
+                        "row": 25,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 9,
+                        "desc": "Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "out_id": 30,
+                        "row": 24,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Unlocked Iron Door (60 hp)",
+                        "out_id": 35,
+                        "row": 25,
+                        "trap": "Arrow Trap: DC 10 to find, DC 10 to disable;\n    +7 to hit against one target, 2d10 piercing damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 36,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 7,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Trapped and Unlocked Iron Chest (60 hp)",
+                        "Poisoned Arrow Trap: DC 10 to find, DC 15 to disable;\n    +3 to hit against one target, 1d10 piercing/poison damage",
+                        "--",
+                        "2100 cp, 800 sp, 120 gp, azurite (10 gp), blue quartz (10 gp), 2 x eye agate (10 gp), lapis lazuli (10 gp), 2 x obsidian (10 gp), rhodochrosite (10 gp), 2 x turquoise (10 gp)"
+                    ],
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 2500 cp, 900 sp, 70 gp, 2 x diamond (50 gp), bloodstone (50 gp), carnelian (50 gp), chalcedony (50 gp), onyx (50 gp), quartz (50 gp), star rose quartz (50 gp), Spell Scroll (Detect Evil and Good) (common, dmg 200), Spell Scroll (Jump) (common, dmg 200), 2 x Potion of Healing (common, dmg 187)"
+                    ],
+                    "trap": [
+                        "Scythe Blade: DC 15 to find, DC 15 to disable;\n    +6 to hit against all targets within a 5 ft. arc, 2d10 slashing damage"
+                    ]
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre, Scythe Blade, Hidden Treasure"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 28,
+                        "desc": "Trapped and Locked Iron Door (DC 20 to open, DC 30 to break; 60 hp)",
+                        "out_id": 38,
+                        "row": 27,
+                        "trap": "Ice Dart Trap: DC 15 to find, DC 15 to disable;\n    +4 to hit against one target, 1d10 cold damage",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 24,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 34,
+                        "row": 25,
+                        "trap": "Acid Spray: DC 15 to find, DC 15 to disable;\n    affects all targets within a 20 ft. cone, DC 20 save or take 2d10 acid damage\n    for 1d4 rounds",
+                        "type": "portcullis"
+                    }
+                ]
+            },
+            "east": 27,
+            "height": 30,
+            "id": 37,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 25,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 29,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Goblin Boss (cr 1, mm 166) and 1 x Goblin (cr 1/4, mm 166); medium, 250 xp",
+                        "--",
+                        "Treasure: 9 ep; 15 gp"
+                    ]
+                },
+                "inhabited": "Goblin Boss and 1 x Goblin",
+                "summary": "Goblin Boss and 1 x Goblin"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 34,
+                        "desc": "Trapped and Locked Good Wooden Door (DC 20 to open, DC 15 to break; 15 hp)",
+                        "out_id": 39,
+                        "row": 25,
+                        "trap": "Arrow Trap: DC 15 to find, DC 10 to disable;\n    +8 to hit against one target, 2d10 piercing damage",
+                        "type": "trapped"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 29,
+                        "desc": "Secret (DC 25 to find) Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "row": 24,
+                        "secret": "The door is located several feet above the floor and opened by tracing a holy symbol",
+                        "type": "secret"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 33,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 46,
+                        "row": 30,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 28,
+                        "desc": "Trapped and Locked Iron Door (DC 20 to open, DC 30 to break; 60 hp)",
+                        "out_id": 37,
+                        "row": 27,
+                        "trap": "Ice Dart Trap: DC 15 to find, DC 15 to disable;\n    +4 to hit against one target, 1d10 cold damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 50,
+            "id": 38,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 29,
+            "west": 29,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Locked Iron Chest (DC 15 to unlock, DC 30 to break; 60 hp)",
+                        "--",
+                        "2700 cp, 900 sp, 30 gp, banded agate (10 gp), 2 x hematite (10 gp), malachite (10 gp), rhodochrosite (10 gp), Potion of Clairvoyance (rare, dmg 187), Potion of Mind Reading (rare, dmg 188)"
+                    ],
+                    "monster": [
+                        "Gelatinous Cube (cr 2, mm 242); deadly, 450 xp",
+                        "--",
+                        "Treasure: 2400 cp, 1300 sp, 50 gp, azurite (10 gp), blue quartz (10 gp), eye agate (10 gp), malachite (10 gp), moss agate (10 gp), 2 x tiger eye (10 gp), Spell Scroll (Friends) (common, dmg 200), Spell Scroll (Message) (common, dmg 200), Spell Scroll (Sacred Flame) (common, dmg 200), Potion of Climbing (common, dmg 187), 2 x Potion of Healing (common, dmg 187)"
+                    ]
+                },
+                "inhabited": "Gelatinous Cube",
+                "summary": "Gelatinous Cube, Hidden Treasure"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 37,
+                        "desc": "Trapped and Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 43,
+                        "row": 28,
+                        "trap": "Contact Poison: DC 15 to find, DC 10 to disable;\n    affects each creature which touches the trigger, DC 12 save or take 2d10 damage",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Trapped and Locked Good Wooden Door (DC 20 to open, DC 15 to break; 15 hp)",
+                        "out_id": 38,
+                        "row": 25,
+                        "trap": "Arrow Trap: DC 15 to find, DC 10 to disable;\n    +8 to hit against one target, 2d10 piercing damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 39,
+            "north": 25,
+            "row": 25,
+            "shape": "square",
+            "size": "small",
+            "south": 27,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "2 x Goblin (cr 1/4, mm 166) and 2 x Wolf (cr 1/4, mm 341); deadly, 200 xp",
+                        "--",
+                        "Treasure: 1900 cp, 700 sp, 40 gp, azurite (10 gp), turquoise (10 gp)"
+                    ]
+                },
+                "inhabited": "2 x Goblin and 2 x Wolf",
+                "summary": "2 x Goblin and 2 x Wolf"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 24,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 45,
+                        "row": 31,
+                        "type": "portcullis"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 21,
+                        "desc": "Locked Simple Wooden Door (DC 25 to open, DC 15 to break; 10 hp)",
+                        "out_id": 48,
+                        "row": 32,
+                        "type": "locked"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 18,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 33,
+                        "row": 27,
+                        "type": "door"
+                    },
+                    {
+                        "col": 18,
+                        "desc": "Secret (DC 25 to find) Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 42,
+                        "row": 29,
+                        "secret": "A bookcase and concealed door pivots smoothly",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 23,
+            "height": 50,
+            "id": 40,
+            "north": 27,
+            "row": 27,
+            "shape": "square",
+            "size": "small",
+            "south": 31,
+            "west": 19,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "room_features": "Someone has scrawled \"The Emerald Foxes looted this place\" on the north wall, and a warped spear lies in the south-west corner of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 42,
+                        "row": 31,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 9,
+                        "desc": "Locked Stone Door (DC 20 to open, DC 25 to break; 60 hp) (slides to one side)",
+                        "out_id": 47,
+                        "row": 32,
+                        "type": "locked"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 6,
+                        "desc": "Archway",
+                        "out_id": 35,
+                        "row": 29,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 41,
+            "north": 29,
+            "row": 29,
+            "shape": "square",
+            "size": "small",
+            "south": 31,
+            "west": 7,
+            "width": 50
+        },
+        {
+            "area": 2500,
+            "col": 13,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Secret (DC 25 to find) Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 40,
+                        "row": 29,
+                        "secret": "A bookcase and concealed door pivots smoothly",
+                        "type": "secret"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 15,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 49,
+                        "row": 34,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 41,
+                        "row": 31,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 50,
+            "id": 42,
+            "north": 29,
+            "row": 29,
+            "shape": "square",
+            "size": "small",
+            "south": 33,
+            "west": 13,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Locked Simple Wooden Chest (DC 15 to unlock, DC 15 to break; 10 hp)",
+                        "--",
+                        "1900 cp, 1500 sp, 80 gp, bloodstone (50 gp), 4 x carnelian (50 gp), jasper (50 gp), moonstone (50 gp), onyx (50 gp), sardonyx (50 gp), 2 x star rose quartz (50 gp), Keoghtom's Ointment (uncommon, dmg 179)"
+                    ],
+                    "monster": [
+                        "Gelatinous Cube (cr 2, mm 242); deadly, 450 xp",
+                        "--",
+                        "Treasure: 2900 cp, 1500 sp, 50 gp, 6 x diamond (50 gp), chalcedony (50 gp), chrysoprase (50 gp), Potion of Heroism (rare, dmg 188), 2 x Potion of Superior Healing (rare, dmg 187)"
+                    ],
+                    "room_features": "A well lies in the center of the room, and a corroded mace lies in the south-west corner of the room",
+                    "trap": [
+                        "Teleporter Crystal: DC 15 to find, DC 15 to disable;\n    affects each creature which touches the crystal, DC 10 save or be teleported to another location"
+                    ]
+                },
+                "inhabited": "Gelatinous Cube",
+                "summary": "Gelatinous Cube, Teleporter Crystal, Hidden Treasure"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 37,
+                        "desc": "Trapped and Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "out_id": 39,
+                        "row": 28,
+                        "trap": "Contact Poison: DC 15 to find, DC 10 to disable;\n    affects each creature which touches the trigger, DC 12 save or take 2d10 damage",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Secret (DC 15 to find) Locked Simple Wooden Door (DC 10 to open, DC 15 to break; 10 hp)",
+                        "out_id": 46,
+                        "row": 33,
+                        "secret": "The door is concealed behind a tapestry of a goddess of knowledge",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 50,
+            "id": 43,
+            "north": 29,
+            "row": 29,
+            "shape": "square",
+            "size": "small",
+            "south": 33,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Goblin Boss (cr 1, mm 166) and 1 x Goblin (cr 1/4, mm 166); medium, 250 xp",
+                        "--",
+                        "Treasure: 17 sp; 8 gp"
+                    ]
+                },
+                "inhabited": "Goblin Boss and 1 x Goblin",
+                "summary": "Goblin Boss and 1 x Goblin"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Unlocked Stone Door (60 hp)",
+                        "out_id": 47,
+                        "row": 33,
+                        "trap": "Contact Poison: DC 15 to find, DC 10 to disable;\n    affects each creature which touches the trigger, DC 12 save or take 2d10 damage",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 2,
+                        "desc": "Locked Simple Wooden Door (DC 15 to open, DC 15 to break; 10 hp)",
+                        "row": 31,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 5,
+            "height": 30,
+            "id": 44,
+            "north": 31,
+            "row": 31,
+            "shape": "square",
+            "size": "small",
+            "south": 33,
+            "west": 3,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 25,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 20 to find) Locked Good Wooden Chest (DC 15 to unlock, DC 20 to break; 15 hp)",
+                        "--",
+                        "1800 cp, 900 sp, 60 gp, a brass coffer etched with thorned vines (25 gp), a portrait (of a male dwarf) in a wooden frame inlaid with copper (25 gp), a rosewood comb inlaid with a meandros of gold (25 gp), a rosewood puzzle box inlaid with a filigree of silver (25 gp), a scroll of calligraphy (25 gp), a steel salt cellar set with a single star sapphire (25 gp), a steel shield brooch engraved with draconic runes (25 gp), a wooden scepter engraved with arcane runes (25 gp), Staff of Withering (rare, dmg 205)"
+                    ],
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 15 ep; 12 sp"
+                    ],
+                    "room_features": "A tapestry of a god of war hangs from the east wall, and someone has scrawled \"Georguy Dene died here, his luck ran out before his arrows\" on the east wall"
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre, Hidden Treasure"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 27,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 53,
+                        "row": 36,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 24,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 40,
+                        "row": 31,
+                        "type": "portcullis"
+                    }
+                ]
+            },
+            "east": 27,
+            "height": 50,
+            "id": 45,
+            "north": 31,
+            "row": 31,
+            "shape": "square",
+            "size": "small",
+            "south": 35,
+            "west": 25,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 29,
+            "contents": {
+                "detail": {
+                    "room_features": "A rope ascends to a balcony hanging from the north wall, and lit candles are scattered across the floor"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 34,
+                        "desc": "Secret (DC 15 to find) Locked Simple Wooden Door (DC 10 to open, DC 15 to break; 10 hp)",
+                        "out_id": 43,
+                        "row": 33,
+                        "secret": "The door is concealed behind a tapestry of a goddess of knowledge",
+                        "type": "secret"
+                    },
+                    {
+                        "col": 34,
+                        "desc": "Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)",
+                        "out_id": 50,
+                        "row": 35,
+                        "type": "locked"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 33,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 38,
+                        "row": 30,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 33,
+                        "desc": "Locked Stone Door (DC 20 to open, DC 25 to break; 60 hp)",
+                        "out_id": 54,
+                        "row": 36,
+                        "type": "locked"
+                    },
+                    {
+                        "col": 29,
+                        "desc": "Archway",
+                        "out_id": 53,
+                        "row": 36,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 50,
+            "id": 46,
+            "north": 31,
+            "row": 31,
+            "shape": "square",
+            "size": "small",
+            "south": 35,
+            "west": 29,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 7,
+            "contents": {
+                "detail": {
+                    "room_features": "Someone has scrawled \"golden, silver, crimson, iron, iron, ruby\" on the south wall, and an unidentifiable odor fills the south-east corner of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 10,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 49,
+                        "row": 37,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 9,
+                        "desc": "Locked Stone Door (DC 20 to open, DC 25 to break; 60 hp) (slides to one side)",
+                        "out_id": 41,
+                        "row": 32,
+                        "type": "locked"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 55,
+                        "row": 38,
+                        "type": "arch"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 6,
+                        "desc": "Trapped and Unlocked Stone Door (60 hp)",
+                        "out_id": 44,
+                        "row": 33,
+                        "trap": "Contact Poison: DC 15 to find, DC 10 to disable;\n    affects each creature which touches the trigger, DC 12 save or take 2d10 damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 9,
+            "height": 50,
+            "id": 47,
+            "north": 33,
+            "row": 33,
+            "shape": "square",
+            "size": "small",
+            "south": 37,
+            "west": 7,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "room_features": "Several square holes are cut into the ceiling and floor, and a fountain decorated with three gargoyles sits in the east side of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 21,
+                        "desc": "Locked Simple Wooden Door (DC 25 to open, DC 15 to break; 10 hp)",
+                        "out_id": 40,
+                        "row": 32,
+                        "type": "locked"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 19,
+                        "desc": "Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)",
+                        "out_id": 51,
+                        "row": 36,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 48,
+            "north": 33,
+            "row": 33,
+            "shape": "square",
+            "size": "small",
+            "south": 35,
+            "west": 19,
+            "width": 30
+        },
+        {
+            "area": 2500,
+            "col": 11,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Ogre Zombie (cr 2, mm 316) and 1 x Zombie (cr 1/4, mm 316); deadly, 500 xp",
+                        "--",
+                        "Treasure: 2600 cp, 1100 sp, 60 gp, blue quartz (10 gp), malachite (10 gp), obsidian (10 gp), rhodochrosite (10 gp), tiger eye (10 gp), Potion of Resistance (necrotic) (uncommon, dmg 188)"
+                    ]
+                },
+                "inhabited": "Ogre Zombie and 1 x Zombie",
+                "summary": "Ogre Zombie and 1 x Zombie"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 15,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 42,
+                        "row": 34,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 15,
+                        "desc": "Trapped and Unlocked Stone Door (60 hp)",
+                        "out_id": 57,
+                        "row": 40,
+                        "trap": "Rune of Dread: DC 15 to find, DC 10 to disable;\n    affects all targets within 10 ft., DC 14 save or become frightened for 1d4 rounds",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 10,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 47,
+                        "row": 37,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 15,
+            "height": 50,
+            "id": 49,
+            "north": 35,
+            "row": 35,
+            "shape": "square",
+            "size": "small",
+            "south": 39,
+            "west": 11,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Mimic (cr 2, mm 220); deadly, 450 xp",
+                        "--",
+                        "Treasure: 1300 cp, 900 sp, 100 gp, quartz (50 gp), 2 x star rose quartz (50 gp)"
+                    ],
+                    "room_features": "A faded and torn tapestry hangs from the east wall, and a fountain engraved with endless spirals sits in the north-east corner of the room"
+                },
+                "inhabited": "Mimic",
+                "summary": "Mimic"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 37,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 59,
+                        "row": 40,
+                        "trap": "Symbol of Hypnosis: DC 10 to find, DC 20 to disable;\n    affects all targets within 10 ft., DC 13 save or become incapacitated for 1d4 rounds",
+                        "type": "portcullis"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)",
+                        "out_id": 46,
+                        "row": 35,
+                        "type": "locked"
+                    },
+                    {
+                        "col": 34,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 54,
+                        "row": 39,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 50,
+            "id": 50,
+            "north": 35,
+            "row": 35,
+            "shape": "square",
+            "size": "small",
+            "south": 39,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 17,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 1400 cp, 900 sp, 60 gp, 4 x diamond (50 gp), 2 x citrine (50 gp), jasper (50 gp), moonstone (50 gp), star rose quartz (50 gp)"
+                    ],
+                    "room_features": "Several headless statues are scattered throughout the room, and someone has scrawled \"In the Year of Ice and Steel, the Throne of Swords shall be destroyed\" on the south wall"
+                },
+                "inhabited": "Orog",
+                "summary": "Orog"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 22,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 52,
+                        "row": 37,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 19,
+                        "desc": "Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)",
+                        "out_id": 48,
+                        "row": 36,
+                        "type": "locked"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 19,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "row": 40,
+                        "type": "portcullis"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 51,
+            "north": 37,
+            "row": 37,
+            "shape": "square",
+            "size": "small",
+            "south": 39,
+            "west": 17,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 23,
+            "contents": {
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 26,
+                        "desc": "Secret (DC 20 to find) Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 53,
+                        "row": 39,
+                        "secret": "The door is located above a small stone dais and concealed within a mosaic of a legendary battle",
+                        "type": "secret"
+                    },
+                    {
+                        "col": 26,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 58,
+                        "row": 41,
+                        "type": "portcullis"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 25,
+                        "desc": "Secret (DC 15 to find) Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "row": 42,
+                        "secret": "The door is concealed behind a tapestry of arcane patterns",
+                        "type": "secret"
+                    },
+                    {
+                        "col": 23,
+                        "desc": "Unlocked Stone Door (60 hp)",
+                        "row": 42,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 22,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 51,
+                        "row": 37,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 25,
+            "height": 50,
+            "id": 52,
+            "north": 37,
+            "row": 37,
+            "shape": "square",
+            "size": "small",
+            "south": 41,
+            "west": 23,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 27,
+            "contents": {
+                "detail": {
+                    "room_features": "A group of demonic faces have been carved into the east wall, and a splashing noise fills the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 27,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 45,
+                        "row": 36,
+                        "type": "door"
+                    },
+                    {
+                        "col": 29,
+                        "desc": "Archway",
+                        "out_id": 46,
+                        "row": 36,
+                        "type": "arch"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 29,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 58,
+                        "row": 40,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 26,
+                        "desc": "Secret (DC 20 to find) Unlocked Simple Wooden Door (10 hp)",
+                        "out_id": 52,
+                        "row": 39,
+                        "secret": "The door is located above a small stone dais and concealed within a mosaic of a legendary battle",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 29,
+            "height": 30,
+            "id": 53,
+            "north": 37,
+            "row": 37,
+            "shape": "square",
+            "size": "small",
+            "south": 39,
+            "west": 27,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 31,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orog (cr 2, mm 247); deadly, 450 xp",
+                        "--",
+                        "Treasure: 19 cp"
+                    ],
+                    "room_features": "Lit candles are scattered across the floor, and a shallow pool of blood lies in the south side of the room"
+                },
+                "inhabited": "Orog",
+                "summary": "Orog"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 34,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "out_id": 50,
+                        "row": 39,
+                        "type": "door"
+                    },
+                    {
+                        "col": 34,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 59,
+                        "row": 41,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 33,
+                        "desc": "Locked Stone Door (DC 20 to open, DC 25 to break; 60 hp)",
+                        "out_id": 46,
+                        "row": 36,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 50,
+            "id": 54,
+            "north": 37,
+            "row": 37,
+            "shape": "square",
+            "size": "small",
+            "south": 41,
+            "west": 31,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 3,
+            "contents": {
+                "detail": {
+                    "room_features": "A rope ascends to a catwalk hanging between the north and south walls, and someone has scrawled \"The gold is cursed\" in dwarvish runes on the north wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 8,
+                        "desc": "Archway",
+                        "out_id": 56,
+                        "row": 41,
+                        "type": "arch"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 7,
+                        "desc": "Archway",
+                        "out_id": 47,
+                        "row": 38,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 7,
+            "height": 30,
+            "id": 55,
+            "north": 39,
+            "row": 39,
+            "shape": "square",
+            "size": "small",
+            "south": 41,
+            "west": 3,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 9,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Gelatinous Cube (cr 2, mm 242); deadly, 450 xp",
+                        "--",
+                        "Treasure: 10 cp"
+                    ]
+                },
+                "inhabited": "Gelatinous Cube",
+                "summary": "Gelatinous Cube"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Trapped and Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 57,
+                        "row": 43,
+                        "trap": "Fire Spray: DC 15 to find, DC 10 to disable;\n    affects all targets within a 20 ft. cone, DC 14 save or take 2d10 fire damage",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 8,
+                        "desc": "Archway",
+                        "out_id": 55,
+                        "row": 41,
+                        "type": "arch"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 30,
+            "id": 56,
+            "north": 41,
+            "row": 41,
+            "shape": "square",
+            "size": "small",
+            "south": 43,
+            "west": 9,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 13,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Silver Dragon Wyrmling (cr 2, mm 118); deadly, 450 xp",
+                        "--",
+                        "Treasure: 14 sp"
+                    ],
+                    "room_features": "A tapestry of ancient mythology hangs from the south wall, and a rusted iron box lies in the west side of the room"
+                },
+                "inhabited": "Silver Dragon Wyrmling",
+                "summary": "Silver Dragon Wyrmling"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "row": 41,
+                        "type": "portcullis"
+                    },
+                    {
+                        "col": 18,
+                        "desc": "Locked Strong Wooden Door (DC 25 to open, DC 20 to break; 20 hp)",
+                        "out_id": 61,
+                        "row": 43,
+                        "type": "locked"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 15,
+                        "desc": "Trapped and Unlocked Stone Door (60 hp)",
+                        "out_id": 49,
+                        "row": 40,
+                        "trap": "Rune of Dread: DC 15 to find, DC 10 to disable;\n    affects all targets within 10 ft., DC 14 save or become frightened for 1d4 rounds",
+                        "type": "trapped"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 12,
+                        "desc": "Trapped and Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 56,
+                        "row": 43,
+                        "trap": "Fire Spray: DC 15 to find, DC 10 to disable;\n    affects all targets within a 20 ft. cone, DC 14 save or take 2d10 fire damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 30,
+            "id": 57,
+            "north": 41,
+            "row": 41,
+            "shape": "square",
+            "size": "small",
+            "south": 43,
+            "west": 13,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 27,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 25 to find) Locked Good Wooden Chest (DC 20 to unlock, DC 20 to break; 15 hp)",
+                        "--",
+                        "2300 cp, 1300 sp, 90 gp, a bone medallion engraved with spirals (25 gp), a brocade merchant's cap trimmed with lynx fur (25 gp), a copper flower brooch set with a single chrysoberyl (25 gp), a marble rod inlaid with a meandros of electrum (25 gp), Winged Boots (uncommon, dmg 214), +1 Weapon (mace) (uncommon, dmg 213), Sword of Vengeance (greatsword) (uncommon, dmg 206)"
+                    ],
+                    "room_features": "A large demonic idol with ruby eyes sits in the west side of the room, and someone has scrawled \"The elf will betray you\" in blood on the south wall",
+                    "trap": [
+                        "Net Trap: DC 15 to find, DC 15 to disable;\n    affects all targets within a 10 ft. square area, DC 10 save or become restrained"
+                    ]
+                },
+                "summary": "Net Trap, Hidden Treasure"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 29,
+                        "desc": "Unlocked Strong Wooden Door (20 hp)",
+                        "out_id": 53,
+                        "row": 40,
+                        "type": "door"
+                    }
+                ],
+                "south": [
+                    {
+                        "col": 29,
+                        "desc": "Secret (DC 25 to find) Stuck Good Wooden Door (DC 15 to break; 15 hp)",
+                        "row": 44,
+                        "secret": "The door is concealed by an illusion",
+                        "type": "secret"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 26,
+                        "desc": "Iron Portcullis (DC 20 to lift, DC 25 to break; 60 hp)",
+                        "out_id": 52,
+                        "row": 41,
+                        "type": "portcullis"
+                    }
+                ]
+            },
+            "east": 29,
+            "height": 30,
+            "id": 58,
+            "north": 41,
+            "row": 41,
+            "shape": "square",
+            "size": "small",
+            "south": 43,
+            "west": 27,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "room_features": "A group of draconic faces have been carved into the east wall, and a pile of bent copper coins lies in the north-east corner of the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "north": [
+                    {
+                        "col": 37,
+                        "desc": "Trapped Wooden Portcullis (lift DC 20, DC 15 to break; 30 hp)",
+                        "out_id": 50,
+                        "row": 40,
+                        "trap": "Symbol of Hypnosis: DC 10 to find, DC 20 to disable;\n    affects all targets within 10 ft., DC 13 save or become incapacitated for 1d4 rounds",
+                        "type": "portcullis"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Archway",
+                        "out_id": 62,
+                        "row": 43,
+                        "type": "arch"
+                    },
+                    {
+                        "col": 34,
+                        "desc": "Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "out_id": 54,
+                        "row": 41,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 59,
+            "north": 41,
+            "row": 41,
+            "shape": "square",
+            "size": "small",
+            "south": 43,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 1,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "3 x Goblin (cr 1/4, mm 166); hard, 150 xp",
+                        "--",
+                        "Treasure: 2200 cp, 800 sp, 90 gp, a fine steel pendant engraved with draconic scales (25 gp), a malachite cup engraved with dwarven runes (25 gp), a pewter plate etched with draconic scales (25 gp), an ivory medallion engraved with arcane runes (25 gp)"
+                    ]
+                },
+                "inhabited": "3 x Goblin",
+                "summary": "3 x Goblin"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 4,
+                        "desc": "Unlocked Good Wooden Door (15 hp)",
+                        "out_id": 63,
+                        "row": 45,
+                        "type": "door"
+                    }
+                ],
+                "north": [
+                    {
+                        "col": 1,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp)",
+                        "row": 42,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 3,
+            "height": 50,
+            "id": 60,
+            "north": 43,
+            "row": 43,
+            "shape": "square",
+            "size": "small",
+            "south": 47,
+            "west": 1,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 19,
+            "contents": {
+                "detail": {
+                    "room_features": "A rope ascends to a balcony hanging from the north wall, and someone has scrawled \"The blue dragon is not a dragon\" in blood on the east wall"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 22,
+                        "desc": "Unlocked Good Wooden Door (15 hp)",
+                        "out_id": 66,
+                        "row": 45,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 18,
+                        "desc": "Locked Strong Wooden Door (DC 25 to open, DC 20 to break; 20 hp)",
+                        "out_id": 57,
+                        "row": 43,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 21,
+            "height": 30,
+            "id": 61,
+            "north": 43,
+            "row": 43,
+            "shape": "square",
+            "size": "small",
+            "south": 45,
+            "west": 19,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 31,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 15 to find) Unlocked Strong Wooden Chest (20 hp)",
+                        "--",
+                        "2400 cp, 700 sp, 60 gp, 2 x diamond (50 gp), bloodstone (50 gp), chalcedony (50 gp), citrine (50 gp), jasper (50 gp), 2 x quartz (50 gp), zircon (50 gp), Boots of Elvenkind (uncommon, dmg 155), Gloves of Thievery (uncommon, dmg 172)"
+                    ],
+                    "monster": [
+                        "Mimic (cr 2, mm 220); deadly, 450 xp",
+                        "--",
+                        "Treasure: 1900 cp, 800 sp, 40 gp, diamond (50 gp), jasper (50 gp), moonstone (50 gp), sardonyx (50 gp), zircon (50 gp), Spell Scroll (Sacred Flame) (common, dmg 200), Spell Scroll (Inflict Wounds) (common, dmg 200), 2 x Potion of Climbing (common, dmg 187), 2 x Potion of Healing (common, dmg 187)"
+                    ]
+                },
+                "inhabited": "Mimic",
+                "summary": "Mimic, Hidden Treasure"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 34,
+                        "desc": "Archway",
+                        "out_id": 59,
+                        "row": 43,
+                        "type": "arch"
+                    },
+                    {
+                        "col": 34,
+                        "desc": "Locked Good Wooden Door (DC 15 to open, DC 15 to break; 15 hp)",
+                        "out_id": 67,
+                        "row": 45,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 33,
+            "height": 30,
+            "id": 62,
+            "north": 43,
+            "row": 43,
+            "shape": "square",
+            "size": "small",
+            "south": 45,
+            "west": 31,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 5,
+            "contents": {
+                "detail": {
+                    "room_features": "A narrow shaft descends from the room into a midden chamber below, and the north and west walls are covered with cracks"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 8,
+                        "desc": "Locked Good Wooden Door (DC 15 to open, DC 15 to break; 15 hp)",
+                        "out_id": 64,
+                        "row": 45,
+                        "type": "locked"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 4,
+                        "desc": "Unlocked Good Wooden Door (15 hp)",
+                        "out_id": 60,
+                        "row": 45,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 7,
+            "height": 50,
+            "id": 63,
+            "north": 45,
+            "row": 45,
+            "shape": "square",
+            "size": "small",
+            "south": 49,
+            "west": 5,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 9,
+            "contents": {
+                "detail": {
+                    "room_features": "Someone has scrawled a strange symbol on the west wall, and several monstrous corpses are scattered throughout the room"
+                },
+                "summary": "Empty"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 12,
+                        "desc": "Stuck Simple Wooden Door (DC 10 to break; 10 hp) (slides up)",
+                        "row": 49,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 8,
+                        "desc": "Locked Good Wooden Door (DC 15 to open, DC 15 to break; 15 hp)",
+                        "out_id": 63,
+                        "row": 45,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 11,
+            "height": 50,
+            "id": 64,
+            "north": 45,
+            "row": 45,
+            "shape": "square",
+            "size": "small",
+            "south": 49,
+            "west": 9,
+            "width": 30
+        },
+        {
+            "area": 1500,
+            "col": 13,
+            "contents": {
+                "detail": {
+                    "hidden_treasure": [
+                        "Hidden (DC 15 to find) Locked Good Wooden Chest (DC 20 to unlock, DC 20 to break; 15 hp)",
+                        "--",
+                        "1800 cp, 1000 sp, 60 gp, a cloth gown threaded with dyed silk (25 gp), a cloth mantle trimmed with lynx fur (25 gp), a leather vest sewn with silver (25 gp), a malachite salt cellar set with black pearl (25 gp), a marble brazier inlaid with ornate copper scrollwork (25 gp), a pair of brocade gloves threaded with dyed silk (25 gp), a wooden chalice inlaid with ornate electrum scrollwork (25 gp), an agate salt cellar engraved with arcane runes (25 gp), Spell Scroll (Dancing Lights) (common, dmg 200), 2 x Potion of Healing (common, dmg 187)"
+                    ],
+                    "monster": [
+                        "Bugbear (cr 1, mm 33) and 1 x Goblin (cr 1/4, mm 166); medium, 250 xp",
+                        "--",
+                        "Treasure: 16 cp; 21 cp"
+                    ],
+                    "trap": [
+                        "Teleporter Crystal: DC 15 to find, DC 20 to disable;\n    affects each creature which touches the crystal, DC 11 save or be teleported to another location"
+                    ]
+                },
+                "inhabited": "Bugbear and 1 x Goblin",
+                "summary": "Bugbear and 1 x Goblin, Teleporter Crystal, Hidden Treasure"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 18,
+                        "desc": "Trapped and Stuck Stone Door (DC 20 to break; 60 hp)",
+                        "row": 47,
+                        "trap": "Arrow Trap: DC 10 to find, DC 15 to disable;\n    +11 to hit against one target, 4d10 piercing damage",
+                        "type": "trapped"
+                    }
+                ]
+            },
+            "east": 17,
+            "height": 30,
+            "id": 65,
+            "north": 45,
+            "row": 45,
+            "shape": "square",
+            "size": "small",
+            "south": 47,
+            "west": 13,
+            "width": 50
+        },
+        {
+            "area": 1500,
+            "col": 23,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Ogre Zombie (cr 2, mm 316) and 1 x Zombie (cr 1/4, mm 316); deadly, 500 xp",
+                        "--",
+                        "Treasure: 2500 cp, 800 sp, 60 gp, 3 x diamond (50 gp), bloodstone (50 gp), chrysoprase (50 gp), 2 x jasper (50 gp), onyx (50 gp), 2 x sardonyx (50 gp), star rose quartz (50 gp), Potion of Climbing (common, dmg 187), Potion of Healing (common, dmg 187)"
+                    ],
+                    "room_features": "A tile mosaic of geometric patterns covers the floor, and someone has scrawled \"Abandon all hope\" in goblin runes on the east wall"
+                },
+                "inhabited": "Ogre Zombie and 1 x Zombie",
+                "summary": "Ogre Zombie and 1 x Zombie"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 28,
+                        "desc": "Trapped and Locked Iron Door (DC 25 to open, DC 30 to break; 60 hp)",
+                        "row": 45,
+                        "trap": "Electrified Lock: DC 20 to find, DC 10 to disable;\n    affects each creature which touches the lock, DC 14 save or take 2d10 lightning damage",
+                        "type": "trapped"
+                    },
+                    {
+                        "col": 28,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 68,
+                        "row": 47,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 22,
+                        "desc": "Unlocked Good Wooden Door (15 hp)",
+                        "out_id": 61,
+                        "row": 45,
+                        "type": "door"
+                    },
+                    {
+                        "col": 22,
+                        "desc": "Secret (DC 15 to find) Stuck Iron Door (DC 25 to break; 60 hp)",
+                        "row": 47,
+                        "secret": "A bookcase and concealed door pivots smoothly",
+                        "type": "secret"
+                    }
+                ]
+            },
+            "east": 27,
+            "height": 30,
+            "id": 66,
+            "north": 45,
+            "row": 45,
+            "shape": "square",
+            "size": "small",
+            "south": 47,
+            "west": 23,
+            "width": 50
+        },
+        {
+            "area": 900,
+            "col": 35,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 12 ep; 24 cp"
+                    ]
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre"
+            },
+            "doors": {
+                "south": [
+                    {
+                        "col": 37,
+                        "desc": "Secret (DC 20 to find) Trapped and Unlocked Iron Door (60 hp)",
+                        "row": 48,
+                        "secret": "The door is located near the ceiling and concealed behind a pile of skulls",
+                        "trap": "Ice Dart Trap: DC 20 to find, DC 20 to disable;\n    +7 to hit against one target, 2d10 cold damage",
+                        "type": "secret"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 34,
+                        "desc": "Locked Good Wooden Door (DC 15 to open, DC 15 to break; 15 hp)",
+                        "out_id": 62,
+                        "row": 45,
+                        "type": "locked"
+                    }
+                ]
+            },
+            "east": 37,
+            "height": 30,
+            "id": 67,
+            "north": 45,
+            "row": 45,
+            "shape": "square",
+            "size": "small",
+            "south": 47,
+            "west": 35,
+            "width": 30
+        },
+        {
+            "area": 900,
+            "col": 29,
+            "contents": {
+                "detail": {
+                    "monster": [
+                        "Orc (cr 1/2, mm 246) and 1 x Half-ogre (cr 1, mm 238); deadly, 300 xp",
+                        "--",
+                        "Treasure: 8 gp; 20 cp"
+                    ],
+                    "room_features": "A rope ascends to a balcony hanging from the east wall, and a circle of tall stones stands in the west side of the room"
+                },
+                "inhabited": "Orc and 1 x Half-ogre",
+                "summary": "Orc and 1 x Half-ogre"
+            },
+            "doors": {
+                "east": [
+                    {
+                        "col": 32,
+                        "desc": "Unlocked Good Wooden Door (15 hp)",
+                        "row": 49,
+                        "type": "door"
+                    }
+                ],
+                "west": [
+                    {
+                        "col": 28,
+                        "desc": "Stuck Strong Wooden Door (DC 15 to break; 20 hp)",
+                        "out_id": 66,
+                        "row": 47,
+                        "type": "door"
+                    }
+                ]
+            },
+            "east": 31,
+            "height": 30,
+            "id": 68,
+            "north": 47,
+            "row": 47,
+            "shape": "square",
+            "size": "small",
+            "south": 49,
+            "west": 29,
+            "width": 30
+        }
+    ]
+}

@@ -28,6 +28,7 @@ TagManager:
   - MusicButton
   - SoundController
   - SfxButton
+  - Continue
   layers:
   - Default
   - TransparentFX

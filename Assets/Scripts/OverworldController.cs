@@ -54,9 +54,13 @@ public class Rooms
 
 public class OverworldController : MonoBehaviour
 {
+    public static bool CONTINUE = false;
+    public static GameObject CONTINUE_OBJ = null;
+
     private const int MAP_UNIT_S = 10;
     private const int WALL_OFFSET = 2;
-    private const float PERCENT_TO_RESTORE = 0.1f;
+    private const float PERCENT_TO_RESTORE = 0.3f;
+    public float XP_MULTIPLIER = 1;
 
     public string[] VOCAB_ARTICLES;
     public string[] VOCAB_NAMES;
@@ -94,6 +98,13 @@ public class OverworldController : MonoBehaviour
     {
         // Get map building script from game object
         m_builderScript = m_builderObj.GetComponent<MapBuilder>();
+
+        // find continue object if it is not already found
+        if (CONTINUE_OBJ == null)
+        {
+            CONTINUE_OBJ = GameObject.FindGameObjectWithTag("Continue");
+            CONTINUE_OBJ.SetActive(false);
+        }
 
         // find game objects
         m_Player = GameObject.FindGameObjectWithTag("Player");
@@ -136,6 +147,19 @@ public class OverworldController : MonoBehaviour
         {
             StartCoroutine(GameOver());
         }
+    }
+    // Wait until continue command has been pressed
+    public static IEnumerator WaitForPlayer()
+    {
+        CONTINUE_OBJ.SetActive(true);
+        yield return new WaitUntil(() => CONTINUE);
+        CONTINUE = false;
+        CONTINUE_OBJ.SetActive(false);
+    }
+    // mark continue flag
+    void OnContinue()
+    {
+        CONTINUE = true;
     }
 
     // goes through every door in the dungeon and attempts to link them to one another
@@ -372,11 +396,11 @@ public class OverworldController : MonoBehaviour
     {
         m_ActionsMenu.SetActive(false);
 
-        yield return new WaitForSeconds(Character.ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         m_DialogueText.text = "You have died :(";
 
-        yield return new WaitForSeconds(Character.ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         m_GameOverMenu.SetActive(true);
     }
@@ -443,14 +467,14 @@ public class OverworldController : MonoBehaviour
      */
     private IEnumerator EndCombat()
     {
-        yield return new WaitForSeconds(Character.ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         m_ActionsMenu.SetActive(false);
         
         // announce victory
         m_DialogueText.text = "The " + m_MonsterObject.name + " has been defeated!";
 
-        yield return new WaitForSeconds(Character.ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         // give xp and restore resources
         yield return GiveXP();
@@ -470,7 +494,7 @@ public class OverworldController : MonoBehaviour
     {
         // calculate xp reward and give xp
         int xpReward = Monster.XP_PER_CR[m_Monster.GetLevel()];
-        m_PlayerCharacter.AddXP(xpReward);
+        m_PlayerCharacter.AddXP((int)(xpReward*XP_MULTIPLIER));
         // calculate remaining xp required ect.
         int playerXP = m_PlayerCharacter.GetXP();
         int nextLevel = PlayerCharacter.XP_AT_LVL[m_PlayerCharacter.GetLevel()];
@@ -478,7 +502,7 @@ public class OverworldController : MonoBehaviour
         // post dialogue message
         m_DialogueText.text = "You gained " + xpReward + " xp!\n";
         m_DialogueText.text += "Current XP: " + playerXP + "\nNext level (" + (m_PlayerCharacter.GetLevel() + 1) + "): " + nextLevel + "XP (" + (nextLevel - playerXP) + "XP away)";
-        yield return new WaitForSeconds(Character.ACTION_DELAY*4);
+        yield return OverworldController.WaitForPlayer();
     }
     // partially refreshes player hp and mp
     private void RestorePlayer()

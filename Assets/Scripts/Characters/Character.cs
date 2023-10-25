@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public const float ACTION_DELAY = 2f;
+    public const float ACTION_DELAY = 1f;
     public const int CRITICAL_HIT = 20;
     public const int CRITICAL_MISS = 1;
 
@@ -172,7 +172,7 @@ public class Character : MonoBehaviour
                 dialogue.text = caster.name + " casts " + name + "!";
             }
 
-            yield return new WaitForSecondsRealtime(ACTION_DELAY);
+            yield return OverworldController.WaitForPlayer();
 
             // if this is a spell attack roll to hit
             if (attackType == SpellAttackTypes.ATTACK)
@@ -182,7 +182,7 @@ public class Character : MonoBehaviour
 
                 crit = dieRoll == CRITICAL_HIT || dieRoll == CRITICAL_MISS;
 
-                float delay = caster.GetRoller().GetFinish() - Time.time;
+                float delay = caster.GetRoller().GetFinish() - Time.time + ACTION_DELAY;
 
                 yield return new WaitForSecondsRealtime(delay);
 
@@ -196,7 +196,7 @@ public class Character : MonoBehaviour
                 string hit = success ? " hits" : " misses";
 
                 dialogue.text = caster.name + "\'s " + name + critical + hit +  "!" ;
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
             }
             // if this is is a saving throw spell
             if (attackType == SpellAttackTypes.SAVE)
@@ -211,7 +211,7 @@ public class Character : MonoBehaviour
 
                 dialogue.text = target.name + " " + saved + " their saving throw!";
 
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
             }
 
             // if the spell succeeds, do effects
@@ -234,7 +234,7 @@ public class Character : MonoBehaviour
                     damage = damage < 0 ? -damage : damage;
 
                     dialogue.text = target.name + " is " + hit + " for " + damage + " " + dmg + "!";
-                    yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                    yield return OverworldController.WaitForPlayer();
                 }
 
                 // check if we need to apply effects
@@ -243,7 +243,7 @@ public class Character : MonoBehaviour
                     target.ApplyEffect(spellEffect, effectDuration);
 
                     dialogue.text = target.name + " is " + EffectName(spellEffect) + " for " + effectDuration + " rounds!";
-                    yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                    yield return OverworldController.WaitForPlayer();
                 }
             }
 
@@ -325,7 +325,7 @@ public class Character : MonoBehaviour
         FindObjects();
     }
 
-    protected void FindObjects()
+    protected virtual void FindObjects()
     {
         // grab our text box
         GameObject textObject = GameObject.FindGameObjectWithTag("DialogueText");

@@ -10,8 +10,8 @@ public class Monster : Character
     private const bool NO_HEAL = false;
     public int[] BASE_MONSTER_STATS = { 16, 14, 15, 8, 12, 8 };
     public static int MIN_LEVELUP = 1;
-    public static int MAX_LEVELUP = 3;
-    public static readonly int[] XP_PER_CR = {200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900};
+    public static int MAX_LEVELUP = 5;
+    public static readonly int[] XP_PER_CR = {400, 900, 1400, 2200, 3600, 4600, 5800, 7800, 10000, 18000};
 
     public Stats m_AttackAttribute;        // stat the monster uses to attack
     private PlayerCharacter m_Player;      // player the monster targets
@@ -26,10 +26,6 @@ public class Monster : Character
     void Start()
     {
         FindObjects();
-
-        m_Player = GameObject.FindGameObjectWithTag("PlayerSheet").GetComponent<PlayerCharacter>();
-        m_NameTag = GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>();
-
 
         GameObject dieObject = GameObject.FindGameObjectWithTag("MonsterDie");
         m_DieRoller = dieObject.GetComponent<DieRoller>();
@@ -52,6 +48,14 @@ public class Monster : Character
         m_AttackDamage = new DamageFormula(m_DamageDice, ADD_STAT_TO_DAMAGE, m_AttackAttribute, NO_HEAL);
 
     }
+    protected override void FindObjects()
+    {
+        base.FindObjects();
+
+        m_Player = GameObject.FindGameObjectWithTag("PlayerSheet").GetComponent<PlayerCharacter>();
+        m_NameTag = GameObject.FindGameObjectWithTag("MonsterName").GetComponent<TextMeshProUGUI>();
+        return;
+    }
 
     // Function to call async coroutine for turn
     public void StartTurn()
@@ -61,9 +65,15 @@ public class Monster : Character
 
     protected override void DrawResources()
     {
-        m_NameTag.text = this.name;
-        m_HPBar.SetValue(this.m_HP);
-        m_HPBar.SetMax(this.m_MaxHP);
+        if (m_NameTag != null)
+        {
+            m_NameTag.text = this.name;
+        }
+        if (m_HPBar != null)
+        {
+            m_HPBar.SetValue(this.m_HP);
+            m_HPBar.SetMax(this.m_MaxHP);
+        }
     }
 
     /**
@@ -81,7 +91,7 @@ public class Monster : Character
         if (m_HP <= 0)
         {
             m_DialogueText.text = this.name + " is dead and cannot act!";
-            yield return new WaitForSecondsRealtime(ACTION_DELAY);
+            yield return OverworldController.WaitForPlayer();
         }
         // monster is not dead, do turn
         else
@@ -97,7 +107,7 @@ public class Monster : Character
 
                 m_DialogueText.text = this.name + " is Charmed and cannot act!";
 
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
 
             }
             if (m_EffectTimers[(int)Effects.REELING] > 0)
@@ -108,7 +118,7 @@ public class Monster : Character
 
                 m_DialogueText.text = this.name + " is Reeling and cannot act!";
 
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
             }
 
             // if we are attacking
@@ -116,7 +126,7 @@ public class Monster : Character
             {
                 m_DialogueText.text = this.name + " attacks " + m_Player.name + "!";
 
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
 
 
                 int roll = m_DieRoller.Roll(m_WeaponAttack) + m_WeaponAttack;
@@ -145,7 +155,7 @@ public class Monster : Character
                         m_DialogueText.text = this.name + " missed!";
                     }
                 }
-                yield return new WaitForSecondsRealtime(ACTION_DELAY);
+                yield return OverworldController.WaitForPlayer();
             }
         }
 

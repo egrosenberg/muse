@@ -115,7 +115,7 @@ public class PlayerCharacter : Character
     {
         int toReturn = base.Damage(ammount);
 
-        m_HPBar.SetValue(m_HP);
+        DrawResources();
 
         return toReturn;
     }
@@ -153,7 +153,7 @@ public class PlayerCharacter : Character
             m_MP = m_MaxMP;
         }
 
-        m_MPBar.SetValue(m_MP);
+        DrawResources();
     }
 
     /**
@@ -271,7 +271,7 @@ public class PlayerCharacter : Character
         // add parry for 1 round
         ApplyEffect(Effects.PARRY, 2);
         // wait
-        yield return new WaitForSeconds(ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         yield return EndRound();
     }
@@ -285,9 +285,9 @@ public class PlayerCharacter : Character
         // roll attack
         int dieRoll = m_DieRoller.Roll(m_WeaponAttack);
 
-        float delay = m_DieRoller.GetFinish() - Time.time;
+        float delay = m_DieRoller.GetFinish() - Time.time + ACTION_DELAY;
 
-        yield return new WaitForSecondsRealtime(delay + ACTION_DELAY);
+        yield return new WaitForSecondsRealtime(delay);
 
         // check if attack hits
         int toHit = dieRoll + m_WeaponAttack;
@@ -302,7 +302,7 @@ public class PlayerCharacter : Character
         string critical = crit ? " critically" : "";
         string hit = success ? " hits" : " misses";
         m_DialogueText.text = this.name + critical + hit + "!";
-        yield return new WaitForSecondsRealtime(ACTION_DELAY);
+        yield return OverworldController.WaitForPlayer();
 
         // deal damage
         if (success && m_WeaponDamge != null)
@@ -315,7 +315,7 @@ public class PlayerCharacter : Character
             m_Target.Damage(damage);
 
             m_DialogueText.text = m_Target.name + " takes " + damage + " damage!";
-            yield return new WaitForSecondsRealtime(ACTION_DELAY);
+            yield return OverworldController.WaitForPlayer();
         }
 
         m_DieRoller.Deactivate();

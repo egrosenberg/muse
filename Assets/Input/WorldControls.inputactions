@@ -6,7 +6,7 @@
             "id": "1c793d7a-0de7-417a-83ac-974c8cc5e530",
             "actions": [
                 {
-                    "name": "GenNext",
+                    "name": "Continue",
                     "type": "Button",
                     "id": "d27151a8-7089-4fe1-b3da-d95ed322c6df",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GenNext",
+                    "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +34,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GenNext",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac7ea772-a3ec-4cca-b87a-fe1884b92642",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
